@@ -1,0 +1,182 @@
+{
+ "node_types": {
+  "Action": 768,
+  "Customer": 7000,
+  "CustomerOrder": 3263,
+  "Dealer": 50,
+  "Event": 15,
+  "Lot": 364,
+  "Model": 6,
+  "Part": 20,
+  "Plant": 6,
+  "ProductionOrder": 540,
+  "Rule": 10,
+  "Shipment": 364,
+  "Supplier": 18,
+  "Vehicle": 5348
+ },
+ "relations": [
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "Customer",
+   "count": 423
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "CustomerOrder",
+   "count": 548
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "Dealer",
+   "count": 290
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "Event",
+   "count": 2
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "Lot",
+   "count": 3
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "ProductionOrder",
+   "count": 50
+  },
+  {
+   "from": "Action",
+   "rel": "acts_on",
+   "to": "Vehicle",
+   "count": 556
+  },
+  {
+   "from": "Action",
+   "rel": "applies",
+   "to": "Rule",
+   "count": 768
+  },
+  {
+   "from": "Action",
+   "rel": "triggered_by",
+   "to": "Event",
+   "count": 768
+  },
+  {
+   "from": "CustomerOrder",
+   "rel": "for",
+   "to": "Customer",
+   "count": 3263
+  },
+  {
+   "from": "CustomerOrder",
+   "rel": "placed_at",
+   "to": "Dealer",
+   "count": 3263
+  },
+  {
+   "from": "Lot",
+   "rel": "batch_of",
+   "to": "Part",
+   "count": 364
+  },
+  {
+   "from": "Lot",
+   "rel": "installed_in",
+   "to": "ProductionOrder",
+   "count": 1410
+  },
+  {
+   "from": "Lot",
+   "rel": "used_at",
+   "to": "Plant",
+   "count": 364
+  },
+  {
+   "from": "Model",
+   "rel": "contains",
+   "to": "Part",
+   "count": 47
+  },
+  {
+   "from": "Plant",
+   "rel": "builds",
+   "to": "Model",
+   "count": 18
+  },
+  {
+   "from": "ProductionOrder",
+   "rel": "of_model",
+   "to": "Model",
+   "count": 540
+  },
+  {
+   "from": "ProductionOrder",
+   "rel": "produced",
+   "to": "Vehicle",
+   "count": 5348
+  },
+  {
+   "from": "ProductionOrder",
+   "rel": "promised_to",
+   "to": "CustomerOrder",
+   "count": 3263
+  },
+  {
+   "from": "ProductionOrder",
+   "rel": "scheduled_at",
+   "to": "Plant",
+   "count": 540
+  },
+  {
+   "from": "Shipment",
+   "rel": "carries",
+   "to": "Part",
+   "count": 364
+  },
+  {
+   "from": "Shipment",
+   "rel": "delivers_to",
+   "to": "Plant",
+   "count": 364
+  },
+  {
+   "from": "Supplier",
+   "rel": "made",
+   "to": "Lot",
+   "count": 364
+  },
+  {
+   "from": "Supplier",
+   "rel": "ships",
+   "to": "Shipment",
+   "count": 364
+  },
+  {
+   "from": "Vehicle",
+   "rel": "owned_by",
+   "to": "Customer",
+   "count": 2927
+  },
+  {
+   "from": "Vehicle",
+   "rel": "sold_by",
+   "to": "Dealer",
+   "count": 2927
+  },
+  {
+   "from": "Vehicle",
+   "rel": "stocked_at",
+   "to": "Dealer",
+   "count": 2421
+  }
+ ]
+}

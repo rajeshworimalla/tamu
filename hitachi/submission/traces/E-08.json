@@ -1,0 +1,1947 @@
+{
+ "event_id": "E-08",
+ "source": "plant alert",
+ "received_at": "2027-03-08T09:16:00",
+ "text": "Plant operations alert: Wacky Wheels Lexington (P_KY) lost production to a power failure. Production is stopped from 2027-03-24 through 2027-03-25 inclusive.",
+ "classification": "Plant Outage",
+ "decision": "Lexington, KY plant down Mar 24 to Mar 25, 6 builds moved.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2844,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "plant_outage",
+   "extracted": {
+    "kind": "plant_outage",
+    "plant": "Wacky Wheels Lexington (P_KY)",
+    "start": "2027-03-24",
+    "end": "2027-03-25",
+    "evidence": "Plant operations alert: Wacky Wheels Lexington (P_KY) lost production to a power failure. Production is stopped from 2027-03-24 through 2027-03-25 inclusive."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "Wacky Wheels Lexington (P_KY)",
+     "id": "P_KY",
+     "via": "contained"
+    },
+    "start": {
+     "mention": "2027-03-24",
+     "date": "2027-03-24",
+     "rule": "iso"
+    },
+    "end": {
+     "mention": "2027-03-25",
+     "date": "2027-03-25",
+     "rule": "iso"
+    }
+   },
+   "disruption": {
+    "plant": "P_KY",
+    "models": [
+     "PIONEER",
+     "SUMMIT",
+     "VOYAGER"
+    ],
+    "from_idx": 12,
+    "to_idx_excl": 14,
+    "earliest_same_plant_idx": 14,
+    "summary": "P_KY down 2027-03-24 to 2027-03-25, restarts 2027-03-26"
+   },
+   "affected_production_orders": [
+    "PO-0157",
+    "PO-0158",
+    "PO-0159",
+    "PO-0160",
+    "PO-0161",
+    "PO-0162"
+   ],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Plant > ProductionOrder > CustomerOrder > Dealer / Customer",
+    "example": [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00876",
+     "Dealer:D07",
+     "Customer:C5020"
+    ],
+    "counts": {
+     "Plant": 1,
+     "ProductionOrder": 6,
+     "CustomerOrder": 56,
+     "Dealer": 25,
+     "Customer": 56
+    },
+    "fact_check": [
+     {
+      "claim": "the plant exists in the network",
+      "edge": [
+       "Plant:P_KY"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [
+   "PO-0157",
+   "PO-0158",
+   "PO-0159",
+   "PO-0160",
+   "PO-0161",
+   "PO-0162"
+  ],
+  "customer_orders": [
+   "CO-00876",
+   "CO-00877",
+   "CO-00878",
+   "CO-00879",
+   "CO-00880",
+   "CO-00881",
+   "CO-00882",
+   "CO-00883",
+   "CO-00884",
+   "CO-00885",
+   "CO-00886",
+   "CO-00887",
+   "CO-00888",
+   "CO-00889",
+   "CO-00890",
+   "CO-00891",
+   "CO-00892",
+   "CO-00893",
+   "CO-00894",
+   "CO-00895",
+   "CO-00896",
+   "CO-00897",
+   "CO-00898",
+   "CO-00899",
+   "CO-00900",
+   "CO-00901",
+   "CO-00902",
+   "CO-00903",
+   "CO-00904",
+   "CO-00905",
+   "CO-00906",
+   "CO-00907",
+   "CO-00908",
+   "CO-00909",
+   "CO-00910",
+   "CO-00911",
+   "CO-00912",
+   "CO-00913",
+   "CO-00914",
+   "CO-00915",
+   "CO-00916",
+   "CO-00917",
+   "CO-00918",
+   "CO-00919",
+   "CO-00920",
+   "CO-00921",
+   "CO-00922",
+   "CO-00923",
+   "CO-00924",
+   "CO-00925",
+   "CO-00926",
+   "CO-00927",
+   "CO-00928",
+   "CO-00929",
+   "CO-00930",
+   "CO-00931"
+  ],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 2,
+   "title": "Outage: every build at the plant in the outage is moved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 3,
+   "title": "Rescheduling: after the disruption, transfer only when the plant is full",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 4,
+   "title": "Dealers: one notice each, listing exactly their affected orders",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 5,
+   "title": "Loaners: Platinum, then Gold, then promised date, within each pool",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0157",
+    "new_date": "2027-03-26"
+   },
+   "rule": "3",
+   "reason": "PIONEER order built 2027-03-24 at P_KY moves to P_KY 2027-03-26: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 26",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0157",
+    "plant_id": "P_KY",
+    "date": "2027-03-26"
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0158",
+    "new_date": "2027-03-26"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-24 at P_KY moves to P_KY 2027-03-26: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 26",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0158",
+    "plant_id": "P_KY",
+    "date": "2027-03-26"
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0159",
+    "new_date": "2027-03-29"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-24 at P_KY moves to P_KY 2027-03-29: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0159",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Lexington Mar 26",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 29",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0159",
+    "plant_id": "P_KY",
+    "date": "2027-03-29"
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0160",
+    "new_date": "2027-03-29"
+   },
+   "rule": "3",
+   "reason": "PIONEER order built 2027-03-25 at P_KY moves to P_KY 2027-03-29: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Lexington Mar 26",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 29",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0160",
+    "plant_id": "P_KY",
+    "date": "2027-03-29"
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0161",
+    "new_date": "2027-03-30"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-25 at P_KY moves to P_KY 2027-03-30: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Lexington Mar 26 to Mar 29",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 30",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0161",
+    "plant_id": "P_KY",
+    "date": "2027-03-30"
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0162",
+    "new_date": "2027-03-30"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-25 at P_KY moves to P_KY 2027-03-30: earliest free P_KY slot on or after 2027-03-26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Lexington before Mar 26",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Lexington Mar 26 to Mar 29",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Lexington Mar 30",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0162",
+    "plant_id": "P_KY",
+    "date": "2027-03-30"
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D02",
+    "customer_order_ids": [
+     "CO-00897"
+    ],
+    "message": "Production delay for your customer orders: CO-00897 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0159",
+    "CustomerOrder:CO-00897",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00897",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D03",
+    "customer_order_ids": [
+     "CO-00889",
+     "CO-00907"
+    ],
+    "message": "Production delay for your customer orders: CO-00889 now builds 2027-03-26; CO-00907 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00889",
+    "Dealer:D03"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00889",
+     "Dealer:D03"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00907",
+     "Dealer:D03"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D05",
+    "customer_order_ids": [
+     "CO-00928"
+    ],
+    "message": "Production delay for your customer orders: CO-00928 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00928",
+    "Dealer:D05"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00928",
+     "Dealer:D05"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D07",
+    "customer_order_ids": [
+     "CO-00876",
+     "CO-00893"
+    ],
+    "message": "Production delay for your customer orders: CO-00876 now builds 2027-03-26; CO-00893 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00876",
+    "Dealer:D07"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00876",
+     "Dealer:D07"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00893",
+     "Dealer:D07"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D08",
+    "customer_order_ids": [
+     "CO-00882",
+     "CO-00895",
+     "CO-00911",
+     "CO-00915",
+     "CO-00922",
+     "CO-00930"
+    ],
+    "message": "Production delay for your customer orders: CO-00882 now builds 2027-03-26; CO-00895 now builds 2027-03-29; CO-00911 now builds 2027-03-29; CO-00915 now builds 2027-03-30; CO-00922 now builds 2027-03-30; CO-00930 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00882",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00882",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00895",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00911",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00915",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00922",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00930",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D14",
+    "customer_order_ids": [
+     "CO-00885"
+    ],
+    "message": "Production delay for your customer orders: CO-00885 now builds 2027-03-26."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00885",
+    "Dealer:D14"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00885",
+     "Dealer:D14"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D15",
+    "customer_order_ids": [
+     "CO-00903",
+     "CO-00920",
+     "CO-00921"
+    ],
+    "message": "Production delay for your customer orders: CO-00903 now builds 2027-03-29; CO-00920 now builds 2027-03-30; CO-00921 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00903",
+    "Dealer:D15"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00903",
+     "Dealer:D15"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00920",
+     "Dealer:D15"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00921",
+     "Dealer:D15"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D16",
+    "customer_order_ids": [
+     "CO-00917",
+     "CO-00918",
+     "CO-00927"
+    ],
+    "message": "Production delay for your customer orders: CO-00917 now builds 2027-03-30; CO-00918 now builds 2027-03-30; CO-00927 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "CustomerOrder:CO-00917",
+    "Dealer:D16"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00917",
+     "Dealer:D16"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00918",
+     "Dealer:D16"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00927",
+     "Dealer:D16"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D17",
+    "customer_order_ids": [
+     "CO-00886"
+    ],
+    "message": "Production delay for your customer orders: CO-00886 now builds 2027-03-26."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00886",
+    "Dealer:D17"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00886",
+     "Dealer:D17"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D19",
+    "customer_order_ids": [
+     "CO-00923"
+    ],
+    "message": "Production delay for your customer orders: CO-00923 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00923",
+    "Dealer:D19"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00923",
+     "Dealer:D19"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D20",
+    "customer_order_ids": [
+     "CO-00879",
+     "CO-00894",
+     "CO-00908",
+     "CO-00929"
+    ],
+    "message": "Production delay for your customer orders: CO-00879 now builds 2027-03-26; CO-00894 now builds 2027-03-29; CO-00908 now builds 2027-03-29; CO-00929 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00879",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00879",
+     "Dealer:D20"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00894",
+     "Dealer:D20"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00908",
+     "Dealer:D20"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00929",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D21",
+    "customer_order_ids": [
+     "CO-00881",
+     "CO-00898",
+     "CO-00899",
+     "CO-00900",
+     "CO-00901",
+     "CO-00914"
+    ],
+    "message": "Production delay for your customer orders: CO-00881 now builds 2027-03-26; CO-00898 now builds 2027-03-29; CO-00899 now builds 2027-03-29; CO-00900 now builds 2027-03-29; CO-00901 now builds 2027-03-29; CO-00914 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00881",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00881",
+     "Dealer:D21"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00898",
+     "Dealer:D21"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00899",
+     "Dealer:D21"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00900",
+     "Dealer:D21"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00901",
+     "Dealer:D21"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00914",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D22",
+    "customer_order_ids": [
+     "CO-00919"
+    ],
+    "message": "Production delay for your customer orders: CO-00919 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "CustomerOrder:CO-00919",
+    "Dealer:D22"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00919",
+     "Dealer:D22"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D23",
+    "customer_order_ids": [
+     "CO-00910",
+     "CO-00912"
+    ],
+    "message": "Production delay for your customer orders: CO-00910 now builds 2027-03-29; CO-00912 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00910",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00910",
+     "Dealer:D23"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00912",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D24",
+    "customer_order_ids": [
+     "CO-00892"
+    ],
+    "message": "Production delay for your customer orders: CO-00892 now builds 2027-03-26."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00892",
+    "Dealer:D24"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00892",
+     "Dealer:D24"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D26",
+    "customer_order_ids": [
+     "CO-00887",
+     "CO-00890",
+     "CO-00902",
+     "CO-00904",
+     "CO-00909",
+     "CO-00916"
+    ],
+    "message": "Production delay for your customer orders: CO-00887 now builds 2027-03-26; CO-00890 now builds 2027-03-26; CO-00902 now builds 2027-03-29; CO-00904 now builds 2027-03-29; CO-00909 now builds 2027-03-29; CO-00916 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00887",
+    "Dealer:D26"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00887",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00890",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00902",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00904",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00909",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00916",
+     "Dealer:D26"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D27",
+    "customer_order_ids": [
+     "CO-00888",
+     "CO-00891",
+     "CO-00931"
+    ],
+    "message": "Production delay for your customer orders: CO-00888 now builds 2027-03-26; CO-00891 now builds 2027-03-26; CO-00931 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00888",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00888",
+     "Dealer:D27"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00891",
+     "Dealer:D27"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00931",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D31",
+    "customer_order_ids": [
+     "CO-00880"
+    ],
+    "message": "Production delay for your customer orders: CO-00880 now builds 2027-03-26."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00880",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00880",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D32",
+    "customer_order_ids": [
+     "CO-00913"
+    ],
+    "message": "Production delay for your customer orders: CO-00913 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "CustomerOrder:CO-00913",
+    "Dealer:D32"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00913",
+     "Dealer:D32"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D35",
+    "customer_order_ids": [
+     "CO-00877",
+     "CO-00924",
+     "CO-00926"
+    ],
+    "message": "Production delay for your customer orders: CO-00877 now builds 2027-03-26; CO-00924 now builds 2027-03-30; CO-00926 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00877",
+    "Dealer:D35"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00877",
+     "Dealer:D35"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00924",
+     "Dealer:D35"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00926",
+     "Dealer:D35"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D38",
+    "customer_order_ids": [
+     "CO-00925"
+    ],
+    "message": "Production delay for your customer orders: CO-00925 now builds 2027-03-30."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00925",
+    "Dealer:D38"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00925",
+     "Dealer:D38"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D39",
+    "customer_order_ids": [
+     "CO-00906"
+    ],
+    "message": "Production delay for your customer orders: CO-00906 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00906",
+    "Dealer:D39"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00906",
+     "Dealer:D39"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 28,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D45",
+    "customer_order_ids": [
+     "CO-00878",
+     "CO-00905"
+    ],
+    "message": "Production delay for your customer orders: CO-00878 now builds 2027-03-26; CO-00905 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00878",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00878",
+     "Dealer:D45"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00905",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 29,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D46",
+    "customer_order_ids": [
+     "CO-00884"
+    ],
+    "message": "Production delay for your customer orders: CO-00884 now builds 2027-03-26."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00884",
+    "Dealer:D46"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00884",
+     "Dealer:D46"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 30,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D49",
+    "customer_order_ids": [
+     "CO-00883",
+     "CO-00896"
+    ],
+    "message": "Production delay for your customer orders: CO-00883 now builds 2027-03-26; CO-00896 now builds 2027-03-29."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00883",
+    "Dealer:D49"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00883",
+     "Dealer:D49"
+    ],
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00896",
+     "Dealer:D49"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 31,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00876"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 1 of 1 for 3 loaners at D07",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00876",
+    "Customer:C5020"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00876",
+     "Customer:C5020"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D07"
+   }
+  },
+  {
+   "n": 32,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00930"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-28, priority 1 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00930",
+    "Customer:C2866"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00930",
+     "Customer:C2866"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 33,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00911"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 2 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00911",
+    "Customer:C0327"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00911",
+     "Customer:C0327"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 34,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00915"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 3 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "CustomerOrder:CO-00915",
+    "Customer:C4531"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00915",
+     "Customer:C4531"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 35,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00927"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-29, priority 1 of 2 for 3 loaners at D16",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00927",
+    "Customer:C0300"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00927",
+     "Customer:C0300"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D16"
+   }
+  },
+  {
+   "n": 36,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00918"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-29, priority 2 of 2 for 3 loaners at D16",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0161",
+    "CustomerOrder:CO-00918",
+    "Customer:C4998"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0161",
+     "CustomerOrder:CO-00918",
+     "Customer:C4998"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D16"
+   }
+  },
+  {
+   "n": 37,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00886"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-27, priority 1 of 1 for 1 loaners at D17",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00886",
+    "Customer:C2175"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00886",
+     "Customer:C2175"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D17"
+   }
+  },
+  {
+   "n": 38,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00908"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-30, priority 1 of 1 for 1 loaners at D20",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00908",
+    "Customer:C0483"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00908",
+     "Customer:C0483"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D20"
+   }
+  },
+  {
+   "n": 39,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00899"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-28, priority 1 of 1 for 3 loaners at D21",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0159",
+    "CustomerOrder:CO-00899",
+    "Customer:C0283"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0159",
+     "CustomerOrder:CO-00899",
+     "Customer:C0283"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D21"
+   }
+  },
+  {
+   "n": 40,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00887"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-27, priority 1 of 2 for 2 loaners at D26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0158",
+    "CustomerOrder:CO-00887",
+    "Customer:C2673"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0158",
+     "CustomerOrder:CO-00887",
+     "Customer:C2673"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D26"
+   }
+  },
+  {
+   "n": 41,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00904"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 2 of 2 for 2 loaners at D26",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00904",
+    "Customer:C1393"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00904",
+     "Customer:C1393"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D26"
+   }
+  },
+  {
+   "n": 42,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00880"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 1 of 1 for 2 loaners at D31",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00880",
+    "Customer:C1487"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00880",
+     "Customer:C1487"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D31"
+   }
+  },
+  {
+   "n": 43,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00926"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-29, priority 1 of 1 for 1 loaners at D35",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0162",
+    "CustomerOrder:CO-00926",
+    "Customer:C1992"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0162",
+     "CustomerOrder:CO-00926",
+     "Customer:C1992"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D35"
+   }
+  },
+  {
+   "n": 44,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00906"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-29, priority 1 of 1 for 2 loaners at D39",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0160",
+    "CustomerOrder:CO-00906",
+    "Customer:C2678"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0160",
+     "CustomerOrder:CO-00906",
+     "Customer:C2678"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D39"
+   }
+  },
+  {
+   "n": 45,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00884"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-28, priority 1 of 1 for 2 loaners at D46",
+   "graph_path": [
+    "Plant:P_KY",
+    "ProductionOrder:PO-0157",
+    "CustomerOrder:CO-00884",
+    "Customer:C4844"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_KY",
+     "ProductionOrder:PO-0157",
+     "CustomerOrder:CO-00884",
+     "Customer:C4844"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D46"
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 46,
+  "accepted": 46,
+  "failed": 0
+ }
+}

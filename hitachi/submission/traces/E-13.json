@@ -1,0 +1,85 @@
+{
+ "event_id": "E-13",
+ "source": "ops chat",
+ "received_at": "2027-03-08T10:41:00",
+ "text": "Someone on the floor mentioned a possible shortage of something electronic sometime soon. Not confirmed by anyone.",
+ "classification": "Unconfirmed Report",
+ "decision": "Escalated to a human: Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2287,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "unconfirmed",
+   "extracted": {
+    "kind": "unconfirmed",
+    "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+    "model_reason": "Rumor about electronic shortage; no part, plant or dates and not confirmed."
+   },
+   "resolution": {},
+   "disruption": null,
+   "affected_production_orders": [],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "reason the report was not actionable",
+    "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm."
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [],
+  "customer_orders": [],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 8,
+   "title": "Unconfirmed report: escalate, no operational change",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Coordinator",
+   "tool": "escalate",
+   "args": {
+    "reason": "Unconfirmed or non-specific report: Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm."
+   },
+   "rule": "8",
+   "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+   "graph_path": [
+    "Event:E-13"
+   ],
+   "graph_paths": [
+    [
+     "Event:E-13"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 1,
+  "accepted": 1,
+  "failed": 0
+ }
+}

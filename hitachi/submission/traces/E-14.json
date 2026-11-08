@@ -1,0 +1,4557 @@
+{
+ "event_id": "E-14",
+ "source": "ops chat",
+ "received_at": "2027-03-08T10:58:00",
+ "text": "Quality alert: Atlas says the heavy-duty wiring harness sent to the Texas plant had a moisture contamination. Anything built Monday Feb 22 through Wednesday Feb 24 is suspect.",
+ "classification": "Quality Hold",
+ "decision": "Heavy-duty wiring harness lot LOT-0017 on hold, 180 vehicles traced.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2625,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "quality_hold",
+   "extracted": {
+    "kind": "quality_hold",
+    "supplier": "Atlas",
+    "part": "heavy-duty wiring harness",
+    "plant": "Texas",
+    "window_start": "Monday Feb 22",
+    "window_end": "Wednesday Feb 24",
+    "evidence": "Quality alert: Atlas says the heavy-duty wiring harness sent to the Texas plant had a moisture contamination."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "Texas",
+     "id": "P_TX",
+     "via": "contained"
+    },
+    "part": {
+     "mention": "heavy-duty wiring harness",
+     "id": "HARN-B",
+     "via": "alias"
+    },
+    "supplier": {
+     "mention": "Atlas",
+     "id": "SUP-07",
+     "via": "alias"
+    },
+    "window_start": {
+     "mention": "Monday Feb 22",
+     "date": "2027-02-22",
+     "rule": "absolute"
+    },
+    "window_end": {
+     "mention": "Wednesday Feb 24",
+     "date": "2027-02-24",
+     "rule": "absolute"
+    },
+    "lots": [
+     {
+      "lot_id": "LOT-0017",
+      "part_id": "HARN-B",
+      "supplier_id": "SUP-07",
+      "plant_id": "P_TX",
+      "first_build_date": "2027-02-22",
+      "last_build_date": "2027-02-24"
+     }
+    ]
+   },
+   "disruption": null,
+   "affected_production_orders": [],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Lot > ProductionOrder > Vehicle > Dealer / Customer",
+    "example": [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000001",
+     "Dealer:D23",
+     "Customer:C1218"
+    ],
+    "counts": {
+     "Lot": 1,
+     "ProductionOrder": 6,
+     "Vehicle": 180,
+     "unsold": 86,
+     "sold": 94,
+     "Dealer": 42,
+     "Customer": 94
+    },
+    "fact_check": [
+     {
+      "claim": "the lot is a batch of the named part",
+      "edge": [
+       "Lot:LOT-0017",
+       "batch_of",
+       "Part:HARN-B"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the lot was used at the named plant",
+      "edge": [
+       "Lot:LOT-0017",
+       "used_at",
+       "Plant:P_TX"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the supplier made the lot",
+      "edge": [
+       "Supplier:SUP-07",
+       "made",
+       "Lot:LOT-0017"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [],
+  "customer_orders": [],
+  "lots": [
+   "LOT-0017"
+  ],
+  "unsold_vehicles": [
+   "AUR0000002",
+   "AUR0000003",
+   "AUR0000006",
+   "AUR0000007",
+   "AUR0000008",
+   "AUR0000010",
+   "AUR0000011",
+   "AUR0000013",
+   "AUR0000015",
+   "AUR0000017",
+   "AUR0000019",
+   "AUR0000020",
+   "AUR0000022",
+   "AUR0000023",
+   "AUR0000024",
+   "AUR0000025",
+   "AUR0000027",
+   "AUR0000028",
+   "AUR0000030",
+   "AUR0000031",
+   "AUR0000034",
+   "AUR0000035",
+   "AUR0000042",
+   "AUR0000044",
+   "AUR0000046",
+   "AUR0000047",
+   "AUR0000051",
+   "AUR0000052",
+   "AUR0000053",
+   "AUR0000082",
+   "AUR0000083",
+   "AUR0000085",
+   "AUR0000088",
+   "AUR0000089",
+   "AUR0000090",
+   "AUR0000093",
+   "AUR0000096",
+   "AUR0000097",
+   "AUR0000100",
+   "AUR0000103",
+   "AUR0000105",
+   "AUR0000107",
+   "AUR0000109",
+   "AUR0000110",
+   "AUR0000111",
+   "AUR0000117",
+   "AUR0000120",
+   "AUR0000121",
+   "AUR0000123",
+   "AUR0000126",
+   "AUR0000131",
+   "AUR0000132",
+   "AUR0000134",
+   "AUR0000136",
+   "AUR0000137",
+   "AUR0000169",
+   "AUR0000171",
+   "AUR0000172",
+   "AUR0000173",
+   "AUR0000174",
+   "AUR0000178",
+   "AUR0000186",
+   "AUR0000187",
+   "AUR0000188",
+   "AUR0000190",
+   "AUR0000191",
+   "AUR0000194",
+   "AUR0000195",
+   "AUR0000197",
+   "AUR0000198",
+   "AUR0000200",
+   "AUR0000201",
+   "AUR0000204",
+   "AUR0000207",
+   "AUR0000209",
+   "AUR0000210",
+   "AUR0000215",
+   "AUR0000217",
+   "AUR0000219",
+   "AUR0000220",
+   "AUR0000222",
+   "AUR0000225",
+   "AUR0000226",
+   "AUR0000229",
+   "AUR0000230",
+   "AUR0000231"
+  ],
+  "owners": [
+   "C0130",
+   "C0226",
+   "C0419",
+   "C0459",
+   "C0630",
+   "C0641",
+   "C0643",
+   "C0664",
+   "C0665",
+   "C0789",
+   "C0804",
+   "C0832",
+   "C0871",
+   "C1006",
+   "C1218",
+   "C1233",
+   "C1244",
+   "C1367",
+   "C1373",
+   "C1380",
+   "C1508",
+   "C1516",
+   "C1610",
+   "C1629",
+   "C1660",
+   "C1665",
+   "C1735",
+   "C1751",
+   "C1799",
+   "C1800",
+   "C1808",
+   "C1848",
+   "C1876",
+   "C2123",
+   "C2480",
+   "C2499",
+   "C2655",
+   "C2789",
+   "C2919",
+   "C2945",
+   "C3102",
+   "C3196",
+   "C3197",
+   "C3200",
+   "C3277",
+   "C3512",
+   "C3527",
+   "C3634",
+   "C3788",
+   "C3821",
+   "C3896",
+   "C3913",
+   "C3949",
+   "C4029",
+   "C4064",
+   "C4203",
+   "C4248",
+   "C4261",
+   "C4439",
+   "C4449",
+   "C4598",
+   "C4614",
+   "C4711",
+   "C4961",
+   "C5019",
+   "C5077",
+   "C5125",
+   "C5353",
+   "C5356",
+   "C5360",
+   "C5388",
+   "C5443",
+   "C5533",
+   "C5603",
+   "C5654",
+   "C5677",
+   "C5701",
+   "C5751",
+   "C5898",
+   "C6091",
+   "C6168",
+   "C6212",
+   "C6288",
+   "C6446",
+   "C6447",
+   "C6448",
+   "C6490",
+   "C6561",
+   "C6563",
+   "C6624",
+   "C6676",
+   "C6796",
+   "C6829",
+   "C6847"
+  ]
+ },
+ "policy_checks": [
+  {
+   "rule": 6,
+   "title": "Quality: hold the lot, stop unsold vehicles, contact every owner",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Quality",
+   "tool": "quality.hold_lot",
+   "args": {
+    "lot_id": "LOT-0017"
+   },
+   "rule": "6",
+   "reason": "HARN-B lot LOT-0017 reported defective, built into 180 vehicles",
+   "graph_path": [
+    "Lot:LOT-0017"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D02",
+    "vins": [
+     "AUR0000083",
+     "AUR0000220"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000083",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000083",
+     "Dealer:D02"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000220",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D03",
+    "vins": [
+     "AUR0000008",
+     "AUR0000028",
+     "AUR0000090",
+     "AUR0000226"
+    ]
+   },
+   "rule": "6",
+   "reason": "4 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000008",
+    "Dealer:D03"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000008",
+     "Dealer:D03"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000028",
+     "Dealer:D03"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000090",
+     "Dealer:D03"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000226",
+     "Dealer:D03"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D04",
+    "vins": [
+     "AUR0000085",
+     "AUR0000191"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000085",
+    "Dealer:D04"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000085",
+     "Dealer:D04"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000191",
+     "Dealer:D04"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D06",
+    "vins": [
+     "AUR0000024",
+     "AUR0000027",
+     "AUR0000052",
+     "AUR0000082",
+     "AUR0000188"
+    ]
+   },
+   "rule": "6",
+   "reason": "5 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000024",
+    "Dealer:D06"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000024",
+     "Dealer:D06"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000027",
+     "Dealer:D06"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000052",
+     "Dealer:D06"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000082",
+     "Dealer:D06"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000188",
+     "Dealer:D06"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D07",
+    "vins": [
+     "AUR0000020",
+     "AUR0000097"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000020",
+    "Dealer:D07"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000020",
+     "Dealer:D07"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000097",
+     "Dealer:D07"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D08",
+    "vins": [
+     "AUR0000013",
+     "AUR0000117",
+     "AUR0000131",
+     "AUR0000171",
+     "AUR0000215"
+    ]
+   },
+   "rule": "6",
+   "reason": "5 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000013",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000013",
+     "Dealer:D08"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000117",
+     "Dealer:D08"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000131",
+     "Dealer:D08"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000171",
+     "Dealer:D08"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000215",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D10",
+    "vins": [
+     "AUR0000210",
+     "AUR0000229"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000210",
+    "Dealer:D10"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000210",
+     "Dealer:D10"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000229",
+     "Dealer:D10"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D12",
+    "vins": [
+     "AUR0000046"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000046",
+    "Dealer:D12"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000046",
+     "Dealer:D12"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D13",
+    "vins": [
+     "AUR0000047",
+     "AUR0000198"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000047",
+    "Dealer:D13"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000047",
+     "Dealer:D13"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000198",
+     "Dealer:D13"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D14",
+    "vins": [
+     "AUR0000120",
+     "AUR0000195"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000120",
+    "Dealer:D14"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000120",
+     "Dealer:D14"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000195",
+     "Dealer:D14"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D16",
+    "vins": [
+     "AUR0000136"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000136",
+    "Dealer:D16"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000136",
+     "Dealer:D16"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D17",
+    "vins": [
+     "AUR0000107"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000107",
+    "Dealer:D17"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000107",
+     "Dealer:D17"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D19",
+    "vins": [
+     "AUR0000105"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000105",
+    "Dealer:D19"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000105",
+     "Dealer:D19"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D20",
+    "vins": [
+     "AUR0000042",
+     "AUR0000051"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000042",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000042",
+     "Dealer:D20"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000051",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D21",
+    "vins": [
+     "AUR0000088",
+     "AUR0000089",
+     "AUR0000222"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000088",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000088",
+     "Dealer:D21"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000089",
+     "Dealer:D21"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000222",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D22",
+    "vins": [
+     "AUR0000200",
+     "AUR0000225"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000200",
+    "Dealer:D22"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000200",
+     "Dealer:D22"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000225",
+     "Dealer:D22"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D23",
+    "vins": [
+     "AUR0000010",
+     "AUR0000173",
+     "AUR0000230"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000010",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000010",
+     "Dealer:D23"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000173",
+     "Dealer:D23"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000230",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D25",
+    "vins": [
+     "AUR0000011",
+     "AUR0000134",
+     "AUR0000178",
+     "AUR0000187",
+     "AUR0000204",
+     "AUR0000207"
+    ]
+   },
+   "rule": "6",
+   "reason": "6 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000011",
+    "Dealer:D25"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000011",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000134",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000178",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000187",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000204",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000207",
+     "Dealer:D25"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D26",
+    "vins": [
+     "AUR0000017",
+     "AUR0000096"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000017",
+    "Dealer:D26"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000017",
+     "Dealer:D26"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000096",
+     "Dealer:D26"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D27",
+    "vins": [
+     "AUR0000003",
+     "AUR0000186"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000003",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000003",
+     "Dealer:D27"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000186",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D28",
+    "vins": [
+     "AUR0000022"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000022",
+    "Dealer:D28"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000022",
+     "Dealer:D28"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D29",
+    "vins": [
+     "AUR0000034"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000034",
+    "Dealer:D29"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000034",
+     "Dealer:D29"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D31",
+    "vins": [
+     "AUR0000031",
+     "AUR0000132"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000031",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000031",
+     "Dealer:D31"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000132",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D32",
+    "vins": [
+     "AUR0000100",
+     "AUR0000103",
+     "AUR0000169",
+     "AUR0000201"
+    ]
+   },
+   "rule": "6",
+   "reason": "4 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000100",
+    "Dealer:D32"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000100",
+     "Dealer:D32"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000103",
+     "Dealer:D32"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000169",
+     "Dealer:D32"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000201",
+     "Dealer:D32"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D33",
+    "vins": [
+     "AUR0000111"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000111",
+    "Dealer:D33"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000111",
+     "Dealer:D33"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D34",
+    "vins": [
+     "AUR0000006",
+     "AUR0000019",
+     "AUR0000030"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000006",
+    "Dealer:D34"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000006",
+     "Dealer:D34"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000019",
+     "Dealer:D34"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000030",
+     "Dealer:D34"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D36",
+    "vins": [
+     "AUR0000053",
+     "AUR0000172"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000053",
+    "Dealer:D36"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000053",
+     "Dealer:D36"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000172",
+     "Dealer:D36"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 28,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D37",
+    "vins": [
+     "AUR0000015"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000015",
+    "Dealer:D37"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000015",
+     "Dealer:D37"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 29,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D38",
+    "vins": [
+     "AUR0000174",
+     "AUR0000209"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000174",
+    "Dealer:D38"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000174",
+     "Dealer:D38"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000209",
+     "Dealer:D38"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 30,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D39",
+    "vins": [
+     "AUR0000025",
+     "AUR0000123"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000025",
+    "Dealer:D39"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000025",
+     "Dealer:D39"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000123",
+     "Dealer:D39"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 31,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D43",
+    "vins": [
+     "AUR0000126",
+     "AUR0000137",
+     "AUR0000217"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000126",
+    "Dealer:D43"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000126",
+     "Dealer:D43"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000137",
+     "Dealer:D43"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000217",
+     "Dealer:D43"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 32,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D44",
+    "vins": [
+     "AUR0000109",
+     "AUR0000110"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000109",
+    "Dealer:D44"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000109",
+     "Dealer:D44"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000110",
+     "Dealer:D44"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 33,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D45",
+    "vins": [
+     "AUR0000002",
+     "AUR0000023",
+     "AUR0000035",
+     "AUR0000121",
+     "AUR0000190",
+     "AUR0000194",
+     "AUR0000231"
+    ]
+   },
+   "rule": "6",
+   "reason": "7 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000002",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000002",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000023",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000035",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000121",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000190",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000194",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000231",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 34,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D46",
+    "vins": [
+     "AUR0000007",
+     "AUR0000093",
+     "AUR0000197"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000007",
+    "Dealer:D46"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000007",
+     "Dealer:D46"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000093",
+     "Dealer:D46"
+    ],
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000197",
+     "Dealer:D46"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 35,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D47",
+    "vins": [
+     "AUR0000044"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000044",
+    "Dealer:D47"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000044",
+     "Dealer:D47"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 36,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D48",
+    "vins": [
+     "AUR0000219"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0017 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000219",
+    "Dealer:D48"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000219",
+     "Dealer:D48"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 37,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0130",
+    "message": "Quality notice: your vehicle AUR0000032 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000032 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000032",
+    "Customer:C0130"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000032",
+     "Customer:C0130"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 38,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0226",
+    "message": "Quality notice: your vehicle AUR0000212 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000212 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000212",
+    "Customer:C0226"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000212",
+     "Customer:C0226"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 39,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0419",
+    "message": "Quality notice: your vehicle AUR0000114 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000114 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000114",
+    "Customer:C0419"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000114",
+     "Customer:C0419"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 40,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0459",
+    "message": "Quality notice: your vehicle AUR0000116 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000116 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000116",
+    "Customer:C0459"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000116",
+     "Customer:C0459"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 41,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0630",
+    "message": "Quality notice: your vehicle AUR0000037 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000037 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000037",
+    "Customer:C0630"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000037",
+     "Customer:C0630"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 42,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0641",
+    "message": "Quality notice: your vehicle AUR0000099 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000099 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000099",
+    "Customer:C0641"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000099",
+     "Customer:C0641"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 43,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0643",
+    "message": "Quality notice: your vehicle AUR0000203 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000203 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000203",
+    "Customer:C0643"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000203",
+     "Customer:C0643"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 44,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0664",
+    "message": "Quality notice: your vehicle AUR0000177 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000177 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000177",
+    "Customer:C0664"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000177",
+     "Customer:C0664"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 45,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0665",
+    "message": "Quality notice: your vehicle AUR0000128 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000128 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000128",
+    "Customer:C0665"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000128",
+     "Customer:C0665"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 46,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0789",
+    "message": "Quality notice: your vehicle AUR0000021 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000021 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000021",
+    "Customer:C0789"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000021",
+     "Customer:C0789"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 47,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0804",
+    "message": "Quality notice: your vehicle AUR0000227 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000227 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000227",
+    "Customer:C0804"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000227",
+     "Customer:C0804"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 48,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0832",
+    "message": "Quality notice: your vehicle AUR0000005 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000005 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000005",
+    "Customer:C0832"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000005",
+     "Customer:C0832"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 49,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0871",
+    "message": "Quality notice: your vehicle AUR0000206 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000206 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000206",
+    "Customer:C0871"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000206",
+     "Customer:C0871"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 50,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1006",
+    "message": "Quality notice: your vehicle AUR0000179 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000179 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000179",
+    "Customer:C1006"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000179",
+     "Customer:C1006"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 51,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1218",
+    "message": "Quality notice: your vehicle AUR0000001 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000001 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000001",
+    "Customer:C1218"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000001",
+     "Customer:C1218"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 52,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1233",
+    "message": "Quality notice: your vehicle AUR0000095 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000095 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000095",
+    "Customer:C1233"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000095",
+     "Customer:C1233"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 53,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1244",
+    "message": "Quality notice: your vehicle AUR0000055 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000055 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000055",
+    "Customer:C1244"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000055",
+     "Customer:C1244"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 54,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1367",
+    "message": "Quality notice: your vehicle AUR0000130 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000130 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000130",
+    "Customer:C1367"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000130",
+     "Customer:C1367"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 55,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1373",
+    "message": "Quality notice: your vehicle AUR0000127 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000127 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000127",
+    "Customer:C1373"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000127",
+     "Customer:C1373"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 56,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1380",
+    "message": "Quality notice: your vehicle AUR0000183 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000183 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000183",
+    "Customer:C1380"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000183",
+     "Customer:C1380"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 57,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1508",
+    "message": "Quality notice: your vehicle AUR0000113 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000113 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000113",
+    "Customer:C1508"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000113",
+     "Customer:C1508"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 58,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1516",
+    "message": "Quality notice: your vehicle AUR0000102 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000102 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000102",
+    "Customer:C1516"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000102",
+     "Customer:C1516"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 59,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1610",
+    "message": "Quality notice: your vehicle AUR0000133 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000133 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000133",
+    "Customer:C1610"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000133",
+     "Customer:C1610"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 60,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1629",
+    "message": "Quality notice: your vehicle AUR0000233 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000233 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000233",
+    "Customer:C1629"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000233",
+     "Customer:C1629"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 61,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1660",
+    "message": "Quality notice: your vehicle AUR0000048 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000048 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000048",
+    "Customer:C1660"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000048",
+     "Customer:C1660"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 62,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1665",
+    "message": "Quality notice: your vehicle AUR0000214 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000214 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000214",
+    "Customer:C1665"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000214",
+     "Customer:C1665"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 63,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1735",
+    "message": "Quality notice: your vehicle AUR0000036 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000036 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000036",
+    "Customer:C1735"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000036",
+     "Customer:C1735"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 64,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1751",
+    "message": "Quality notice: your vehicle AUR0000018 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000018 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000018",
+    "Customer:C1751"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000018",
+     "Customer:C1751"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 65,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1799",
+    "message": "Quality notice: your vehicle AUR0000234 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000234 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000234",
+    "Customer:C1799"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000234",
+     "Customer:C1799"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 66,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1800",
+    "message": "Quality notice: your vehicle AUR0000086 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000086 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000086",
+    "Customer:C1800"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000086",
+     "Customer:C1800"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 67,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1808",
+    "message": "Quality notice: your vehicle AUR0000138 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000138 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000138",
+    "Customer:C1808"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000138",
+     "Customer:C1808"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 68,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1848",
+    "message": "Quality notice: your vehicle AUR0000232 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000232 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000232",
+    "Customer:C1848"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000232",
+     "Customer:C1848"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 69,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1876",
+    "message": "Quality notice: your vehicle AUR0000108 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000108 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000108",
+    "Customer:C1876"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000108",
+     "Customer:C1876"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 70,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2123",
+    "message": "Quality notice: your vehicle AUR0000223 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000223 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000223",
+    "Customer:C2123"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000223",
+     "Customer:C2123"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 71,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2480",
+    "message": "Quality notice: your vehicle AUR0000135 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000135 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000135",
+    "Customer:C2480"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000135",
+     "Customer:C2480"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 72,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2499",
+    "message": "Quality notice: your vehicle AUR0000115 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000115 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000115",
+    "Customer:C2499"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000115",
+     "Customer:C2499"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 73,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2655",
+    "message": "Quality notice: your vehicle AUR0000119 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000119 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000119",
+    "Customer:C2655"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000119",
+     "Customer:C2655"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 74,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2789",
+    "message": "Quality notice: your vehicle AUR0000012 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000012 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000012",
+    "Customer:C2789"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000012",
+     "Customer:C2789"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 75,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2919",
+    "message": "Quality notice: your vehicle AUR0000216 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000216 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000216",
+    "Customer:C2919"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000216",
+     "Customer:C2919"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 76,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2945",
+    "message": "Quality notice: your vehicle AUR0000228 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000228 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000228",
+    "Customer:C2945"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000228",
+     "Customer:C2945"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 77,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3102",
+    "message": "Quality notice: your vehicle AUR0000189 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000189 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000189",
+    "Customer:C3102"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000189",
+     "Customer:C3102"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 78,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3196",
+    "message": "Quality notice: your vehicle AUR0000098 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000098 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000098",
+    "Customer:C3196"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000098",
+     "Customer:C3196"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 79,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3197",
+    "message": "Quality notice: your vehicle AUR0000112 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000112 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000112",
+    "Customer:C3197"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000112",
+     "Customer:C3197"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 80,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3200",
+    "message": "Quality notice: your vehicle AUR0000122 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000122 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000122",
+    "Customer:C3200"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000122",
+     "Customer:C3200"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 81,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3277",
+    "message": "Quality notice: your vehicle AUR0000208 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000208 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000208",
+    "Customer:C3277"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000208",
+     "Customer:C3277"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 82,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3512",
+    "message": "Quality notice: your vehicle AUR0000218 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000218 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000218",
+    "Customer:C3512"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000218",
+     "Customer:C3512"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 83,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3527",
+    "message": "Quality notice: your vehicle AUR0000038 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000038 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000038",
+    "Customer:C3527"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000038",
+     "Customer:C3527"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 84,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3634",
+    "message": "Quality notice: your vehicle AUR0000175 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000175 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000175",
+    "Customer:C3634"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000175",
+     "Customer:C3634"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 85,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3788",
+    "message": "Quality notice: your vehicle AUR0000221 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000221 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000221",
+    "Customer:C3788"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000221",
+     "Customer:C3788"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 86,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3821",
+    "message": "Quality notice: your vehicle AUR0000026 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000026 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000026",
+    "Customer:C3821"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000026",
+     "Customer:C3821"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 87,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3896",
+    "message": "Quality notice: your vehicle AUR0000040 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000040 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000040",
+    "Customer:C3896"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000040",
+     "Customer:C3896"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 88,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3913",
+    "message": "Quality notice: your vehicle AUR0000094 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000094 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000094",
+    "Customer:C3913"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000094",
+     "Customer:C3913"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 89,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3949",
+    "message": "Quality notice: your vehicle AUR0000016 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000016 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000016",
+    "Customer:C3949"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000016",
+     "Customer:C3949"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 90,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4029",
+    "message": "Quality notice: your vehicle AUR0000050 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000050 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000050",
+    "Customer:C4029"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000050",
+     "Customer:C4029"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 91,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4064",
+    "message": "Quality notice: your vehicle AUR0000039 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000039 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000039",
+    "Customer:C4064"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000039",
+     "Customer:C4064"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 92,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4203",
+    "message": "Quality notice: your vehicle AUR0000106 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000106 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000106",
+    "Customer:C4203"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000106",
+     "Customer:C4203"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 93,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4248",
+    "message": "Quality notice: your vehicle AUR0000125 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000125 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000125",
+    "Customer:C4248"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000125",
+     "Customer:C4248"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 94,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4261",
+    "message": "Quality notice: your vehicle AUR0000182 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000182 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000182",
+    "Customer:C4261"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000182",
+     "Customer:C4261"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 95,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4439",
+    "message": "Quality notice: your vehicle AUR0000084 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000084 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000084",
+    "Customer:C4439"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000084",
+     "Customer:C4439"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 96,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4449",
+    "message": "Quality notice: your vehicle AUR0000199 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000199 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000199",
+    "Customer:C4449"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000199",
+     "Customer:C4449"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 97,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4598",
+    "message": "Quality notice: your vehicle AUR0000139 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000139 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000139",
+    "Customer:C4598"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000139",
+     "Customer:C4598"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 98,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4614",
+    "message": "Quality notice: your vehicle AUR0000043 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000043 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000043",
+    "Customer:C4614"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000043",
+     "Customer:C4614"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 99,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4711",
+    "message": "Quality notice: your vehicle AUR0000056 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000056 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000056",
+    "Customer:C4711"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000056",
+     "Customer:C4711"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 100,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4961",
+    "message": "Quality notice: your vehicle AUR0000101 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000101 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000101",
+    "Customer:C4961"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000101",
+     "Customer:C4961"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 101,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5019",
+    "message": "Quality notice: your vehicle AUR0000004 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000004 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000004",
+    "Customer:C5019"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000004",
+     "Customer:C5019"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 102,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5077",
+    "message": "Quality notice: your vehicle AUR0000224 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000224 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000224",
+    "Customer:C5077"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000224",
+     "Customer:C5077"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 103,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5125",
+    "message": "Quality notice: your vehicle AUR0000192 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000192 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000192",
+    "Customer:C5125"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000192",
+     "Customer:C5125"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 104,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5353",
+    "message": "Quality notice: your vehicle AUR0000033 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000033 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000033",
+    "Customer:C5353"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000033",
+     "Customer:C5353"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 105,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5356",
+    "message": "Quality notice: your vehicle AUR0000129 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000129 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000129",
+    "Customer:C5356"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000129",
+     "Customer:C5356"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 106,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5360",
+    "message": "Quality notice: your vehicle AUR0000185 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000185 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000185",
+    "Customer:C5360"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000185",
+     "Customer:C5360"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 107,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5388",
+    "message": "Quality notice: your vehicle AUR0000014 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000014 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000014",
+    "Customer:C5388"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000014",
+     "Customer:C5388"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 108,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5443",
+    "message": "Quality notice: your vehicle AUR0000104 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000104 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000104",
+    "Customer:C5443"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000104",
+     "Customer:C5443"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 109,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5533",
+    "message": "Quality notice: your vehicle AUR0000202 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000202 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000202",
+    "Customer:C5533"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000202",
+     "Customer:C5533"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 110,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5603",
+    "message": "Quality notice: your vehicle AUR0000045 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000045 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000045",
+    "Customer:C5603"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000045",
+     "Customer:C5603"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 111,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5654",
+    "message": "Quality notice: your vehicle AUR0000087 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000087 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000087",
+    "Customer:C5654"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000087",
+     "Customer:C5654"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 112,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5677",
+    "message": "Quality notice: your vehicle AUR0000091 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000091 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000091",
+    "Customer:C5677"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000091",
+     "Customer:C5677"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 113,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5701",
+    "message": "Quality notice: your vehicle AUR0000118 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000118 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000118",
+    "Customer:C5701"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000118",
+     "Customer:C5701"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 114,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5751",
+    "message": "Quality notice: your vehicle AUR0000181 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000181 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000181",
+    "Customer:C5751"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000181",
+     "Customer:C5751"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 115,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5898",
+    "message": "Quality notice: your vehicle AUR0000184 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000184 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000184",
+    "Customer:C5898"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000184",
+     "Customer:C5898"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 116,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6091",
+    "message": "Quality notice: your vehicle AUR0000196 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000196 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000196",
+    "Customer:C6091"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000196",
+     "Customer:C6091"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 117,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6168",
+    "message": "Quality notice: your vehicle AUR0000054 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000054 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000054",
+    "Customer:C6168"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000054",
+     "Customer:C6168"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 118,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6212",
+    "message": "Quality notice: your vehicle AUR0000205 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000205 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000205",
+    "Customer:C6212"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000205",
+     "Customer:C6212"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 119,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6288",
+    "message": "Quality notice: your vehicle AUR0000092 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000092 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0004",
+    "Vehicle:AUR0000092",
+    "Customer:C6288"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0004",
+     "Vehicle:AUR0000092",
+     "Customer:C6288"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 120,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6446",
+    "message": "Quality notice: your vehicle AUR0000124 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000124 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0005",
+    "Vehicle:AUR0000124",
+    "Customer:C6446"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0005",
+     "Vehicle:AUR0000124",
+     "Customer:C6446"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 121,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6447",
+    "message": "Quality notice: your vehicle AUR0000009 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000009 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0001",
+    "Vehicle:AUR0000009",
+    "Customer:C6447"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0001",
+     "Vehicle:AUR0000009",
+     "Customer:C6447"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 122,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6448",
+    "message": "Quality notice: your vehicle AUR0000176 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000176 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000176",
+    "Customer:C6448"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000176",
+     "Customer:C6448"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 123,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6490",
+    "message": "Quality notice: your vehicle AUR0000213 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000213 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000213",
+    "Customer:C6490"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000213",
+     "Customer:C6490"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 124,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6561",
+    "message": "Quality notice: your vehicle AUR0000170 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000170 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000170",
+    "Customer:C6561"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000170",
+     "Customer:C6561"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 125,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6563",
+    "message": "Quality notice: your vehicle AUR0000029 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000029 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000029",
+    "Customer:C6563"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000029",
+     "Customer:C6563"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 126,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6624",
+    "message": "Quality notice: your vehicle AUR0000049 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000049 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000049",
+    "Customer:C6624"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000049",
+     "Customer:C6624"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 127,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6676",
+    "message": "Quality notice: your vehicle AUR0000041 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000041 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0002",
+    "Vehicle:AUR0000041",
+    "Customer:C6676"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0002",
+     "Vehicle:AUR0000041",
+     "Customer:C6676"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 128,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6796",
+    "message": "Quality notice: your vehicle AUR0000180 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000180 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000180",
+    "Customer:C6796"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000180",
+     "Customer:C6796"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 129,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6829",
+    "message": "Quality notice: your vehicle AUR0000193 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000193 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0007",
+    "Vehicle:AUR0000193",
+    "Customer:C6829"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0007",
+     "Vehicle:AUR0000193",
+     "Customer:C6829"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 130,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6847",
+    "message": "Quality notice: your vehicle AUR0000211 contains HARN-B from lot LOT-0017, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0000211 from lot LOT-0017",
+   "graph_path": [
+    "Lot:LOT-0017",
+    "ProductionOrder:PO-0008",
+    "Vehicle:AUR0000211",
+    "Customer:C6847"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0017",
+     "ProductionOrder:PO-0008",
+     "Vehicle:AUR0000211",
+     "Customer:C6847"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 131,
+  "accepted": 131,
+  "failed": 0
+ }
+}

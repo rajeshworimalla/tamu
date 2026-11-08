@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ripple Radar ontology overview</title>
+<style>
+  html, body { margin: 0; background: #0B1712; }
+  svg { display: block; font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<svg id="g" width="1680" height="980" viewBox="0 0 1680 980" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const SP = 285, X0 = 120, W = 176, H = 64;
+const col = (i) => X0 + SP * i;
+const ROW = { A: 220, B: 470, C: 690, D: 890 };
+const N = {
+  Supplier: [col(0), ROW.A], Shipment: [col(1), ROW.A], Part: [col(2), ROW.A], Model: [col(3), ROW.A], Plant: [col(4), ROW.A],
+  Lot: [col(1), ROW.B], ProductionOrder: [col(3), ROW.B], CustomerOrder: [col(4), ROW.B], Dealer: [col(5), ROW.B],
+  Vehicle: [col(3), ROW.C], Customer: [col(4), ROW.C],
+  Event: [col(2), ROW.D], Action: [col(3), ROW.D], Rule: [col(4), ROW.D],
+};
+const COUNTS = ONTOLOGY_COUNTS;
+const DECISION = new Set(["Event", "Action", "Rule"]);
+const L = (n) => N[n][0] - W / 2, R = (n) => N[n][0] + W / 2, T = (n) => N[n][1] - H / 2, B = (n) => N[n][1] + H / 2;
+const STYLE = {
+  base: { stroke: "#5E7D6C", width: 1.6, color: "#A9C2B4" },
+  delay: { stroke: "#59D18E", width: 4.5, color: "#C9F5DC" },
+  quality: { stroke: "#E9A84C", width: 4.5, color: "#FBE2BC" },
+  decision: { stroke: "#C99A5B", width: 2, color: "#F0D3A8", dash: "7 6" },
+};
+const EDGES = [
+  ["Supplier", "ships", "Shipment", "base", [[R("Supplier"), ROW.A], [L("Shipment") - 4, ROW.A]], [col(0) + SP / 2, ROW.A - 16]],
+  ["Shipment", "carries", "Part", "delay", [[R("Shipment"), ROW.A], [L("Part") - 4, ROW.A]], [col(1) + SP / 2, ROW.A - 16]],
+  ["Model", "contains", "Part", "delay", [[L("Model"), ROW.A], [R("Part") + 4, ROW.A]], [col(2) + SP / 2, ROW.A - 16]],
+  ["Plant", "builds", "Model", "base", [[L("Plant"), ROW.A], [R("Model") + 4, ROW.A]], [col(3) + SP / 2, ROW.A - 16]],
+  ["Shipment", "delivers_to", "Plant", "base", "arc", [(col(1) + col(4)) / 2, ROW.A - 108]],
+  ["Lot", "batch_of", "Part", "base", [[col(1) + 40, T("Lot")], [col(2) - 50, B("Part") + 4]], [(col(1) + col(2)) / 2 + 8, (ROW.A + ROW.B) / 2 - 6]],
+  ["Lot", "installed_in", "ProductionOrder", "quality", [[R("Lot"), ROW.B], [L("ProductionOrder") - 4, ROW.B]], [(col(1) + col(3)) / 2, ROW.B - 16]],
+  ["ProductionOrder", "of_model", "Model", "delay", [[col(3), T("ProductionOrder")], [col(3), B("Model") + 4]], [col(3) + 12, (ROW.A + ROW.B) / 2], "start"],
+  ["ProductionOrder", "scheduled_at", "Plant", "base", [[col(3) + 55, T("ProductionOrder")], [col(4) - 55, B("Plant") + 4]], [(col(3) + col(4)) / 2 + 22, (ROW.A + ROW.B) / 2 + 26], "start"],
+  ["ProductionOrder", "promised_to", "CustomerOrder", "delay", [[R("ProductionOrder"), ROW.B], [L("CustomerOrder") - 4, ROW.B]], [col(3) + SP / 2, ROW.B - 16]],
+  ["CustomerOrder", "placed_at", "Dealer", "delay", [[R("CustomerOrder"), ROW.B], [L("Dealer") - 4, ROW.B]], [col(4) + SP / 2, ROW.B - 16]],
+  ["CustomerOrder", "for", "Customer", "delay", [[col(4), B("CustomerOrder")], [col(4), T("Customer") - 4]], [col(4) + 12, (ROW.B + ROW.C) / 2], "start"],
+  ["ProductionOrder", "produced", "Vehicle", "quality", [[col(3), B("ProductionOrder")], [col(3), T("Vehicle") - 4]], [col(3) - 12, (ROW.B + ROW.C) / 2], "end"],
+  ["Vehicle", "owned_by", "Customer", "quality", [[R("Vehicle"), ROW.C], [L("Customer") - 4, ROW.C]], [col(3) + SP / 2, ROW.C - 16]],
+  ["Vehicle", "sold_by / stocked_at", "Dealer", "quality", [[col(3) + 66, B("Vehicle")], [col(3) + 66, ROW.C + 72], [col(5), ROW.C + 72], [col(5), B("Dealer") + 4]], [col(5) - 12, ROW.C - 30], "end"],
+  ["Action", "triggered_by", "Event", "decision", [[L("Action"), ROW.D + 14], [R("Event") + 4, ROW.D + 14]], [col(2) + SP / 2, ROW.D + 38]],
+  ["Action", "applies", "Rule", "decision", [[R("Action"), ROW.D], [L("Rule") - 4, ROW.D]], [col(3) + SP / 2, ROW.D - 16]],
+  ["Action", "acts_on", "Vehicle", "decision", [[col(3), T("Action")], [col(3), B("Vehicle") + 4]], [col(3) + 12, (ROW.C + ROW.D) / 2 + 4], "start"],
+  ["Action", "acts_on", "ProductionOrder", "decision", [[L("Action"), ROW.D - 16], [col(3) - 140, ROW.D - 16], [col(3) - 140, B("ProductionOrder") + 26], [col(3) - 50, B("ProductionOrder") + 26], [col(3) - 50, B("ProductionOrder") + 4]], [col(3) - 152, (ROW.C + ROW.D) / 2 - 40], "end"],
+];
+
+const svg = document.getElementById("g");
+const el = (tag, attrs, text) => {
+  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+};
+const defs = el("defs", {});
+defs.innerHTML = Object.entries(STYLE).map(([k, s]) =>
+  `<marker id="m-${k}" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="${k === "base" || k === "decision" ? 7 : 4.2}" markerHeight="${k === "base" || k === "decision" ? 7 : 4.2}" orient="auto"><path d="M0 0L10 5L0 10z" fill="${s.stroke}"/></marker>`).join("");
+
+el("text", { x: 40, y: 58, fill: "#EAF5EE", "font-size": 30, "font-weight": 600 }, "How Ripple Radar traces a disruption");
+el("text", { x: 40, y: 88, fill: "#8FB3A0", "font-size": 16 }, "Overview of the knowledge graph. The complete ontology is in ontology.png and ontology.json.");
+const legend = [["delay", "Supplier delay traced: Shipment, Part, Model, ProductionOrder, CustomerOrder, Dealer / Customer"],
+                ["quality", "Quality hold traced: Lot, ProductionOrder, Vehicle, Dealer / Customer"]];
+legend.forEach(([k, t], i) => {
+  el("line", { x1: 900, y1: 46 + i * 28, x2: 940, y2: 46 + i * 28, stroke: STYLE[k].stroke, "stroke-width": 5 });
+  el("text", { x: 952, y: 51 + i * 28, fill: STYLE[k].color, "font-size": 15 }, t);
+});
+
+const bands = [["01  SUPPLY AND MANUFACTURING", ROW.A - 128, 228], ["02  PRODUCTION AND CUSTOMERS", ROW.B - 70, 384], ["03  DECISIONS AND EVIDENCE", ROW.D - 62, 118]];
+for (const [label, y, h] of bands) {
+  el("rect", { x: 20, y, width: 1640, height: h, rx: 16, fill: label.startsWith("03") ? "#1A150C" : "#0F2018", stroke: label.startsWith("03") ? "#4A3A22" : "#1F3A2B" });
+  el("text", { x: 38, y: y + 26, fill: label.startsWith("03") ? "#C99A5B" : "#6FAF8B", "font-size": 13, "font-weight": 700, "letter-spacing": 1.5 }, label);
+}
+
+const labels = [];
+for (const [from, rel, to, kind, pts, at, anchor = "middle"] of EDGES) {
+  const s = STYLE[kind];
+  const d = pts === "arc"
+    ? `M${col(1)} ${T("Shipment")} C${col(1)} ${ROW.A - 150} ${col(4)} ${ROW.A - 150} ${col(4)} ${T("Plant") - 4}`
+    : "M" + pts.map((p) => p.join(" ")).join("L");
+  el("path", { d, fill: "none", stroke: s.stroke, "stroke-width": s.width, "stroke-linejoin": "round", "marker-end": `url(#m-${kind})`,
+    ...(s.dash ? { "stroke-dasharray": s.dash } : {}) });
+  labels.push([rel, at, anchor, s]);
+}
+for (const [rel, [x, y], anchor, s] of labels) {
+  const t = el("text", { x, y, "text-anchor": anchor, fill: s.color, "font-size": 15, "font-weight": 600 }, rel);
+  const b = t.getBBox();
+  svg.insertBefore(el("rect", { x: b.x - 5, y: b.y - 2, width: b.width + 10, height: b.height + 4, rx: 5, fill: "#0B1712", opacity: 0.88 }), t);
+}
+
+for (const [type, [x, y]] of Object.entries(N)) {
+  const dec = DECISION.has(type);
+  el("rect", { x: x - W / 2, y: y - H / 2, width: W, height: H, rx: 13, fill: dec ? "#2A2113" : "#14321F", stroke: dec ? "#C99A5B" : "#6FCB97", "stroke-width": 1.8 });
+  el("text", { x, y: y - 3, "text-anchor": "middle", fill: "#F3FBF6", "font-size": 18, "font-weight": 650 }, type);
+  el("text", { x, y: y + 19, "text-anchor": "middle", fill: dec ? "#E8C79A" : "#A6D9BC", "font-size": 13.5 }, `${(COUNTS[type] || 0).toLocaleString()} nodes`);
+}
+</script>
+</body>
+</html>

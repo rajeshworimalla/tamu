@@ -1,0 +1,56 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Data & outputs (too big for git)
+data/*
+!data/.gitkeep
+outputs/*
+!outputs/.gitkeep
+*.csv
+*.parquet
+*.pkl
+*.pt
+*.pth
+*.h5
+*.zip
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Organizer packages (download yourself from the challenge page)
+hitachi/_package/
+hitachi/analysis/docx.txt
+
+hitachi/out/
+hitachi/tests/out/
+/hack_the_highway_package/
+/dist/
+hitachi/runs/
+
+# Office temp files
+~$*
+~WRL*.tmp
+
+# Internal notes and side work (kept local, not for judges)
+/STRATEGY.md
+/requirements.txt
+/revs_casino.md
+/house_edge/
+/data/
+/notebooks/
+/outputs/
+/src/
+hitachi/tamu.lnk
+hitachi/docs/judge_qa.md
+hitachi/submission/demo/
+hitachi/submission/*.docx

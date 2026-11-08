@@ -1,0 +1,4039 @@
+{
+ "event_id": "E-01",
+ "source": "daily digest",
+ "received_at": "2027-03-08T07:17:00",
+ "text": "Morning digest, two items. (1) San Antonio update: a software outage on the line. We're dark from next Friday through Monday Mar 22; the line restarts the following working day. (2) Quick heads up from Quanta: the infotainment chip run for Princeton can't make it next Monday. Carrier says next Friday now (severe weather on the route).",
+ "classification": "Compound (Plant Outage + Supplier Delay)",
+ "decision": "San Antonio, TX plant down Mar 19 to Mar 22, 6 builds moved. Infotainment chip for Princeton, IN arrives Mar 19 instead of Mar 15, 8 builds moved.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 3427,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "plant_outage",
+   "extracted": {
+    "kind": "plant_outage",
+    "plant": "San Antonio",
+    "start": "next Friday",
+    "end": "Monday Mar 22",
+    "evidence": "a software outage on the line. We're dark from next Friday through Monday Mar 22; the line restarts the following working day."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "San Antonio",
+     "id": "P_TX",
+     "via": "alias"
+    },
+    "start": {
+     "mention": "next Friday",
+     "date": "2027-03-19",
+     "rule": "next calendar week"
+    },
+    "end": {
+     "mention": "Monday Mar 22",
+     "date": "2027-03-22",
+     "rule": "absolute"
+    }
+   },
+   "disruption": {
+    "plant": "P_TX",
+    "models": [
+     "RANGER",
+     "SUMMIT",
+     "TERRA"
+    ],
+    "from_idx": 9,
+    "to_idx_excl": 11,
+    "earliest_same_plant_idx": 11,
+    "summary": "P_TX down 2027-03-19 to 2027-03-22, restarts 2027-03-23"
+   },
+   "affected_production_orders": [
+    "PO-0058",
+    "PO-0059",
+    "PO-0060",
+    "PO-0061",
+    "PO-0062",
+    "PO-0063"
+   ],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Plant > ProductionOrder > CustomerOrder > Dealer / Customer",
+    "example": [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00247",
+     "Dealer:D18",
+     "Customer:C6387"
+    ],
+    "counts": {
+     "Plant": 1,
+     "ProductionOrder": 6,
+     "CustomerOrder": 55,
+     "Dealer": 27,
+     "Customer": 55
+    },
+    "fact_check": [
+     {
+      "claim": "the plant exists in the network",
+      "edge": [
+       "Plant:P_TX"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  },
+  {
+   "kind": "supplier_delay",
+   "extracted": {
+    "kind": "supplier_delay",
+    "supplier": "Quanta",
+    "part": "infotainment chip",
+    "plant": "Princeton",
+    "original_eta": "next Monday",
+    "new_eta": "next Friday",
+    "evidence": "Quick heads up from Quanta: the infotainment chip run for Princeton can't make it next Monday. Carrier says next Friday now (severe weather on the route)."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "Princeton",
+     "id": "P_IN",
+     "via": "alias"
+    },
+    "part": {
+     "mention": "infotainment chip",
+     "id": "CHIP-IVI",
+     "via": "alias"
+    },
+    "supplier": {
+     "mention": "Quanta",
+     "id": "SUP-12",
+     "via": "alias"
+    },
+    "original_eta": {
+     "mention": "next Monday",
+     "date": "2027-03-15",
+     "rule": "next calendar week"
+    },
+    "new_eta": {
+     "mention": "next Friday",
+     "date": "2027-03-19",
+     "rule": "next calendar week"
+    },
+    "shipment": {
+     "shipment_id": "SH-0190",
+     "supplier_id": "SUP-12",
+     "part_id": "CHIP-IVI",
+     "plant_id": "P_IN",
+     "eta_date": "2027-03-15",
+     "covers_days": "5"
+    }
+   },
+   "disruption": {
+    "plant": "P_IN",
+    "models": [
+     "NOVA",
+     "VOYAGER"
+    ],
+    "part": "CHIP-IVI",
+    "from_idx": 5,
+    "to_idx_excl": 9,
+    "earliest_same_plant_idx": 9,
+    "summary": "CHIP-IVI missing at P_IN 2027-03-15 to 2027-03-18, models ['NOVA', 'VOYAGER']"
+   },
+   "affected_production_orders": [
+    "PO-0316",
+    "PO-0318",
+    "PO-0319",
+    "PO-0321",
+    "PO-0322",
+    "PO-0324",
+    "PO-0325",
+    "PO-0327"
+   ],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Shipment > Part > Model (BOM) > ProductionOrder > CustomerOrder > Dealer / Customer",
+    "example": [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01756",
+     "Dealer:D07",
+     "Customer:C4130"
+    ],
+    "counts": {
+     "Shipment": 1,
+     "Part": 1,
+     "Model": 2,
+     "ProductionOrder": 8,
+     "CustomerOrder": 67,
+     "Dealer": 29,
+     "Customer": 67
+    },
+    "fact_check": [
+     {
+      "claim": "the shipment carries the named part",
+      "edge": [
+       "Shipment:SH-0190",
+       "carries",
+       "Part:CHIP-IVI"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the shipment goes to the named plant",
+      "edge": [
+       "Shipment:SH-0190",
+       "delivers_to",
+       "Plant:P_IN"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the supplier ships this shipment",
+      "edge": [
+       "Supplier:SUP-12",
+       "ships",
+       "Shipment:SH-0190"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the plant builds Nova",
+      "edge": [
+       "Plant:P_IN",
+       "builds",
+       "Model:NOVA"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "Nova contains the part",
+      "edge": [
+       "Model:NOVA",
+       "contains",
+       "Part:CHIP-IVI"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the plant builds Voyager",
+      "edge": [
+       "Plant:P_IN",
+       "builds",
+       "Model:VOYAGER"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "Voyager contains the part",
+      "edge": [
+       "Model:VOYAGER",
+       "contains",
+       "Part:CHIP-IVI"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [
+   "PO-0058",
+   "PO-0059",
+   "PO-0060",
+   "PO-0061",
+   "PO-0062",
+   "PO-0063",
+   "PO-0316",
+   "PO-0318",
+   "PO-0319",
+   "PO-0321",
+   "PO-0322",
+   "PO-0324",
+   "PO-0325",
+   "PO-0327"
+  ],
+  "customer_orders": [
+   "CO-00247",
+   "CO-00248",
+   "CO-00249",
+   "CO-00250",
+   "CO-00251",
+   "CO-00252",
+   "CO-00253",
+   "CO-00254",
+   "CO-00255",
+   "CO-00256",
+   "CO-00257",
+   "CO-00258",
+   "CO-00259",
+   "CO-00260",
+   "CO-00261",
+   "CO-00262",
+   "CO-00263",
+   "CO-00264",
+   "CO-00265",
+   "CO-00266",
+   "CO-00267",
+   "CO-00268",
+   "CO-00269",
+   "CO-00270",
+   "CO-00271",
+   "CO-00272",
+   "CO-00273",
+   "CO-00274",
+   "CO-00275",
+   "CO-00276",
+   "CO-00277",
+   "CO-00278",
+   "CO-00279",
+   "CO-00280",
+   "CO-00281",
+   "CO-00282",
+   "CO-00283",
+   "CO-00284",
+   "CO-00285",
+   "CO-00286",
+   "CO-00287",
+   "CO-00288",
+   "CO-00289",
+   "CO-00290",
+   "CO-00291",
+   "CO-00292",
+   "CO-00293",
+   "CO-00294",
+   "CO-00295",
+   "CO-00296",
+   "CO-00297",
+   "CO-00298",
+   "CO-00299",
+   "CO-00300",
+   "CO-00301",
+   "CO-01756",
+   "CO-01757",
+   "CO-01758",
+   "CO-01759",
+   "CO-01760",
+   "CO-01761",
+   "CO-01762",
+   "CO-01772",
+   "CO-01773",
+   "CO-01774",
+   "CO-01775",
+   "CO-01776",
+   "CO-01777",
+   "CO-01778",
+   "CO-01779",
+   "CO-01780",
+   "CO-01781",
+   "CO-01782",
+   "CO-01783",
+   "CO-01784",
+   "CO-01785",
+   "CO-01786",
+   "CO-01787",
+   "CO-01788",
+   "CO-01789",
+   "CO-01798",
+   "CO-01799",
+   "CO-01800",
+   "CO-01801",
+   "CO-01802",
+   "CO-01803",
+   "CO-01804",
+   "CO-01805",
+   "CO-01806",
+   "CO-01807",
+   "CO-01808",
+   "CO-01809",
+   "CO-01810",
+   "CO-01811",
+   "CO-01812",
+   "CO-01813",
+   "CO-01814",
+   "CO-01825",
+   "CO-01826",
+   "CO-01827",
+   "CO-01828",
+   "CO-01829",
+   "CO-01830",
+   "CO-01831",
+   "CO-01832",
+   "CO-01833",
+   "CO-01834",
+   "CO-01835",
+   "CO-01836",
+   "CO-01837",
+   "CO-01838",
+   "CO-01839",
+   "CO-01840",
+   "CO-01841",
+   "CO-01850",
+   "CO-01851",
+   "CO-01852",
+   "CO-01853",
+   "CO-01854",
+   "CO-01855",
+   "CO-01856",
+   "CO-01857"
+  ],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 2,
+   "title": "Outage: every build at the plant in the outage is moved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 1,
+   "title": "Delay: every build needing the part in the gap is moved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 3,
+   "title": "Rescheduling: after the disruption, transfer only when the plant is full",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 4,
+   "title": "Dealers: one notice each, listing exactly their affected orders",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 5,
+   "title": "Loaners: Platinum, then Gold, then promised date, within each pool",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0316",
+    "new_date": "2027-03-19"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-15 at P_IN moves to P_IN 2027-03-19: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0316",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 19",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0316",
+    "plant_id": "P_IN",
+    "date": "2027-03-19"
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0318",
+    "new_date": "2027-03-19"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-15 at P_IN moves to P_IN 2027-03-19: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 19",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0318",
+    "plant_id": "P_IN",
+    "date": "2027-03-19"
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0319",
+    "new_date": "2027-03-22"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-16 at P_IN moves to P_IN 2027-03-22: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 22",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0319",
+    "plant_id": "P_IN",
+    "date": "2027-03-22"
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0321",
+    "new_date": "2027-03-22"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-16 at P_IN moves to P_IN 2027-03-22: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 22",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0321",
+    "plant_id": "P_IN",
+    "date": "2027-03-22"
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0322",
+    "new_date": "2027-03-23"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-17 at P_IN moves to P_IN 2027-03-23: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19 to Mar 22",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 23",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0322",
+    "plant_id": "P_IN",
+    "date": "2027-03-23"
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0324",
+    "new_date": "2027-03-23"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-17 at P_IN moves to P_IN 2027-03-23: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0324",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19 to Mar 22",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 23",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0324",
+    "plant_id": "P_IN",
+    "date": "2027-03-23"
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0325",
+    "new_date": "2027-03-24"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-18 at P_IN moves to P_IN 2027-03-24: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0325",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19 to Mar 23",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 24",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0325",
+    "plant_id": "P_IN",
+    "date": "2027-03-24"
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0327",
+    "new_date": "2027-03-24"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-18 at P_IN moves to P_IN 2027-03-24: earliest free P_IN slot on or after 2027-03-19",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0327",
+    "Plant:P_IN"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "Plant:P_IN"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Princeton before Mar 19",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Princeton Mar 19 to Mar 23",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Princeton Mar 24",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0327",
+    "plant_id": "P_IN",
+    "date": "2027-03-24"
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0058",
+    "new_date": "2027-03-23"
+   },
+   "rule": "3",
+   "reason": "RANGER order built 2027-03-19 at P_TX moves to P_TX 2027-03-23: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 23",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0058",
+    "plant_id": "P_TX",
+    "date": "2027-03-23"
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0059",
+    "new_date": "2027-03-23"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-19 at P_TX moves to P_TX 2027-03-23: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 23",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0059",
+    "plant_id": "P_TX",
+    "date": "2027-03-23"
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0060",
+    "new_date": "2027-03-24"
+   },
+   "rule": "3",
+   "reason": "TERRA order built 2027-03-19 at P_TX moves to P_TX 2027-03-24: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0060",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "San Antonio Mar 23",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 24",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0060",
+    "plant_id": "P_TX",
+    "date": "2027-03-24"
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0061",
+    "new_date": "2027-03-24"
+   },
+   "rule": "3",
+   "reason": "RANGER order built 2027-03-22 at P_TX moves to P_TX 2027-03-24: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "San Antonio Mar 23",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 24",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0061",
+    "plant_id": "P_TX",
+    "date": "2027-03-24"
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0062",
+    "new_date": "2027-03-25"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-22 at P_TX moves to P_TX 2027-03-25: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "San Antonio Mar 23 to Mar 24",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 25",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0062",
+    "plant_id": "P_TX",
+    "date": "2027-03-25"
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0063",
+    "new_date": "2027-03-25"
+   },
+   "rule": "3",
+   "reason": "TERRA order built 2027-03-22 at P_TX moves to P_TX 2027-03-25: earliest free P_TX slot on or after 2027-03-23",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0063",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "San Antonio before Mar 23",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "San Antonio Mar 23 to Mar 24",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "San Antonio Mar 25",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0063",
+    "plant_id": "P_TX",
+    "date": "2027-03-25"
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D01",
+    "customer_order_ids": [
+     "CO-01812"
+    ],
+    "message": "Production delay for your customer orders: CO-01812 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01812",
+    "Dealer:D01"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01812",
+     "Dealer:D01"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D02",
+    "customer_order_ids": [
+     "CO-00256",
+     "CO-00264",
+     "CO-00279",
+     "CO-01759",
+     "CO-01803",
+     "CO-01811",
+     "CO-01832"
+    ],
+    "message": "Production delay for your customer orders: CO-00256 now builds 2027-03-23; CO-00264 now builds 2027-03-23; CO-00279 now builds 2027-03-24; CO-01759 now builds 2027-03-19; CO-01803 now builds 2027-03-22; CO-01811 now builds 2027-03-23; CO-01832 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "7 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00256",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00256",
+     "Dealer:D02"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00264",
+     "Dealer:D02"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00279",
+     "Dealer:D02"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01759",
+     "Dealer:D02"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01803",
+     "Dealer:D02"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01811",
+     "Dealer:D02"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01832",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D04",
+    "customer_order_ids": [
+     "CO-00260",
+     "CO-00282",
+     "CO-01854"
+    ],
+    "message": "Production delay for your customer orders: CO-00260 now builds 2027-03-23; CO-00282 now builds 2027-03-24; CO-01854 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00260",
+    "Dealer:D04"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00260",
+     "Dealer:D04"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00282",
+     "Dealer:D04"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01854",
+     "Dealer:D04"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D06",
+    "customer_order_ids": [
+     "CO-00299",
+     "CO-00301",
+     "CO-01757",
+     "CO-01758",
+     "CO-01775",
+     "CO-01781"
+    ],
+    "message": "Production delay for your customer orders: CO-00299 now builds 2027-03-25; CO-00301 now builds 2027-03-25; CO-01757 now builds 2027-03-19; CO-01758 now builds 2027-03-19; CO-01775 now builds 2027-03-19; CO-01781 now builds 2027-03-22."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0063",
+    "CustomerOrder:CO-00299",
+    "Dealer:D06"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00299",
+     "Dealer:D06"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00301",
+     "Dealer:D06"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01757",
+     "Dealer:D06"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01758",
+     "Dealer:D06"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01775",
+     "Dealer:D06"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01781",
+     "Dealer:D06"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D07",
+    "customer_order_ids": [
+     "CO-01756",
+     "CO-01835"
+    ],
+    "message": "Production delay for your customer orders: CO-01756 now builds 2027-03-19; CO-01835 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0316",
+    "CustomerOrder:CO-01756",
+    "Dealer:D07"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01756",
+     "Dealer:D07"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01835",
+     "Dealer:D07"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D08",
+    "customer_order_ids": [
+     "CO-00274",
+     "CO-00291",
+     "CO-01761",
+     "CO-01773",
+     "CO-01780",
+     "CO-01801",
+     "CO-01833",
+     "CO-01852",
+     "CO-01857"
+    ],
+    "message": "Production delay for your customer orders: CO-00274 now builds 2027-03-24; CO-00291 now builds 2027-03-25; CO-01761 now builds 2027-03-19; CO-01773 now builds 2027-03-19; CO-01780 now builds 2027-03-22; CO-01801 now builds 2027-03-22; CO-01833 now builds 2027-03-23; CO-01852 now builds 2027-03-24; CO-01857 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "9 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00274",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00274",
+     "Dealer:D08"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00291",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01761",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01773",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01780",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01801",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01833",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01852",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01857",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D09",
+    "customer_order_ids": [
+     "CO-00262"
+    ],
+    "message": "Production delay for your customer orders: CO-00262 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00262",
+    "Dealer:D09"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00262",
+     "Dealer:D09"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D11",
+    "customer_order_ids": [
+     "CO-00285"
+    ],
+    "message": "Production delay for your customer orders: CO-00285 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "CustomerOrder:CO-00285",
+    "Dealer:D11"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00285",
+     "Dealer:D11"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D13",
+    "customer_order_ids": [
+     "CO-00289"
+    ],
+    "message": "Production delay for your customer orders: CO-00289 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "CustomerOrder:CO-00289",
+    "Dealer:D13"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00289",
+     "Dealer:D13"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D14",
+    "customer_order_ids": [
+     "CO-01762"
+    ],
+    "message": "Production delay for your customer orders: CO-01762 now builds 2027-03-19."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0316",
+    "CustomerOrder:CO-01762",
+    "Dealer:D14"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01762",
+     "Dealer:D14"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D15",
+    "customer_order_ids": [
+     "CO-00270",
+     "CO-01837"
+    ],
+    "message": "Production delay for your customer orders: CO-00270 now builds 2027-03-24; CO-01837 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0060",
+    "CustomerOrder:CO-00270",
+    "Dealer:D15"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00270",
+     "Dealer:D15"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01837",
+     "Dealer:D15"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D16",
+    "customer_order_ids": [
+     "CO-00275"
+    ],
+    "message": "Production delay for your customer orders: CO-00275 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00275",
+    "Dealer:D16"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00275",
+     "Dealer:D16"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D17",
+    "customer_order_ids": [
+     "CO-01774"
+    ],
+    "message": "Production delay for your customer orders: CO-01774 now builds 2027-03-19."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01774",
+    "Dealer:D17"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01774",
+     "Dealer:D17"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D18",
+    "customer_order_ids": [
+     "CO-00247"
+    ],
+    "message": "Production delay for your customer orders: CO-00247 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00247",
+    "Dealer:D18"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00247",
+     "Dealer:D18"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 28,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D19",
+    "customer_order_ids": [
+     "CO-00286"
+    ],
+    "message": "Production delay for your customer orders: CO-00286 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "CustomerOrder:CO-00286",
+    "Dealer:D19"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00286",
+     "Dealer:D19"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 29,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D20",
+    "customer_order_ids": [
+     "CO-00261",
+     "CO-00271",
+     "CO-00298",
+     "CO-01786"
+    ],
+    "message": "Production delay for your customer orders: CO-00261 now builds 2027-03-23; CO-00271 now builds 2027-03-24; CO-00298 now builds 2027-03-25; CO-01786 now builds 2027-03-22."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00261",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00261",
+     "Dealer:D20"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00271",
+     "Dealer:D20"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00298",
+     "Dealer:D20"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01786",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 30,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D21",
+    "customer_order_ids": [
+     "CO-01783",
+     "CO-01808"
+    ],
+    "message": "Production delay for your customer orders: CO-01783 now builds 2027-03-22; CO-01808 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01783",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01783",
+     "Dealer:D21"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01808",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 31,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D22",
+    "customer_order_ids": [
+     "CO-01777",
+     "CO-01799"
+    ],
+    "message": "Production delay for your customer orders: CO-01777 now builds 2027-03-19; CO-01799 now builds 2027-03-22."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01777",
+    "Dealer:D22"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01777",
+     "Dealer:D22"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01799",
+     "Dealer:D22"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 32,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D23",
+    "customer_order_ids": [
+     "CO-00259",
+     "CO-00269",
+     "CO-01834",
+     "CO-01853"
+    ],
+    "message": "Production delay for your customer orders: CO-00259 now builds 2027-03-23; CO-00269 now builds 2027-03-24; CO-01834 now builds 2027-03-24; CO-01853 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00259",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00259",
+     "Dealer:D23"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00269",
+     "Dealer:D23"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01834",
+     "Dealer:D23"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01853",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 33,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D24",
+    "customer_order_ids": [
+     "CO-01779",
+     "CO-01828"
+    ],
+    "message": "Production delay for your customer orders: CO-01779 now builds 2027-03-19; CO-01828 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01779",
+    "Dealer:D24"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01779",
+     "Dealer:D24"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01828",
+     "Dealer:D24"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 34,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D25",
+    "customer_order_ids": [
+     "CO-00255",
+     "CO-00268",
+     "CO-00292",
+     "CO-01782",
+     "CO-01789",
+     "CO-01838"
+    ],
+    "message": "Production delay for your customer orders: CO-00255 now builds 2027-03-23; CO-00268 now builds 2027-03-24; CO-00292 now builds 2027-03-25; CO-01782 now builds 2027-03-22; CO-01789 now builds 2027-03-22; CO-01838 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00255",
+    "Dealer:D25"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00255",
+     "Dealer:D25"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00268",
+     "Dealer:D25"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00292",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01782",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01789",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01838",
+     "Dealer:D25"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 35,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D26",
+    "customer_order_ids": [
+     "CO-00253",
+     "CO-00263",
+     "CO-00266",
+     "CO-00283",
+     "CO-00294",
+     "CO-00295",
+     "CO-01778",
+     "CO-01826"
+    ],
+    "message": "Production delay for your customer orders: CO-00253 now builds 2027-03-23; CO-00263 now builds 2027-03-23; CO-00266 now builds 2027-03-24; CO-00283 now builds 2027-03-24; CO-00294 now builds 2027-03-25; CO-00295 now builds 2027-03-25; CO-01778 now builds 2027-03-19; CO-01826 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "8 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00253",
+    "Dealer:D26"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00253",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00263",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00266",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00283",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00294",
+     "Dealer:D26"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00295",
+     "Dealer:D26"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01778",
+     "Dealer:D26"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01826",
+     "Dealer:D26"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 36,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D27",
+    "customer_order_ids": [
+     "CO-00248",
+     "CO-00251",
+     "CO-00257",
+     "CO-00281",
+     "CO-01831"
+    ],
+    "message": "Production delay for your customer orders: CO-00248 now builds 2027-03-23; CO-00251 now builds 2027-03-23; CO-00257 now builds 2027-03-23; CO-00281 now builds 2027-03-24; CO-01831 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "5 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00248",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00248",
+     "Dealer:D27"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00251",
+     "Dealer:D27"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00257",
+     "Dealer:D27"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00281",
+     "Dealer:D27"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01831",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 37,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D29",
+    "customer_order_ids": [
+     "CO-00249"
+    ],
+    "message": "Production delay for your customer orders: CO-00249 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00249",
+    "Dealer:D29"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00249",
+     "Dealer:D29"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 38,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D30",
+    "customer_order_ids": [
+     "CO-01806"
+    ],
+    "message": "Production delay for your customer orders: CO-01806 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01806",
+    "Dealer:D30"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01806",
+     "Dealer:D30"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 39,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D31",
+    "customer_order_ids": [
+     "CO-00252",
+     "CO-00272",
+     "CO-00277",
+     "CO-00278",
+     "CO-00287",
+     "CO-00300",
+     "CO-01784",
+     "CO-01807",
+     "CO-01850"
+    ],
+    "message": "Production delay for your customer orders: CO-00252 now builds 2027-03-23; CO-00272 now builds 2027-03-24; CO-00277 now builds 2027-03-24; CO-00278 now builds 2027-03-24; CO-00287 now builds 2027-03-25; CO-00300 now builds 2027-03-25; CO-01784 now builds 2027-03-22; CO-01807 now builds 2027-03-23; CO-01850 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "9 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00252",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00252",
+     "Dealer:D31"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00272",
+     "Dealer:D31"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00277",
+     "Dealer:D31"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00278",
+     "Dealer:D31"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00287",
+     "Dealer:D31"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00300",
+     "Dealer:D31"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01784",
+     "Dealer:D31"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01807",
+     "Dealer:D31"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01850",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 40,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D32",
+    "customer_order_ids": [
+     "CO-01802"
+    ],
+    "message": "Production delay for your customer orders: CO-01802 now builds 2027-03-22."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "CustomerOrder:CO-01802",
+    "Dealer:D32"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01802",
+     "Dealer:D32"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 41,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D33",
+    "customer_order_ids": [
+     "CO-00288",
+     "CO-01776"
+    ],
+    "message": "Production delay for your customer orders: CO-00288 now builds 2027-03-25; CO-01776 now builds 2027-03-19."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "CustomerOrder:CO-00288",
+    "Dealer:D33"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00288",
+     "Dealer:D33"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01776",
+     "Dealer:D33"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 42,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D34",
+    "customer_order_ids": [
+     "CO-00254",
+     "CO-00265",
+     "CO-00267",
+     "CO-00297"
+    ],
+    "message": "Production delay for your customer orders: CO-00254 now builds 2027-03-23; CO-00265 now builds 2027-03-24; CO-00267 now builds 2027-03-24; CO-00297 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00254",
+    "Dealer:D34"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00254",
+     "Dealer:D34"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00265",
+     "Dealer:D34"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0060",
+     "CustomerOrder:CO-00267",
+     "Dealer:D34"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00297",
+     "Dealer:D34"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 43,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D35",
+    "customer_order_ids": [
+     "CO-00280",
+     "CO-01856"
+    ],
+    "message": "Production delay for your customer orders: CO-00280 now builds 2027-03-24; CO-01856 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00280",
+    "Dealer:D35"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00280",
+     "Dealer:D35"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01856",
+     "Dealer:D35"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 44,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D36",
+    "customer_order_ids": [
+     "CO-00296"
+    ],
+    "message": "Production delay for your customer orders: CO-00296 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0063",
+    "CustomerOrder:CO-00296",
+    "Dealer:D36"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00296",
+     "Dealer:D36"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 45,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D38",
+    "customer_order_ids": [
+     "CO-01829",
+     "CO-01839",
+     "CO-01841"
+    ],
+    "message": "Production delay for your customer orders: CO-01829 now builds 2027-03-23; CO-01839 now builds 2027-03-24; CO-01841 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0324",
+    "CustomerOrder:CO-01829",
+    "Dealer:D38"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01829",
+     "Dealer:D38"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01839",
+     "Dealer:D38"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01841",
+     "Dealer:D38"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 46,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D39",
+    "customer_order_ids": [
+     "CO-00258"
+    ],
+    "message": "Production delay for your customer orders: CO-00258 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00258",
+    "Dealer:D39"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00258",
+     "Dealer:D39"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 47,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D41",
+    "customer_order_ids": [
+     "CO-01805",
+     "CO-01825"
+    ],
+    "message": "Production delay for your customer orders: CO-01805 now builds 2027-03-22; CO-01825 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "CustomerOrder:CO-01805",
+    "Dealer:D41"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01805",
+     "Dealer:D41"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01825",
+     "Dealer:D41"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 48,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D42",
+    "customer_order_ids": [
+     "CO-01772",
+     "CO-01800",
+     "CO-01813"
+    ],
+    "message": "Production delay for your customer orders: CO-01772 now builds 2027-03-19; CO-01800 now builds 2027-03-22; CO-01813 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01772",
+    "Dealer:D42"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01772",
+     "Dealer:D42"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01800",
+     "Dealer:D42"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01813",
+     "Dealer:D42"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 49,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D43",
+    "customer_order_ids": [
+     "CO-01851"
+    ],
+    "message": "Production delay for your customer orders: CO-01851 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0327",
+    "CustomerOrder:CO-01851",
+    "Dealer:D43"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01851",
+     "Dealer:D43"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 50,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D44",
+    "customer_order_ids": [
+     "CO-01785",
+     "CO-01787",
+     "CO-01809",
+     "CO-01814"
+    ],
+    "message": "Production delay for your customer orders: CO-01785 now builds 2027-03-22; CO-01787 now builds 2027-03-22; CO-01809 now builds 2027-03-23; CO-01814 now builds 2027-03-23."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01785",
+    "Dealer:D44"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01785",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01787",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01809",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01814",
+     "Dealer:D44"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 51,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D45",
+    "customer_order_ids": [
+     "CO-00276",
+     "CO-00284",
+     "CO-01760",
+     "CO-01788",
+     "CO-01804",
+     "CO-01810",
+     "CO-01827",
+     "CO-01836",
+     "CO-01840"
+    ],
+    "message": "Production delay for your customer orders: CO-00276 now builds 2027-03-24; CO-00284 now builds 2027-03-25; CO-01760 now builds 2027-03-19; CO-01788 now builds 2027-03-22; CO-01804 now builds 2027-03-22; CO-01810 now builds 2027-03-23; CO-01827 now builds 2027-03-23; CO-01836 now builds 2027-03-24; CO-01840 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "9 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00276",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00276",
+     "Dealer:D45"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00284",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01760",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01788",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01804",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01810",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01827",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01836",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0325",
+     "CustomerOrder:CO-01840",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 52,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D46",
+    "customer_order_ids": [
+     "CO-00250",
+     "CO-00273",
+     "CO-01798",
+     "CO-01830",
+     "CO-01855"
+    ],
+    "message": "Production delay for your customer orders: CO-00250 now builds 2027-03-23; CO-00273 now builds 2027-03-24; CO-01798 now builds 2027-03-22; CO-01830 now builds 2027-03-23; CO-01855 now builds 2027-03-24."
+   },
+   "rule": "4",
+   "reason": "5 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00250",
+    "Dealer:D46"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00250",
+     "Dealer:D46"
+    ],
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00273",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01798",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01830",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01855",
+     "Dealer:D46"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 53,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D47",
+    "customer_order_ids": [
+     "CO-00293"
+    ],
+    "message": "Production delay for your customer orders: CO-00293 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0063",
+    "CustomerOrder:CO-00293",
+    "Dealer:D47"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00293",
+     "Dealer:D47"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 54,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D50",
+    "customer_order_ids": [
+     "CO-00290"
+    ],
+    "message": "Production delay for your customer orders: CO-00290 now builds 2027-03-25."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0062",
+    "CustomerOrder:CO-00290",
+    "Dealer:D50"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0062",
+     "CustomerOrder:CO-00290",
+     "Dealer:D50"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 55,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01812"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-20, priority 1 of 1 for 3 loaners at D01",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01812",
+    "Customer:C2879"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01812",
+     "Customer:C2879"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D01"
+   }
+  },
+  {
+   "n": 56,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01781"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-20, priority 1 of 1 for 3 loaners at D06",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01781",
+    "Customer:C3207"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01781",
+     "Customer:C3207"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D06"
+   }
+  },
+  {
+   "n": 57,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01761"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-18, priority 1 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0316",
+    "CustomerOrder:CO-01761",
+    "Customer:C4656"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0316",
+     "CustomerOrder:CO-01761",
+     "Customer:C4656"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 58,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01780"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-19, priority 2 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01780",
+    "Customer:C6028"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01780",
+     "Customer:C6028"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 59,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01833"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-20, priority 3 of 3 for 3 loaners at D08",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0324",
+    "CustomerOrder:CO-01833",
+    "Customer:C6155"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01833",
+     "Customer:C6155"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 60,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01774"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-18, priority 1 of 1 for 1 loaners at D17",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01774",
+    "Customer:C0197"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01774",
+     "Customer:C0197"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D17"
+   }
+  },
+  {
+   "n": 61,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00247"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-24, priority 1 of 1 for 2 loaners at D18",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00247",
+    "Customer:C6387"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00247",
+     "Customer:C6387"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D18"
+   }
+  },
+  {
+   "n": 62,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01786"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-21, priority 1 of 2 for 1 loaners at D20",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01786",
+    "Customer:C1134"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01786",
+     "Customer:C1134"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D20"
+   }
+  },
+  {
+   "n": 63,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01783"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-20, priority 1 of 2 for 3 loaners at D21",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01783",
+    "Customer:C5201"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01783",
+     "Customer:C5201"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D21"
+   }
+  },
+  {
+   "n": 64,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01808"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-21, priority 2 of 2 for 3 loaners at D21",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01808",
+    "Customer:C1818"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01808",
+     "Customer:C1818"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D21"
+   }
+  },
+  {
+   "n": 65,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01799"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-21, priority 1 of 1 for 1 loaners at D22",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "CustomerOrder:CO-01799",
+    "Customer:C6615"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01799",
+     "Customer:C6615"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D22"
+   }
+  },
+  {
+   "n": 66,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01853"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-22, priority 1 of 1 for 2 loaners at D23",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0327",
+    "CustomerOrder:CO-01853",
+    "Customer:C5036"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01853",
+     "Customer:C5036"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D23"
+   }
+  },
+  {
+   "n": 67,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00263"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-22, priority 1 of 2 for 2 loaners at D26",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0059",
+    "CustomerOrder:CO-00263",
+    "Customer:C5147"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0059",
+     "CustomerOrder:CO-00263",
+     "Customer:C5147"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D26"
+   }
+  },
+  {
+   "n": 68,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00283"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-25, priority 2 of 2 for 2 loaners at D26",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00283",
+    "Customer:C2815"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00283",
+     "Customer:C2815"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D26"
+   }
+  },
+  {
+   "n": 69,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00249"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-22, priority 1 of 1 for 1 loaners at D29",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0058",
+    "CustomerOrder:CO-00249",
+    "Customer:C4168"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0058",
+     "CustomerOrder:CO-00249",
+     "Customer:C4168"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D29"
+   }
+  },
+  {
+   "n": 70,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00278"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-26, priority 1 of 1 for 2 loaners at D31",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0061",
+    "CustomerOrder:CO-00278",
+    "Customer:C6970"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0061",
+     "CustomerOrder:CO-00278",
+     "Customer:C6970"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D31"
+   }
+  },
+  {
+   "n": 71,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01802"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-21, priority 1 of 1 for 2 loaners at D32",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "CustomerOrder:CO-01802",
+    "Customer:C3439"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01802",
+     "Customer:C3439"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D32"
+   }
+  },
+  {
+   "n": 72,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-00296"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-27, priority 1 of 1 for 2 loaners at D36",
+   "graph_path": [
+    "Plant:P_TX",
+    "ProductionOrder:PO-0063",
+    "CustomerOrder:CO-00296",
+    "Customer:C2312"
+   ],
+   "graph_paths": [
+    [
+     "Plant:P_TX",
+     "ProductionOrder:PO-0063",
+     "CustomerOrder:CO-00296",
+     "Customer:C2312"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D36"
+   }
+  },
+  {
+   "n": 73,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01772"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-20, priority 1 of 1 for 2 loaners at D42",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0318",
+    "CustomerOrder:CO-01772",
+    "Customer:C1695"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0318",
+     "CustomerOrder:CO-01772",
+     "Customer:C1695"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D42"
+   }
+  },
+  {
+   "n": 74,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01851"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-20, priority 1 of 1 for 2 loaners at D43",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0327",
+    "CustomerOrder:CO-01851",
+    "Customer:C5298"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0327",
+     "CustomerOrder:CO-01851",
+     "Customer:C5298"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D43"
+   }
+  },
+  {
+   "n": 75,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01785"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-21, priority 1 of 2 for 2 loaners at D44",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0319",
+    "CustomerOrder:CO-01785",
+    "Customer:C2786"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0319",
+     "CustomerOrder:CO-01785",
+     "Customer:C2786"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D44"
+   }
+  },
+  {
+   "n": 76,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01814"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-22, priority 2 of 2 for 2 loaners at D44",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01814",
+    "Customer:C1115"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01814",
+     "Customer:C1115"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D44"
+   }
+  },
+  {
+   "n": 77,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01810"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-03-22, priority 1 of 4 for 2 loaners at D45",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0322",
+    "CustomerOrder:CO-01810",
+    "Customer:C4200"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0322",
+     "CustomerOrder:CO-01810",
+     "Customer:C4200"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D45"
+   }
+  },
+  {
+   "n": 78,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01827"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-22, priority 2 of 4 for 2 loaners at D45",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0324",
+    "CustomerOrder:CO-01827",
+    "Customer:C0465"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01827",
+     "Customer:C0465"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D45"
+   }
+  },
+  {
+   "n": 79,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01798"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-20, priority 1 of 3 for 2 loaners at D46",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0321",
+    "CustomerOrder:CO-01798",
+    "Customer:C2246"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0321",
+     "CustomerOrder:CO-01798",
+     "Customer:C2246"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D46"
+   }
+  },
+  {
+   "n": 80,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-01830"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-03-21, priority 2 of 3 for 2 loaners at D46",
+   "graph_path": [
+    "Shipment:SH-0190",
+    "Part:CHIP-IVI",
+    "Model:NOVA",
+    "ProductionOrder:PO-0324",
+    "CustomerOrder:CO-01830",
+    "Customer:C1479"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0190",
+     "Part:CHIP-IVI",
+     "Model:NOVA",
+     "ProductionOrder:PO-0324",
+     "CustomerOrder:CO-01830",
+     "Customer:C1479"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D46"
+   }
+  }
+ ],
+ "loaners_not_available": [
+  {
+   "customer_order_id": "CO-00261",
+   "dealer_id": "D20",
+   "priority": "2 of 2",
+   "pool": 1
+  },
+  {
+   "customer_order_id": "CO-01836",
+   "dealer_id": "D45",
+   "priority": "3 of 4",
+   "pool": 2
+  },
+  {
+   "customer_order_id": "CO-00284",
+   "dealer_id": "D45",
+   "priority": "4 of 4",
+   "pool": 2
+  },
+  {
+   "customer_order_id": "CO-01855",
+   "dealer_id": "D46",
+   "priority": "3 of 3",
+   "pool": 2
+  }
+ ],
+ "execution": {
+  "sent": 81,
+  "accepted": 81,
+  "failed": 0
+ }
+}

@@ -1,0 +1,792 @@
+{
+ "interpretation_check_errors": [],
+ "log_lines": 768,
+ "summary": {
+  "E-01": {
+   "expected": {
+    "mes.reschedule": 14,
+    "dealer.notify": 41,
+    "crm.assign_loaner": 26
+   },
+   "actual": {
+    "mes.reschedule": 14,
+    "dealer.notify": 41,
+    "crm.assign_loaner": 26
+   },
+   "issues": {}
+  },
+  "E-02": {
+   "expected": {
+    "escalate": 1
+   },
+   "actual": {
+    "escalate": 1
+   },
+   "issues": {}
+  },
+  "E-03": {
+   "expected": {
+    "dealer.stop_sale": 37,
+    "crm.notify_customer": 150,
+    "quality.hold_lot": 1
+   },
+   "actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 37,
+    "crm.notify_customer": 150
+   },
+   "issues": {}
+  },
+  "E-04": {
+   "expected": {
+    "mes.reschedule": 9,
+    "dealer.notify": 32,
+    "crm.assign_loaner": 18
+   },
+   "actual": {
+    "mes.reschedule": 9,
+    "dealer.notify": 32,
+    "crm.assign_loaner": 18
+   },
+   "issues": {}
+  },
+  "E-05": {
+   "expected": {},
+   "actual": {},
+   "issues": {}
+  },
+  "E-06": {
+   "expected": {},
+   "actual": {},
+   "issues": {}
+  },
+  "E-07": {
+   "expected": {},
+   "actual": {},
+   "issues": {}
+  },
+  "E-08": {
+   "expected": {
+    "mes.reschedule": 6,
+    "dealer.notify": 25,
+    "crm.assign_loaner": 15
+   },
+   "actual": {
+    "mes.reschedule": 6,
+    "dealer.notify": 25,
+    "crm.assign_loaner": 15
+   },
+   "issues": {}
+  },
+  "E-09": {
+   "expected": {
+    "mes.reschedule": 4,
+    "mes.transfer": 2,
+    "dealer.notify": 26,
+    "crm.assign_loaner": 10
+   },
+   "actual": {
+    "mes.reschedule": 4,
+    "mes.transfer": 2,
+    "dealer.notify": 26,
+    "crm.assign_loaner": 10
+   },
+   "issues": {}
+  },
+  "E-10": {
+   "expected": {
+    "mes.reschedule": 3,
+    "dealer.notify": 18,
+    "crm.assign_loaner": 7
+   },
+   "actual": {
+    "mes.reschedule": 3,
+    "dealer.notify": 18,
+    "crm.assign_loaner": 7
+   },
+   "issues": {}
+  },
+  "E-11": {
+   "expected": {
+    "mes.reschedule": 6,
+    "mes.transfer": 3,
+    "dealer.notify": 36,
+    "crm.assign_loaner": 17
+   },
+   "actual": {
+    "mes.reschedule": 6,
+    "mes.transfer": 3,
+    "dealer.notify": 36,
+    "crm.assign_loaner": 17
+   },
+   "issues": {}
+  },
+  "E-12": {
+   "expected": {
+    "mes.reschedule": 3,
+    "dealer.notify": 14,
+    "crm.assign_loaner": 10
+   },
+   "actual": {
+    "mes.reschedule": 3,
+    "dealer.notify": 14,
+    "crm.assign_loaner": 10
+   },
+   "issues": {}
+  },
+  "E-13": {
+   "expected": {
+    "escalate": 1
+   },
+   "actual": {
+    "escalate": 1
+   },
+   "issues": {}
+  },
+  "E-14": {
+   "expected": {
+    "dealer.stop_sale": 36,
+    "crm.notify_customer": 94,
+    "quality.hold_lot": 1
+   },
+   "actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 36,
+    "crm.notify_customer": 94
+   },
+   "issues": {}
+  },
+  "E-15": {
+   "expected": {
+    "dealer.stop_sale": 25,
+    "crm.notify_customer": 76,
+    "quality.hold_lot": 1
+   },
+   "actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 25,
+    "crm.notify_customer": 76
+   },
+   "issues": {}
+  }
+ },
+ "per_event": {
+  "E-01": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 14,
+    "dealer.notify": 41,
+    "crm.assign_loaner": 26
+   },
+   "counts_actual": {
+    "mes.reschedule": 14,
+    "dealer.notify": 41,
+    "crm.assign_loaner": 26
+   }
+  },
+  "E-02": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "escalate": 1
+   },
+   "counts_actual": {
+    "escalate": 1
+   }
+  },
+  "E-03": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "dealer.stop_sale": 37,
+    "crm.notify_customer": 150,
+    "quality.hold_lot": 1
+   },
+   "counts_actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 37,
+    "crm.notify_customer": 150
+   }
+  },
+  "E-04": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 9,
+    "dealer.notify": 32,
+    "crm.assign_loaner": 18
+   },
+   "counts_actual": {
+    "mes.reschedule": 9,
+    "dealer.notify": 32,
+    "crm.assign_loaner": 18
+   }
+  },
+  "E-05": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {},
+   "counts_actual": {}
+  },
+  "E-06": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {},
+   "counts_actual": {}
+  },
+  "E-07": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {},
+   "counts_actual": {}
+  },
+  "E-08": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 6,
+    "dealer.notify": 25,
+    "crm.assign_loaner": 15
+   },
+   "counts_actual": {
+    "mes.reschedule": 6,
+    "dealer.notify": 25,
+    "crm.assign_loaner": 15
+   }
+  },
+  "E-09": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 4,
+    "mes.transfer": 2,
+    "dealer.notify": 26,
+    "crm.assign_loaner": 10
+   },
+   "counts_actual": {
+    "mes.reschedule": 4,
+    "mes.transfer": 2,
+    "dealer.notify": 26,
+    "crm.assign_loaner": 10
+   }
+  },
+  "E-10": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 3,
+    "dealer.notify": 18,
+    "crm.assign_loaner": 7
+   },
+   "counts_actual": {
+    "mes.reschedule": 3,
+    "dealer.notify": 18,
+    "crm.assign_loaner": 7
+   }
+  },
+  "E-11": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 6,
+    "mes.transfer": 3,
+    "dealer.notify": 36,
+    "crm.assign_loaner": 17
+   },
+   "counts_actual": {
+    "mes.reschedule": 6,
+    "mes.transfer": 3,
+    "dealer.notify": 36,
+    "crm.assign_loaner": 17
+   }
+  },
+  "E-12": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "mes.reschedule": 3,
+    "dealer.notify": 14,
+    "crm.assign_loaner": 10
+   },
+   "counts_actual": {
+    "mes.reschedule": 3,
+    "dealer.notify": 14,
+    "crm.assign_loaner": 10
+   }
+  },
+  "E-13": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "escalate": 1
+   },
+   "counts_actual": {
+    "escalate": 1
+   }
+  },
+  "E-14": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "dealer.stop_sale": 36,
+    "crm.notify_customer": 94,
+    "quality.hold_lot": 1
+   },
+   "counts_actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 36,
+    "crm.notify_customer": 94
+   }
+  },
+  "E-15": {
+   "failed_calls": [],
+   "read_calls": 0,
+   "duplicates": [],
+   "invalid_dates": [],
+   "missing": [],
+   "extra": [],
+   "wrong_args": [],
+   "capacity_violations": [],
+   "loaner_overallocation": [],
+   "non_earliest_moves": [],
+   "unaffected_moves": [],
+   "counts_expected": {
+    "dealer.stop_sale": 25,
+    "crm.notify_customer": 76,
+    "quality.hold_lot": 1
+   },
+   "counts_actual": {
+    "quality.hold_lot": 1,
+    "dealer.stop_sale": 25,
+    "crm.notify_customer": 76
+   }
+  }
+ },
+ "variant_sensitivity": {
+  "E-01": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {},
+   "plant_rank=alpha": {}
+  },
+  "E-04": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {},
+   "plant_rank=alpha": {}
+  },
+  "E-08": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {},
+   "plant_rank=alpha": {}
+  },
+  "E-09": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {
+    "PO-0442": [
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-04-01"
+     ],
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-03-08"
+     ]
+    ],
+    "PO-0444": [
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-04-01"
+     ],
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-03-08"
+     ]
+    ]
+   },
+   "plant_rank=alpha": {
+    "PO-0442": [
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-04-01"
+     ],
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-04-01"
+     ]
+    ],
+    "PO-0444": [
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-04-01"
+     ],
+     [
+      "mes.transfer",
+      "P_IN",
+      "2027-04-01"
+     ]
+    ]
+   }
+  },
+  "E-10": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {},
+   "plant_rank=alpha": {}
+  },
+  "E-11": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {
+    "PO-0259": [
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-03-31"
+     ],
+     [
+      "mes.transfer",
+      "P_KY",
+      "2027-03-08"
+     ]
+    ],
+    "PO-0260": [
+     [
+      "mes.transfer",
+      "P_IN",
+      "2027-03-31"
+     ],
+     [
+      "mes.transfer",
+      "P_IN",
+      "2027-03-08"
+     ]
+    ],
+    "PO-0261": [
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-03-31"
+     ],
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-03-08"
+     ]
+    ]
+   },
+   "plant_rank=alpha": {
+    "PO-0260": [
+     [
+      "mes.transfer",
+      "P_IN",
+      "2027-03-31"
+     ],
+     [
+      "mes.transfer",
+      "P_AL",
+      "2027-03-31"
+     ]
+    ],
+    "PO-0261": [
+     [
+      "mes.transfer",
+      "P_TX",
+      "2027-03-31"
+     ],
+     [
+      "mes.transfer",
+      "P_NC",
+      "2027-03-31"
+     ]
+    ]
+   }
+  },
+  "E-12": {
+   "order=po": {},
+   "order=incident": {},
+   "transfer_from=today": {},
+   "plant_rank=alpha": {}
+  }
+ },
+ "replay": {
+  "available": true,
+  "errors": [],
+  "state_checks": {
+   "E-01": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 14,
+    "loaned": 26,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 41
+   },
+   "E-02": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 0,
+    "loaned": 0,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": true,
+    "notified_dealers": 0
+   },
+   "E-03": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 0,
+    "loaned": 0,
+    "held": [
+     "LOT-0130"
+    ],
+    "stopped": 110,
+    "customers": 150,
+    "escalated": false,
+    "notified_dealers": 0
+   },
+   "E-04": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 9,
+    "loaned": 18,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 32
+   },
+   "E-08": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 6,
+    "loaned": 15,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 25
+   },
+   "E-09": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 6,
+    "loaned": 10,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 26
+   },
+   "E-10": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 3,
+    "loaned": 7,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 18
+   },
+   "E-11": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 9,
+    "loaned": 17,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 36
+   },
+   "E-12": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 3,
+    "loaned": 10,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": false,
+    "notified_dealers": 14
+   },
+   "E-13": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 0,
+    "loaned": 0,
+    "held": [],
+    "stopped": 0,
+    "customers": 0,
+    "escalated": true,
+    "notified_dealers": 0
+   },
+   "E-14": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 0,
+    "loaned": 0,
+    "held": [
+     "LOT-0017"
+    ],
+    "stopped": 86,
+    "customers": 94,
+    "escalated": false,
+    "notified_dealers": 0
+   },
+   "E-15": {
+    "capacity_over": [],
+    "negative_pools": {},
+    "moved": 0,
+    "loaned": 0,
+    "held": [
+     "LOT-0191"
+    ],
+    "stopped": 40,
+    "customers": 76,
+    "escalated": false,
+    "notified_dealers": 0
+   }
+  }
+ }
+}

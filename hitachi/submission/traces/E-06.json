@@ -1,0 +1,58 @@
+{
+ "event_id": "E-06",
+ "source": "news wire",
+ "received_at": "2027-03-08T08:42:00",
+ "text": "Dealer Little Rock, AR asks where to find the new brochure PDF.",
+ "classification": "Noise",
+ "decision": "No action, not operational: Not about our plants, parts, suppliers or quality, so nothing changes.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2303,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "noise",
+   "extracted": {
+    "kind": "noise",
+    "reason": "Not about our plants, parts, suppliers or quality, so nothing changes.",
+    "model_reason": "Dealer Little Rock, AR asks where to find the new brochure PDF."
+   },
+   "resolution": {},
+   "disruption": null,
+   "affected_production_orders": [],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "reason the event was judged not relevant",
+    "reason": "Not about our plants, parts, suppliers or quality, so nothing changes."
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [],
+  "customer_orders": [],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 7,
+   "title": "Noise: no action at all",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [],
+ "loaners_not_available": [],
+ "execution": null
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ripple Radar ontology</title>
+<style>
+  html, body { margin: 0; background: #0B1712; }
+  svg { display: block; font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<svg id="g" width="1600" height="1000" viewBox="0 0 1600 1000" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const ontology = ONTOLOGY_JSON;
+const pos = {
+  Supplier: [200, 170], Shipment: [200, 430], Lot: [200, 730],
+  Part: [480, 300], Model: [480, 580], Plant: [810, 300], ProductionOrder: [810, 580],
+  CustomerOrder: [1140, 440], Vehicle: [1140, 740], Dealer: [1450, 440], Customer: [1450, 740],
+  Event: [560, 920], Action: [870, 920], Rule: [1180, 920],
+};
+const decision = new Set(["Event", "Action", "Rule"]);
+const W = 190, H = 62, svg = document.getElementById("g");
+const el = (tag, attrs, text) => {
+  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+};
+const defs = el("defs", {});
+defs.innerHTML = `<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5FB98A"/></marker>
+  <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D9A55B"/></marker>`;
+el("text", { x: 40, y: 56, fill: "#E8F3EC", "font-size": 30, "font-weight": 600 }, "Ripple Radar knowledge graph");
+el("text", { x: 40, y: 88, fill: "#8FB3A0", "font-size": 16 },
+  `${Object.keys(ontology.node_types).length} node types, ${ontology.relations.length} relation types, ` +
+  `${Object.values(ontology.node_types).reduce((a, b) => a + b, 0).toLocaleString()} nodes, ` +
+  `${ontology.relations.reduce((a, r) => a + r.count, 0).toLocaleString()} edges after the official run`);
+el("rect", { x: 30, y: 855, width: 1540, height: 125, rx: 14, fill: "none", stroke: "#3A4B2F", "stroke-dasharray": "6 6" });
+el("text", { x: 50, y: 882, fill: "#D9A55B", "font-size": 14, "font-weight": 600, "letter-spacing": 1 }, "DECISION LAYER");
+
+const SHAPE = {
+  "Supplier|Lot": { bend: -75, t: 0.5, from: [-W / 2, 0], to: [-W / 2, 0] },
+  "Shipment|Plant": { t: 0.72 }, "Shipment|Part": { t: 0.45 }, "Lot|Plant": { t: 0.66 }, "Lot|Part": { t: 0.32 },
+  "Plant|Model": { t: 0.3 }, "CustomerOrder|Customer": { t: 0.2 }, "Vehicle|Dealer": { t: 0.2 },
+};
+const edge = (r) => {
+  const s = SHAPE[`${r.from}|${r.to}`] || {};
+  const [x1, y1] = pos[r.from], [x2, y2] = pos[r.to];
+  const ang = Math.atan2(y2 - y1, x2 - x1), cut = (a) => Math.min(Math.abs(W / 2 / Math.cos(a)), Math.abs(H / 2 / Math.sin(a)));
+  const sx = s.from ? x1 + s.from[0] : x1 + Math.cos(ang) * cut(ang), sy = s.from ? y1 + s.from[1] : y1 + Math.sin(ang) * cut(ang);
+  const ex = s.to ? x2 + s.to[0] - 4 : x2 - Math.cos(ang) * (cut(ang) + 4), ey = s.to ? y2 + s.to[1] : y2 - Math.sin(ang) * (cut(ang) + 4);
+  const amber = decision.has(r.from), t = s.t ?? 0.5;
+  const len = Math.hypot(ex - sx, ey - sy), nx = (ey - sy) / len, ny = -(ex - sx) / len;
+  const cx = (sx + ex) / 2 + nx * (s.bend || 0), cy = (sy + ey) / 2 + ny * (s.bend || 0);
+  el("path", { d: `M${sx} ${sy}Q${cx} ${cy} ${ex} ${ey}`, fill: "none", stroke: amber ? "#D9A55B" : "#5FB98A", "stroke-width": 1.6,
+    "marker-end": `url(#${amber ? "arrA" : "arr"})`, opacity: 0.85 });
+  const q = (a, b, c) => (1 - t) * (1 - t) * a + 2 * (1 - t) * t * b + t * t * c;
+  return [q(sx, cx, ex), q(sy, cy, ey)];
+};
+const label = ([x, y], text, amber, dy = 0) => {
+  const t = el("text", { x, y: y + 4 + dy, "text-anchor": "middle", fill: amber ? "#F0C987" : "#CDEBD9", "font-size": 13 }, text);
+  const b = t.getBBox();
+  const bg = el("rect", { x: b.x - 6, y: b.y - 2, width: b.width + 12, height: b.height + 4, rx: 5, fill: "#0B1712", stroke: amber ? "#5A4526" : "#24402F" });
+  svg.insertBefore(bg, t);
+};
+
+const company = ontology.relations.filter((r) => !decision.has(r.from));
+const merged = {};
+for (const r of company) {
+  const k = `${r.from}|${r.to}`;
+  (merged[k] ||= { from: r.from, to: r.to, rels: [] }).rels.push(`${r.rel} ${r.count.toLocaleString()}`);
+}
+for (const m of Object.values(merged)) label(edge(m), m.rels.join(" · "), false);
+const acts = ontology.relations.filter((r) => r.from === "Action" && r.rel === "acts_on");
+for (const r of ontology.relations.filter((r) => r.from === "Action" && r.rel !== "acts_on")) label(edge(r), `${r.rel} ${r.count}`, true);
+const [ax, ay] = pos.Action;
+el("line", { x1: ax, y1: ay - H / 2, x2: ax, y2: 640, stroke: "#D9A55B", "stroke-width": 1.6, "stroke-dasharray": "5 5", "marker-end": "url(#arrA)" });
+label([ax, 815], `acts_on any record: ${acts.map((r) => `${r.to} ${r.count}`).join(", ")}`, true);
+
+for (const [type, [x, y]] of Object.entries(pos)) {
+  const amber = decision.has(type);
+  el("rect", { x: x - W / 2, y: y - H / 2, width: W, height: H, rx: 12, fill: amber ? "#2A2113" : "#12301F", stroke: amber ? "#D9A55B" : "#5FB98A", "stroke-width": 1.6 });
+  el("text", { x, y: y - 4, "text-anchor": "middle", fill: "#F2FBF5", "font-size": 17, "font-weight": 600 }, type);
+  el("text", { x, y: y + 18, "text-anchor": "middle", fill: amber ? "#F0C987" : "#9CCFB2", "font-size": 13 }, `${(ontology.node_types[type] || 0).toLocaleString()} nodes`);
+}
+</script>
+</body>
+</html>

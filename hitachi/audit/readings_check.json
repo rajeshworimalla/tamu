@@ -1,0 +1,315 @@
+{
+ "E-01": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_TX",
+    "start": "2027-03-19",
+    "end": "2027-03-22"
+   },
+   {
+    "kind": "supplier_delay",
+    "plant": "P_IN",
+    "part": "CHIP-IVI",
+    "shipment": "SH-0190",
+    "original_eta": "2027-03-15",
+    "new_eta": "2027-03-19"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_TX",
+    "start": "2027-03-19",
+    "end": "2027-03-22"
+   },
+   {
+    "kind": "supplier_delay",
+    "plant": "P_IN",
+    "part": "CHIP-IVI",
+    "shipment": "SH-0190",
+    "original_eta": "2027-03-15",
+    "new_eta": "2027-03-19"
+   }
+  ]
+ },
+ "E-02": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "unconfirmed"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "unconfirmed"
+   }
+  ]
+ },
+ "E-03": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_MS",
+    "part": "CHIP-IVI",
+    "lot": "LOT-0130"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_MS",
+    "part": "CHIP-IVI",
+    "lot": "LOT-0130"
+   }
+  ]
+ },
+ "E-04": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_KY",
+    "start": "2027-03-16",
+    "end": "2027-03-18"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_KY",
+    "start": "2027-03-16",
+    "end": "2027-03-18"
+   }
+  ]
+ },
+ "E-05": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "noise"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "noise"
+   }
+  ]
+ },
+ "E-06": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "noise"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "noise"
+   }
+  ]
+ },
+ "E-07": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "noise"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "noise"
+   }
+  ]
+ },
+ "E-08": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_KY",
+    "start": "2027-03-24",
+    "end": "2027-03-25"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_KY",
+    "start": "2027-03-24",
+    "end": "2027-03-25"
+   }
+  ]
+ },
+ "E-09": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_AL",
+    "part": "CAM-360",
+    "shipment": "SH-0256",
+    "original_eta": "2027-03-29",
+    "new_eta": "2027-04-01"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_AL",
+    "part": "CAM-360",
+    "shipment": "SH-0256",
+    "original_eta": "2027-03-29",
+    "new_eta": "2027-04-01"
+   }
+  ]
+ },
+ "E-10": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_AL",
+    "part": "BATT-60",
+    "shipment": "SH-0248",
+    "original_eta": "2027-03-29",
+    "new_eta": "2027-04-01"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_AL",
+    "part": "BATT-60",
+    "shipment": "SH-0248",
+    "original_eta": "2027-03-29",
+    "new_eta": "2027-04-01"
+   }
+  ]
+ },
+ "E-11": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_MS",
+    "start": "2027-03-26",
+    "end": "2027-03-30"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "plant_outage",
+    "plant": "P_MS",
+    "start": "2027-03-26",
+    "end": "2027-03-30"
+   }
+  ]
+ },
+ "E-12": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_IN",
+    "part": "CAM-360",
+    "shipment": "SH-0182",
+    "original_eta": "2027-03-15",
+    "new_eta": "2027-03-18"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "supplier_delay",
+    "plant": "P_IN",
+    "part": "CAM-360",
+    "shipment": "SH-0182",
+    "original_eta": "2027-03-15",
+    "new_eta": "2027-03-18"
+   }
+  ]
+ },
+ "E-13": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "unconfirmed"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "unconfirmed"
+   }
+  ]
+ },
+ "E-14": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_TX",
+    "part": "HARN-B",
+    "lot": "LOT-0017"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_TX",
+    "part": "HARN-B",
+    "lot": "LOT-0017"
+   }
+  ]
+ },
+ "E-15": {
+  "match": true,
+  "read_by": "ollama",
+  "model": "qwen2.5:3b",
+  "auditor": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_IN",
+    "part": "CHIP-IVI",
+    "lot": "LOT-0191"
+   }
+  ],
+  "model_reading": [
+   {
+    "kind": "quality_hold",
+    "plant": "P_IN",
+    "part": "CHIP-IVI",
+    "lot": "LOT-0191"
+   }
+  ]
+ }
+}

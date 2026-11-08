@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>E-09 graph path</title>
+<style>
+  html, body { margin: 0; background: #FFFFFF; }
+  svg { display: block; font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<svg id="g" width="2000" height="560" viewBox="0 0 2000 560" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const W = 210, H = 112, Y = 270;
+const N = [
+  { key: "ship", x: 145, y: Y, type: "SHIPMENT", id: "SH-0256", lines: ["Orbit Optics to Huntsville", "due Mar 29, now Apr 1"], count: "1 shipment", late: true },
+  { key: "part", x: 480, y: Y, type: "PART", id: "CAM-360", lines: ["surround-view", "camera kit"], count: "1 part" },
+  { key: "model", x: 815, y: Y, type: "MODEL", id: "SUMMIT", lines: ["Voyager uses", "the part too"], count: "2 models" },
+  { key: "build", x: 1150, y: Y, type: "PRODUCTION ORDER", id: "PO-0436", lines: ["Huntsville, Mar 29", "moved to Apr 1"], count: "6 builds" },
+  { key: "order", x: 1485, y: Y, type: "CUSTOMER ORDER", id: "CO-02567", lines: ["promised Apr 1"], count: "54 orders" },
+  { key: "dealer", x: 1840, y: Y - 120, type: "DEALER", id: "D25", lines: ["Tupelo Wacky Wheels", "Tupelo, MS"], count: "26 dealers" },
+  { key: "cust", x: 1840, y: Y + 120, type: "CUSTOMER", id: "C1467", lines: ["Standard tier"], count: "54 customers" },
+];
+const byKey = Object.fromEntries(N.map((n) => [n.key, n]));
+const EDGES = [
+  ["ship", "part", "carries"],
+  ["model", "part", "contains"],
+  ["build", "model", "of_model"],
+  ["build", "order", "promised_to"],
+  ["order", "dealer", "placed_at"],
+  ["order", "cust", "for"],
+];
+const svg = document.getElementById("g");
+const el = (tag, attrs, text) => {
+  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+};
+el("defs", {}).innerHTML = `<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1F6B45"/></marker>`;
+
+el("text", { x: 36, y: 56, fill: "#10231B", "font-size": 30, "font-weight": 700 }, "One late shipment, traced through the graph");
+el("text", { x: 36, y: 90, fill: "#4A5F55", "font-size": 18 }, "Event E-09: the evidence path behind one dealer notice, and how far each step fans out");
+
+const side = (a, b) => {
+  const dx = b.x - a.x, dy = b.y - a.y;
+  if (Math.abs(dy) < 1) return [[a.x + Math.sign(dx) * W / 2, a.y], [b.x - Math.sign(dx) * (W / 2 + 4), b.y]];
+  return [[a.x + W / 2, a.y + Math.sign(dy) * 20], [b.x - W / 2 - 4, b.y]];
+};
+for (const [f, t, rel] of EDGES) {
+  const a = byKey[f], b = byKey[t];
+  const [[x1, y1], [x2, y2]] = side(a, b);
+  const d = Math.abs(y2 - y1) < 1 ? `M${x1} ${y1}L${x2} ${y2}` : `M${x1} ${y1}C${x1 + 90} ${y1} ${x2 - 110} ${y2} ${x2} ${y2}`;
+  el("path", { d, fill: "none", stroke: "#1F6B45", "stroke-width": 3, "marker-end": "url(#a)" });
+  const mx = Math.abs(y2 - y1) < 1 ? (x1 + x2) / 2 : (x1 + x2) / 2 + 6, my = Math.abs(y2 - y1) < 1 ? y1 - 14 : (y1 + y2) / 2 + (y2 < y1 ? -10 : 22);
+  const tx = el("text", { x: mx, y: my, "text-anchor": "middle", fill: "#1F6B45", "font-size": 15, "font-weight": 600 }, rel);
+  const bb = tx.getBBox();
+  svg.insertBefore(el("rect", { x: bb.x - 5, y: bb.y - 2, width: bb.width + 10, height: bb.height + 4, rx: 5, fill: "#FFFFFF" }), tx);
+}
+
+for (const n of N) {
+  const x = n.x - W / 2, y = n.y - H / 2;
+  el("rect", { x, y, width: W, height: H, rx: 14, fill: n.late ? "#FFF6EA" : "#F2F8F4", stroke: n.late ? "#B36A12" : "#1F6B45", "stroke-width": 2 });
+  el("text", { x: n.x, y: y + 24, "text-anchor": "middle", fill: n.late ? "#B36A12" : "#3D7A57", "font-size": 12.5, "font-weight": 700, "letter-spacing": 1.2 }, n.type);
+  el("text", { x: n.x, y: y + 52, "text-anchor": "middle", fill: "#10231B", "font-size": 22, "font-weight": 700 }, n.id);
+  n.lines.forEach((l, i) => el("text", { x: n.x, y: y + 75 + i * 18, "text-anchor": "middle", fill: "#4A5F55", "font-size": 14.5 }, l));
+  const cy = y + H + 14;
+  const pill = el("text", { x: n.x, y: cy + 17, "text-anchor": "middle", fill: "#FFFFFF", "font-size": 15, "font-weight": 700 }, n.count);
+  const pb = pill.getBBox();
+  svg.insertBefore(el("rect", { x: pb.x - 12, y: cy, width: pb.width + 24, height: 24, rx: 12, fill: n.late ? "#B36A12" : "#1F6B45" }), pill);
+}
+
+el("text", { x: 36, y: 530, fill: "#4A5F55", "font-size": 14.5 },
+   "Each arrow is a stored edge in the knowledge graph, drawn in its stored direction. The path and counts come from traces/E-09.json. All 7 relationship checks for this reading passed.");
+</script>
+</body>
+</html>

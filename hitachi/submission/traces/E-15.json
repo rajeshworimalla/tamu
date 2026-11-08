@@ -1,0 +1,3386 @@
+{
+ "event_id": "E-15",
+ "source": "quality bulletin",
+ "received_at": "2027-03-08T11:15:00",
+ "text": "QUALITY BULLETIN QB-368: Lot LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld. Place the lot on hold, stop sale of unsold vehicles and contact owners.",
+ "classification": "Quality Hold",
+ "decision": "Infotainment chip lot LOT-0191 on hold, 116 vehicles traced.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 3016,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "quality_hold",
+   "extracted": {
+    "kind": "quality_hold",
+    "supplier": "SUP-12",
+    "part": "CHIP-IVI",
+    "plant": "P_IN",
+    "window_start": "2027-03-02",
+    "window_end": "2027-03-03",
+    "lot_id": "LOT-0191",
+    "evidence": "QUALITY BULLETIN QB-368: Lot LOT-0191 (CHIP-IVI, supplier SUP-12) installed at P_IN on vehicles built 2027-03-02 to 2027-03-03 has a faulty weld."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "P_IN",
+     "id": "P_IN",
+     "via": "id"
+    },
+    "part": {
+     "mention": "CHIP-IVI",
+     "id": "CHIP-IVI",
+     "via": "id"
+    },
+    "supplier": {
+     "mention": "SUP-12",
+     "id": "SUP-12",
+     "via": "id"
+    },
+    "window_start": {
+     "mention": "2027-03-02",
+     "date": "2027-03-02",
+     "rule": "iso"
+    },
+    "window_end": {
+     "mention": "2027-03-03",
+     "date": "2027-03-03",
+     "rule": "iso"
+    },
+    "lots": [
+     {
+      "lot_id": "LOT-0191",
+      "part_id": "CHIP-IVI",
+      "supplier_id": "SUP-12",
+      "plant_id": "P_IN",
+      "first_build_date": "2027-03-02",
+      "last_build_date": "2027-03-03"
+     }
+    ]
+   },
+   "disruption": null,
+   "affected_production_orders": [],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Lot > ProductionOrder > Vehicle > Dealer / Customer",
+    "example": [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003174",
+     "Dealer:D26",
+     "Customer:C0310"
+    ],
+    "counts": {
+     "Lot": 1,
+     "ProductionOrder": 4,
+     "Vehicle": 116,
+     "unsold": 40,
+     "sold": 76,
+     "Dealer": 38,
+     "Customer": 76
+    },
+    "fact_check": [
+     {
+      "claim": "the lot is a batch of the named part",
+      "edge": [
+       "Lot:LOT-0191",
+       "batch_of",
+       "Part:CHIP-IVI"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the lot was used at the named plant",
+      "edge": [
+       "Lot:LOT-0191",
+       "used_at",
+       "Plant:P_IN"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the supplier made the lot",
+      "edge": [
+       "Supplier:SUP-12",
+       "made",
+       "Lot:LOT-0191"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [],
+  "customer_orders": [],
+  "lots": [
+   "LOT-0191"
+  ],
+  "unsold_vehicles": [
+   "AUR0003175",
+   "AUR0003176",
+   "AUR0003180",
+   "AUR0003184",
+   "AUR0003235",
+   "AUR0003236",
+   "AUR0003238",
+   "AUR0003240",
+   "AUR0003242",
+   "AUR0003243",
+   "AUR0003250",
+   "AUR0003254",
+   "AUR0003256",
+   "AUR0003258",
+   "AUR0003262",
+   "AUR0003264",
+   "AUR0003267",
+   "AUR0003270",
+   "AUR0003273",
+   "AUR0003274",
+   "AUR0003277",
+   "AUR0003280",
+   "AUR0003283",
+   "AUR0003285",
+   "AUR0003286",
+   "AUR0003287",
+   "AUR0003288",
+   "AUR0003293",
+   "AUR0003294",
+   "AUR0003296",
+   "AUR0003337",
+   "AUR0003338",
+   "AUR0003339",
+   "AUR0003340",
+   "AUR0003341",
+   "AUR0003343",
+   "AUR0003345",
+   "AUR0003349",
+   "AUR0003352",
+   "AUR0003355"
+  ],
+  "owners": [
+   "C0053",
+   "C0093",
+   "C0100",
+   "C0102",
+   "C0104",
+   "C0163",
+   "C0260",
+   "C0310",
+   "C0434",
+   "C0437",
+   "C0501",
+   "C0541",
+   "C0604",
+   "C0632",
+   "C0743",
+   "C0959",
+   "C1109",
+   "C1145",
+   "C1159",
+   "C1171",
+   "C1236",
+   "C1357",
+   "C1366",
+   "C1386",
+   "C1439",
+   "C1550",
+   "C1596",
+   "C1649",
+   "C1731",
+   "C1779",
+   "C1844",
+   "C1963",
+   "C2115",
+   "C2275",
+   "C2281",
+   "C2418",
+   "C2549",
+   "C2583",
+   "C2605",
+   "C2622",
+   "C2701",
+   "C2708",
+   "C2749",
+   "C2823",
+   "C2898",
+   "C3029",
+   "C3355",
+   "C3697",
+   "C3771",
+   "C4033",
+   "C4096",
+   "C4180",
+   "C4244",
+   "C4249",
+   "C4447",
+   "C4522",
+   "C4595",
+   "C4863",
+   "C4937",
+   "C5016",
+   "C5021",
+   "C5099",
+   "C5234",
+   "C5279",
+   "C5489",
+   "C5623",
+   "C5998",
+   "C6063",
+   "C6067",
+   "C6399",
+   "C6418",
+   "C6727",
+   "C6746",
+   "C6816",
+   "C6890",
+   "C7000"
+  ]
+ },
+ "policy_checks": [
+  {
+   "rule": 6,
+   "title": "Quality: hold the lot, stop unsold vehicles, contact every owner",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Quality",
+   "tool": "quality.hold_lot",
+   "args": {
+    "lot_id": "LOT-0191"
+   },
+   "rule": "6",
+   "reason": "CHIP-IVI lot LOT-0191 reported defective, built into 116 vehicles",
+   "graph_path": [
+    "Lot:LOT-0191"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D02",
+    "vins": [
+     "AUR0003242"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003242",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003242",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D03",
+    "vins": [
+     "AUR0003238",
+     "AUR0003254",
+     "AUR0003267"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003238",
+    "Dealer:D03"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003238",
+     "Dealer:D03"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003254",
+     "Dealer:D03"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003267",
+     "Dealer:D03"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D04",
+    "vins": [
+     "AUR0003355"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003355",
+    "Dealer:D04"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003355",
+     "Dealer:D04"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D06",
+    "vins": [
+     "AUR0003235"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003235",
+    "Dealer:D06"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003235",
+     "Dealer:D06"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D07",
+    "vins": [
+     "AUR0003283"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003283",
+    "Dealer:D07"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003283",
+     "Dealer:D07"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D08",
+    "vins": [
+     "AUR0003236",
+     "AUR0003338"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003236",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003236",
+     "Dealer:D08"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003338",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D10",
+    "vins": [
+     "AUR0003180",
+     "AUR0003258"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003180",
+    "Dealer:D10"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003180",
+     "Dealer:D10"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003258",
+     "Dealer:D10"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D12",
+    "vins": [
+     "AUR0003176"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003176",
+    "Dealer:D12"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003176",
+     "Dealer:D12"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D13",
+    "vins": [
+     "AUR0003243"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003243",
+    "Dealer:D13"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003243",
+     "Dealer:D13"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D15",
+    "vins": [
+     "AUR0003264",
+     "AUR0003349"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003264",
+    "Dealer:D15"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003264",
+     "Dealer:D15"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003349",
+     "Dealer:D15"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D20",
+    "vins": [
+     "AUR0003293",
+     "AUR0003352"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003293",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003293",
+     "Dealer:D20"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003352",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D21",
+    "vins": [
+     "AUR0003287"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003287",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003287",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D22",
+    "vins": [
+     "AUR0003277"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003277",
+    "Dealer:D22"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003277",
+     "Dealer:D22"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D23",
+    "vins": [
+     "AUR0003175",
+     "AUR0003184",
+     "AUR0003273"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003175",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003175",
+     "Dealer:D23"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003184",
+     "Dealer:D23"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003273",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D24",
+    "vins": [
+     "AUR0003294"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003294",
+    "Dealer:D24"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003294",
+     "Dealer:D24"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D25",
+    "vins": [
+     "AUR0003240",
+     "AUR0003262"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003240",
+    "Dealer:D25"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003240",
+     "Dealer:D25"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003262",
+     "Dealer:D25"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D26",
+    "vins": [
+     "AUR0003286",
+     "AUR0003296"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003286",
+    "Dealer:D26"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003286",
+     "Dealer:D26"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003296",
+     "Dealer:D26"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D27",
+    "vins": [
+     "AUR0003288"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003288",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003288",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D28",
+    "vins": [
+     "AUR0003339"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003339",
+    "Dealer:D28"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003339",
+     "Dealer:D28"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D31",
+    "vins": [
+     "AUR0003250",
+     "AUR0003274"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003250",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003250",
+     "Dealer:D31"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003274",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D32",
+    "vins": [
+     "AUR0003270"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003270",
+    "Dealer:D32"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003270",
+     "Dealer:D32"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D35",
+    "vins": [
+     "AUR0003337"
+    ]
+   },
+   "rule": "6",
+   "reason": "1 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003337",
+    "Dealer:D35"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003337",
+     "Dealer:D35"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D39",
+    "vins": [
+     "AUR0003256",
+     "AUR0003285"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003256",
+    "Dealer:D39"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003256",
+     "Dealer:D39"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003285",
+     "Dealer:D39"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D44",
+    "vins": [
+     "AUR0003280",
+     "AUR0003340"
+    ]
+   },
+   "rule": "6",
+   "reason": "2 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003280",
+    "Dealer:D44"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003280",
+     "Dealer:D44"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003340",
+     "Dealer:D44"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Quality",
+   "tool": "dealer.stop_sale",
+   "args": {
+    "dealer_id": "D45",
+    "vins": [
+     "AUR0003341",
+     "AUR0003343",
+     "AUR0003345"
+    ]
+   },
+   "rule": "6",
+   "reason": "3 unsold vehicles from lot LOT-0191 at this dealer",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003341",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003341",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003343",
+     "Dealer:D45"
+    ],
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003345",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0053",
+    "message": "Quality notice: your vehicle AUR0003263 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003263 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003263",
+    "Customer:C0053"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003263",
+     "Customer:C0053"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0093",
+    "message": "Quality notice: your vehicle AUR0003185 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003185 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003185",
+    "Customer:C0093"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003185",
+     "Customer:C0093"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 28,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0100",
+    "message": "Quality notice: your vehicle AUR0003295 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003295 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003295",
+    "Customer:C0100"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003295",
+     "Customer:C0100"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 29,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0102",
+    "message": "Quality notice: your vehicle AUR0003190 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003190 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003190",
+    "Customer:C0102"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003190",
+     "Customer:C0102"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 30,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0104",
+    "message": "Quality notice: your vehicle AUR0003177 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003177 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003177",
+    "Customer:C0104"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003177",
+     "Customer:C0104"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 31,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0163",
+    "message": "Quality notice: your vehicle AUR0003348 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003348 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003348",
+    "Customer:C0163"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003348",
+     "Customer:C0163"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 32,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0260",
+    "message": "Quality notice: your vehicle AUR0003259 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003259 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003259",
+    "Customer:C0260"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003259",
+     "Customer:C0260"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 33,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0310",
+    "message": "Quality notice: your vehicle AUR0003174 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003174 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003174",
+    "Customer:C0310"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003174",
+     "Customer:C0310"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 34,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0434",
+    "message": "Quality notice: your vehicle AUR0003272 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003272 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003272",
+    "Customer:C0434"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003272",
+     "Customer:C0434"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 35,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0437",
+    "message": "Quality notice: your vehicle AUR0003193 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003193 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003193",
+    "Customer:C0437"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003193",
+     "Customer:C0437"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 36,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0501",
+    "message": "Quality notice: your vehicle AUR0003260 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003260 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003260",
+    "Customer:C0501"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003260",
+     "Customer:C0501"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 37,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0541",
+    "message": "Quality notice: your vehicle AUR0003196 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003196 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003196",
+    "Customer:C0541"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003196",
+     "Customer:C0541"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 38,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0604",
+    "message": "Quality notice: your vehicle AUR0003298 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003298 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003298",
+    "Customer:C0604"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003298",
+     "Customer:C0604"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 39,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0632",
+    "message": "Quality notice: your vehicle AUR0003187 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003187 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003187",
+    "Customer:C0632"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003187",
+     "Customer:C0632"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 40,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0743",
+    "message": "Quality notice: your vehicle AUR0003268 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003268 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003268",
+    "Customer:C0743"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003268",
+     "Customer:C0743"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 41,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C0959",
+    "message": "Quality notice: your vehicle AUR0003347 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003347 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003347",
+    "Customer:C0959"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003347",
+     "Customer:C0959"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 42,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1109",
+    "message": "Quality notice: your vehicle AUR0003252 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003252 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003252",
+    "Customer:C1109"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003252",
+     "Customer:C1109"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 43,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1145",
+    "message": "Quality notice: your vehicle AUR0003266 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003266 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003266",
+    "Customer:C1145"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003266",
+     "Customer:C1145"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 44,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1159",
+    "message": "Quality notice: your vehicle AUR0003189 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003189 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003189",
+    "Customer:C1159"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003189",
+     "Customer:C1159"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 45,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1171",
+    "message": "Quality notice: your vehicle AUR0003200 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003200 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003200",
+    "Customer:C1171"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003200",
+     "Customer:C1171"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 46,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1236",
+    "message": "Quality notice: your vehicle AUR0003183 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003183 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003183",
+    "Customer:C1236"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003183",
+     "Customer:C1236"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 47,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1357",
+    "message": "Quality notice: your vehicle AUR0003182 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003182 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003182",
+    "Customer:C1357"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003182",
+     "Customer:C1357"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 48,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1366",
+    "message": "Quality notice: your vehicle AUR0003192 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003192 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003192",
+    "Customer:C1366"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003192",
+     "Customer:C1366"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 49,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1386",
+    "message": "Quality notice: your vehicle AUR0003358 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003358 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003358",
+    "Customer:C1386"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003358",
+     "Customer:C1386"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 50,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1439",
+    "message": "Quality notice: your vehicle AUR0003179 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003179 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003179",
+    "Customer:C1439"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003179",
+     "Customer:C1439"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 51,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1550",
+    "message": "Quality notice: your vehicle AUR0003178 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003178 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003178",
+    "Customer:C1550"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003178",
+     "Customer:C1550"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 52,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1596",
+    "message": "Quality notice: your vehicle AUR0003289 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003289 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003289",
+    "Customer:C1596"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003289",
+     "Customer:C1596"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 53,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1649",
+    "message": "Quality notice: your vehicle AUR0003275 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003275 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003275",
+    "Customer:C1649"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003275",
+     "Customer:C1649"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 54,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1731",
+    "message": "Quality notice: your vehicle AUR0003198 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003198 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003198",
+    "Customer:C1731"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003198",
+     "Customer:C1731"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 55,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1779",
+    "message": "Quality notice: your vehicle AUR0003237 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003237 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003237",
+    "Customer:C1779"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003237",
+     "Customer:C1779"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 56,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1844",
+    "message": "Quality notice: your vehicle AUR0003346 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003346 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003346",
+    "Customer:C1844"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003346",
+     "Customer:C1844"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 57,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C1963",
+    "message": "Quality notice: your vehicle AUR0003279 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003279 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003279",
+    "Customer:C1963"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003279",
+     "Customer:C1963"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 58,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2115",
+    "message": "Quality notice: your vehicle AUR0003246 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003246 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003246",
+    "Customer:C2115"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003246",
+     "Customer:C2115"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 59,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2275",
+    "message": "Quality notice: your vehicle AUR0003181 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003181 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003181",
+    "Customer:C2275"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003181",
+     "Customer:C2275"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 60,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2281",
+    "message": "Quality notice: your vehicle AUR0003241 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003241 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003241",
+    "Customer:C2281"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003241",
+     "Customer:C2281"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 61,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2418",
+    "message": "Quality notice: your vehicle AUR0003191 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003191 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003191",
+    "Customer:C2418"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003191",
+     "Customer:C2418"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 62,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2549",
+    "message": "Quality notice: your vehicle AUR0003194 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003194 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003194",
+    "Customer:C2549"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003194",
+     "Customer:C2549"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 63,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2583",
+    "message": "Quality notice: your vehicle AUR0003249 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003249 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003249",
+    "Customer:C2583"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003249",
+     "Customer:C2583"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 64,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2605",
+    "message": "Quality notice: your vehicle AUR0003284 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003284 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003284",
+    "Customer:C2605"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003284",
+     "Customer:C2605"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 65,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2622",
+    "message": "Quality notice: your vehicle AUR0003290 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003290 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003290",
+    "Customer:C2622"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003290",
+     "Customer:C2622"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 66,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2701",
+    "message": "Quality notice: your vehicle AUR0003199 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003199 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003199",
+    "Customer:C2701"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003199",
+     "Customer:C2701"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 67,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2708",
+    "message": "Quality notice: your vehicle AUR0003197 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003197 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003197",
+    "Customer:C2708"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003197",
+     "Customer:C2708"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 68,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2749",
+    "message": "Quality notice: your vehicle AUR0003269 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003269 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003269",
+    "Customer:C2749"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003269",
+     "Customer:C2749"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 69,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2823",
+    "message": "Quality notice: your vehicle AUR0003342 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003342 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003342",
+    "Customer:C2823"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003342",
+     "Customer:C2823"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 70,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C2898",
+    "message": "Quality notice: your vehicle AUR0003265 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003265 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003265",
+    "Customer:C2898"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003265",
+     "Customer:C2898"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 71,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3029",
+    "message": "Quality notice: your vehicle AUR0003253 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003253 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003253",
+    "Customer:C3029"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003253",
+     "Customer:C3029"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 72,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3355",
+    "message": "Quality notice: your vehicle AUR0003297 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003297 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003297",
+    "Customer:C3355"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003297",
+     "Customer:C3355"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 73,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3697",
+    "message": "Quality notice: your vehicle AUR0003353 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003353 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003353",
+    "Customer:C3697"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003353",
+     "Customer:C3697"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 74,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C3771",
+    "message": "Quality notice: your vehicle AUR0003276 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003276 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003276",
+    "Customer:C3771"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003276",
+     "Customer:C3771"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 75,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4033",
+    "message": "Quality notice: your vehicle AUR0003291 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003291 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003291",
+    "Customer:C4033"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003291",
+     "Customer:C4033"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 76,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4096",
+    "message": "Quality notice: your vehicle AUR0003281 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003281 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003281",
+    "Customer:C4096"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003281",
+     "Customer:C4096"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 77,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4180",
+    "message": "Quality notice: your vehicle AUR0003357 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003357 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003357",
+    "Customer:C4180"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003357",
+     "Customer:C4180"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 78,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4244",
+    "message": "Quality notice: your vehicle AUR0003239 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003239 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003239",
+    "Customer:C4244"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003239",
+     "Customer:C4244"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 79,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4249",
+    "message": "Quality notice: your vehicle AUR0003186 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003186 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003186",
+    "Customer:C4249"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003186",
+     "Customer:C4249"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 80,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4447",
+    "message": "Quality notice: your vehicle AUR0003336 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003336 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003336",
+    "Customer:C4447"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003336",
+     "Customer:C4447"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 81,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4522",
+    "message": "Quality notice: your vehicle AUR0003245 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003245 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003245",
+    "Customer:C4522"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003245",
+     "Customer:C4522"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 82,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4595",
+    "message": "Quality notice: your vehicle AUR0003354 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003354 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003354",
+    "Customer:C4595"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003354",
+     "Customer:C4595"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 83,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4863",
+    "message": "Quality notice: your vehicle AUR0003257 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003257 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003257",
+    "Customer:C4863"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003257",
+     "Customer:C4863"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 84,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C4937",
+    "message": "Quality notice: your vehicle AUR0003261 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003261 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003261",
+    "Customer:C4937"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003261",
+     "Customer:C4937"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 85,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5016",
+    "message": "Quality notice: your vehicle AUR0003356 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003356 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003356",
+    "Customer:C5016"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003356",
+     "Customer:C5016"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 86,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5021",
+    "message": "Quality notice: your vehicle AUR0003195 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003195 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003195",
+    "Customer:C5021"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003195",
+     "Customer:C5021"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 87,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5099",
+    "message": "Quality notice: your vehicle AUR0003188 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003188 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0289",
+    "Vehicle:AUR0003188",
+    "Customer:C5099"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0289",
+     "Vehicle:AUR0003188",
+     "Customer:C5099"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 88,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5234",
+    "message": "Quality notice: your vehicle AUR0003351 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003351 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003351",
+    "Customer:C5234"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003351",
+     "Customer:C5234"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 89,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5279",
+    "message": "Quality notice: your vehicle AUR0003292 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003292 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003292",
+    "Customer:C5279"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003292",
+     "Customer:C5279"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 90,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5489",
+    "message": "Quality notice: your vehicle AUR0003271 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003271 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003271",
+    "Customer:C5489"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003271",
+     "Customer:C5489"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 91,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5623",
+    "message": "Quality notice: your vehicle AUR0003255 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003255 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003255",
+    "Customer:C5623"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003255",
+     "Customer:C5623"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 92,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C5998",
+    "message": "Quality notice: your vehicle AUR0003335 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003335 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003335",
+    "Customer:C5998"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003335",
+     "Customer:C5998"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 93,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6063",
+    "message": "Quality notice: your vehicle AUR0003251 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003251 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003251",
+    "Customer:C6063"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003251",
+     "Customer:C6063"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 94,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6067",
+    "message": "Quality notice: your vehicle AUR0003350 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003350 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003350",
+    "Customer:C6067"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003350",
+     "Customer:C6067"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 95,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6399",
+    "message": "Quality notice: your vehicle AUR0003247 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003247 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003247",
+    "Customer:C6399"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003247",
+     "Customer:C6399"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 96,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6418",
+    "message": "Quality notice: your vehicle AUR0003344 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003344 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0294",
+    "Vehicle:AUR0003344",
+    "Customer:C6418"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0294",
+     "Vehicle:AUR0003344",
+     "Customer:C6418"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 97,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6727",
+    "message": "Quality notice: your vehicle AUR0003234 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003234 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003234",
+    "Customer:C6727"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003234",
+     "Customer:C6727"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 98,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6746",
+    "message": "Quality notice: your vehicle AUR0003278 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003278 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003278",
+    "Customer:C6746"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003278",
+     "Customer:C6746"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 99,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6816",
+    "message": "Quality notice: your vehicle AUR0003244 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003244 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003244",
+    "Customer:C6816"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003244",
+     "Customer:C6816"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 100,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C6890",
+    "message": "Quality notice: your vehicle AUR0003248 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003248 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0291",
+    "Vehicle:AUR0003248",
+    "Customer:C6890"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0291",
+     "Vehicle:AUR0003248",
+     "Customer:C6890"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 101,
+   "agent": "Quality",
+   "tool": "crm.notify_customer",
+   "args": {
+    "customer_id": "C7000",
+    "message": "Quality notice: your vehicle AUR0003282 contains CHIP-IVI from lot LOT-0191, now on quality hold. Your dealer will contact you to schedule an inspection."
+   },
+   "rule": "6",
+   "reason": "owner of sold vehicle AUR0003282 from lot LOT-0191",
+   "graph_path": [
+    "Lot:LOT-0191",
+    "ProductionOrder:PO-0292",
+    "Vehicle:AUR0003282",
+    "Customer:C7000"
+   ],
+   "graph_paths": [
+    [
+     "Lot:LOT-0191",
+     "ProductionOrder:PO-0292",
+     "Vehicle:AUR0003282",
+     "Customer:C7000"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 102,
+  "accepted": 102,
+  "failed": 0
+ }
+}

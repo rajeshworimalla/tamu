@@ -1,0 +1,1371 @@
+{
+ "event_id": "E-10",
+ "source": "ops chat",
+ "received_at": "2027-03-08T09:50:00",
+ "text": "Huntsville line is waiting on 60 kWh battery packs from Lumen. Original drop was Monday Mar 29, new ETA is Thursday Apr 1 because of a truck breakdown.",
+ "classification": "Supplier Delay",
+ "decision": "60 kWh battery pack for Huntsville, AL arrives Apr 1 instead of Mar 29, 3 builds moved.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2820,
+    "retry": false,
+    "errors": [],
+    "notes": [
+     "dropped shipment_id 'S_LM_60kWh', not in the message"
+    ]
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "supplier_delay",
+   "extracted": {
+    "kind": "supplier_delay",
+    "supplier": "Lumen",
+    "part": "60 kWh battery packs",
+    "plant": "Huntsville",
+    "original_eta": "Monday Mar 29",
+    "new_eta": "Thursday Apr 1",
+    "evidence": "Huntsville line is waiting on 60 kWh battery packs from Lumen. Original drop was Monday Mar 29, new ETA is Thursday Apr 1 because of a truck breakdown."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "Huntsville",
+     "id": "P_AL",
+     "via": "alias"
+    },
+    "part": {
+     "mention": "60 kWh battery packs",
+     "id": "BATT-60",
+     "via": "alias"
+    },
+    "supplier": {
+     "mention": "Lumen",
+     "id": "SUP-18",
+     "via": "alias"
+    },
+    "original_eta": {
+     "mention": "Monday Mar 29",
+     "date": "2027-03-29",
+     "rule": "absolute"
+    },
+    "new_eta": {
+     "mention": "Thursday Apr 1",
+     "date": "2027-04-01",
+     "rule": "absolute"
+    },
+    "shipment": {
+     "shipment_id": "SH-0248",
+     "supplier_id": "SUP-18",
+     "part_id": "BATT-60",
+     "plant_id": "P_AL",
+     "eta_date": "2027-03-29",
+     "covers_days": "5"
+    }
+   },
+   "disruption": {
+    "plant": "P_AL",
+    "models": [
+     "NOVA"
+    ],
+    "part": "BATT-60",
+    "from_idx": 15,
+    "to_idx_excl": 18,
+    "earliest_same_plant_idx": 18,
+    "summary": "BATT-60 missing at P_AL 2027-03-29 to 2027-03-31, models ['NOVA']"
+   },
+   "affected_production_orders": [
+    "PO-0437",
+    "PO-0440",
+    "PO-0443"
+   ],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "Shipment > Part > Model (BOM) > ProductionOrder > CustomerOrder > Dealer / Customer",
+    "example": [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02575",
+     "Dealer:D04",
+     "Customer:C6785"
+    ],
+    "counts": {
+     "Shipment": 1,
+     "Part": 1,
+     "Model": 1,
+     "ProductionOrder": 3,
+     "CustomerOrder": 29,
+     "Dealer": 18,
+     "Customer": 29
+    },
+    "fact_check": [
+     {
+      "claim": "the shipment carries the named part",
+      "edge": [
+       "Shipment:SH-0248",
+       "carries",
+       "Part:BATT-60"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the shipment goes to the named plant",
+      "edge": [
+       "Shipment:SH-0248",
+       "delivers_to",
+       "Plant:P_AL"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the supplier ships this shipment",
+      "edge": [
+       "Supplier:SUP-18",
+       "ships",
+       "Shipment:SH-0248"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the plant builds Nova",
+      "edge": [
+       "Plant:P_AL",
+       "builds",
+       "Model:NOVA"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "Nova contains the part",
+      "edge": [
+       "Model:NOVA",
+       "contains",
+       "Part:BATT-60"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [
+   "PO-0437",
+   "PO-0440",
+   "PO-0443"
+  ],
+  "customer_orders": [
+   "CO-02575",
+   "CO-02576",
+   "CO-02577",
+   "CO-02578",
+   "CO-02579",
+   "CO-02580",
+   "CO-02581",
+   "CO-02582",
+   "CO-02583",
+   "CO-02603",
+   "CO-02604",
+   "CO-02605",
+   "CO-02606",
+   "CO-02607",
+   "CO-02608",
+   "CO-02609",
+   "CO-02610",
+   "CO-02611",
+   "CO-02612",
+   "CO-02630",
+   "CO-02631",
+   "CO-02632",
+   "CO-02633",
+   "CO-02634",
+   "CO-02635",
+   "CO-02636",
+   "CO-02637",
+   "CO-02638",
+   "CO-02639"
+  ],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 1,
+   "title": "Delay: every build needing the part in the gap is moved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 3,
+   "title": "Rescheduling: after the disruption, transfer only when the plant is full",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 4,
+   "title": "Dealers: one notice each, listing exactly their affected orders",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 5,
+   "title": "Loaners: Platinum, then Gold, then promised date, within each pool",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0437",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-29 at P_AL moves to P_AL 2027-04-01: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0437",
+    "plant_id": "P_AL",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0440",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-30 at P_AL moves to P_AL 2027-04-01: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0440",
+    "plant_id": "P_AL",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0443",
+    "new_date": "2027-04-02"
+   },
+   "rule": "3",
+   "reason": "NOVA order built 2027-03-31 at P_AL moves to P_AL 2027-04-02: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 2",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0443",
+    "plant_id": "P_AL",
+    "date": "2027-04-02"
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D02",
+    "customer_order_ids": [
+     "CO-02638"
+    ],
+    "message": "Production delay for your customer orders: CO-02638 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02638",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02638",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D04",
+    "customer_order_ids": [
+     "CO-02575"
+    ],
+    "message": "Production delay for your customer orders: CO-02575 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02575",
+    "Dealer:D04"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02575",
+     "Dealer:D04"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D08",
+    "customer_order_ids": [
+     "CO-02637"
+    ],
+    "message": "Production delay for your customer orders: CO-02637 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02637",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02637",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D10",
+    "customer_order_ids": [
+     "CO-02611"
+    ],
+    "message": "Production delay for your customer orders: CO-02611 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02611",
+    "Dealer:D10"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02611",
+     "Dealer:D10"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D17",
+    "customer_order_ids": [
+     "CO-02634"
+    ],
+    "message": "Production delay for your customer orders: CO-02634 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02634",
+    "Dealer:D17"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02634",
+     "Dealer:D17"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D20",
+    "customer_order_ids": [
+     "CO-02576",
+     "CO-02578",
+     "CO-02631"
+    ],
+    "message": "Production delay for your customer orders: CO-02576 now builds 2027-04-01; CO-02578 now builds 2027-04-01; CO-02631 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02576",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02576",
+     "Dealer:D20"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02578",
+     "Dealer:D20"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02631",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D21",
+    "customer_order_ids": [
+     "CO-02607"
+    ],
+    "message": "Production delay for your customer orders: CO-02607 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02607",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02607",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D23",
+    "customer_order_ids": [
+     "CO-02579",
+     "CO-02603"
+    ],
+    "message": "Production delay for your customer orders: CO-02579 now builds 2027-04-01; CO-02603 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02579",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02579",
+     "Dealer:D23"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02603",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D25",
+    "customer_order_ids": [
+     "CO-02636"
+    ],
+    "message": "Production delay for your customer orders: CO-02636 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02636",
+    "Dealer:D25"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02636",
+     "Dealer:D25"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D27",
+    "customer_order_ids": [
+     "CO-02604",
+     "CO-02630"
+    ],
+    "message": "Production delay for your customer orders: CO-02604 now builds 2027-04-01; CO-02630 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02604",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02604",
+     "Dealer:D27"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02630",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D28",
+    "customer_order_ids": [
+     "CO-02580"
+    ],
+    "message": "Production delay for your customer orders: CO-02580 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02580",
+    "Dealer:D28"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02580",
+     "Dealer:D28"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D31",
+    "customer_order_ids": [
+     "CO-02583"
+    ],
+    "message": "Production delay for your customer orders: CO-02583 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02583",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02583",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D34",
+    "customer_order_ids": [
+     "CO-02605",
+     "CO-02609"
+    ],
+    "message": "Production delay for your customer orders: CO-02605 now builds 2027-04-01; CO-02609 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02605",
+    "Dealer:D34"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02605",
+     "Dealer:D34"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02609",
+     "Dealer:D34"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D44",
+    "customer_order_ids": [
+     "CO-02610"
+    ],
+    "message": "Production delay for your customer orders: CO-02610 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02610",
+    "Dealer:D44"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02610",
+     "Dealer:D44"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D45",
+    "customer_order_ids": [
+     "CO-02577",
+     "CO-02582",
+     "CO-02606",
+     "CO-02608",
+     "CO-02632",
+     "CO-02635"
+    ],
+    "message": "Production delay for your customer orders: CO-02577 now builds 2027-04-01; CO-02582 now builds 2027-04-01; CO-02606 now builds 2027-04-01; CO-02608 now builds 2027-04-01; CO-02632 now builds 2027-04-02; CO-02635 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02577",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02577",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02582",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02606",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02608",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02632",
+     "Dealer:D45"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02635",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D46",
+    "customer_order_ids": [
+     "CO-02612",
+     "CO-02633"
+    ],
+    "message": "Production delay for your customer orders: CO-02612 now builds 2027-04-01; CO-02633 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02612",
+    "Dealer:D46"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02612",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02633",
+     "Dealer:D46"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D47",
+    "customer_order_ids": [
+     "CO-02581"
+    ],
+    "message": "Production delay for your customer orders: CO-02581 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02581",
+    "Dealer:D47"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02581",
+     "Dealer:D47"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D48",
+    "customer_order_ids": [
+     "CO-02639"
+    ],
+    "message": "Production delay for your customer orders: CO-02639 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02639",
+    "Dealer:D48"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02639",
+     "Dealer:D48"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02638"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-04, priority 1 of 1 for 2 loaners at D02",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02638",
+    "Customer:C1633"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02638",
+     "Customer:C1633"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D02"
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02575"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-01, priority 1 of 1 for 1 loaners at D04",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02575",
+    "Customer:C6785"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02575",
+     "Customer:C6785"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D04"
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02578"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-03, priority 1 of 1 for 1 loaners at D20",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02578",
+    "Customer:C3147"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02578",
+     "Customer:C3147"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D20"
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02579"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-02, priority 1 of 1 for 2 loaners at D23",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0437",
+    "CustomerOrder:CO-02579",
+    "Customer:C1129"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0437",
+     "CustomerOrder:CO-02579",
+     "Customer:C1129"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D23"
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02636"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-04-03, priority 1 of 1 for 1 loaners at D25",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0443",
+    "CustomerOrder:CO-02636",
+    "Customer:C3028"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0443",
+     "CustomerOrder:CO-02636",
+     "Customer:C3028"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D25"
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02604"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-04, priority 1 of 1 for 1 loaners at D27",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02604",
+    "Customer:C3999"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02604",
+     "Customer:C3999"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D27"
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02605"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-03, priority 1 of 1 for 1 loaners at D34",
+   "graph_path": [
+    "Shipment:SH-0248",
+    "Part:BATT-60",
+    "Model:NOVA",
+    "ProductionOrder:PO-0440",
+    "CustomerOrder:CO-02605",
+    "Customer:C1094"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0248",
+     "Part:BATT-60",
+     "Model:NOVA",
+     "ProductionOrder:PO-0440",
+     "CustomerOrder:CO-02605",
+     "Customer:C1094"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D34"
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 28,
+  "accepted": 28,
+  "failed": 0
+ }
+}

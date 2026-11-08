@@ -1,0 +1,85 @@
+{
+ "event_id": "E-02",
+ "source": "ops chat",
+ "received_at": "2027-03-08T07:34:00",
+ "text": "Rumor from a supplier rep: something may be off with a seat material coming up. No dates, no details, nothing confirmed.",
+ "classification": "Unconfirmed Report",
+ "decision": "Escalated to a human: Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2379,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "unconfirmed",
+   "extracted": {
+    "kind": "unconfirmed",
+    "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+    "model_reason": "Rumor from a supplier rep: something may be off with a seat material coming up. No dates, no details, nothing confirmed."
+   },
+   "resolution": {},
+   "disruption": null,
+   "affected_production_orders": [],
+   "warnings": [],
+   "graph_evidence": {
+    "required_path": "reason the report was not actionable",
+    "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm."
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [],
+  "customer_orders": [],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 8,
+   "title": "Unconfirmed report: escalate, no operational change",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Coordinator",
+   "tool": "escalate",
+   "args": {
+    "reason": "Unconfirmed or non-specific report: Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm."
+   },
+   "rule": "8",
+   "reason": "Sounds like it could affect operations, but names no plant, part, supplier or dates we can check. A person should confirm.",
+   "graph_path": [
+    "Event:E-02"
+   ],
+   "graph_paths": [
+    [
+     "Event:E-02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  }
+ ],
+ "loaners_not_available": [],
+ "execution": {
+  "sent": 1,
+  "accepted": 1,
+  "failed": 0
+ }
+}

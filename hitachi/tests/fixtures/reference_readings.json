@@ -1,0 +1,142 @@
+{
+  "_comment": "Test fixture, not used in production runs. A hand-written reading of the 15 supplied events, in the same raw form the model returns (names and relative dates as written). Used only by extract.py --check to measure the model, and by run.py --reference for development without a model. Contains readings, not actions.",
+  "events": {
+    "E-01": [
+      {
+        "kind": "plant_outage",
+        "plant": "San Antonio",
+        "start": "next Friday",
+        "end": "Monday Mar 22",
+        "evidence": "We're dark from next Friday through Monday Mar 22"
+      },
+      {
+        "kind": "supplier_delay",
+        "supplier": "Quanta",
+        "part": "infotainment chip",
+        "plant": "Princeton",
+        "original_eta": "next Monday",
+        "new_eta": "next Friday",
+        "evidence": "infotainment chip run for Princeton can't make it next Monday. Carrier says next Friday now"
+      }
+    ],
+    "E-02": [
+      {
+        "kind": "unconfirmed",
+        "reason": "Rumor from a supplier rep about 'a seat material'; no part, plant, lot or dates; explicitly 'nothing confirmed'."
+      }
+    ],
+    "E-03": [
+      {
+        "kind": "quality_hold",
+        "supplier": "Kestrel",
+        "part": "infotainment chip",
+        "plant": "Jackson",
+        "window_start": "Thursday Feb 25",
+        "window_end": "last Monday",
+        "evidence": "Anything built Thursday Feb 25 through last Monday is suspect"
+      }
+    ],
+    "E-04": [
+      {
+        "kind": "plant_outage",
+        "plant": "the Kentucky plant",
+        "start": "next Tuesday",
+        "end": "next Thursday",
+        "evidence": "We're dark from next Tuesday through next Thursday"
+      }
+    ],
+    "E-05": [
+      {
+        "kind": "noise",
+        "reason": "Dealer brochure PDF question; no operational impact."
+      }
+    ],
+    "E-06": [
+      {
+        "kind": "noise",
+        "reason": "Dealer brochure PDF question; no operational impact."
+      }
+    ],
+    "E-07": [
+      {
+        "kind": "noise",
+        "reason": "Dealer brochure PDF question; no operational impact."
+      }
+    ],
+    "E-08": [
+      {
+        "kind": "plant_outage",
+        "plant": "P_KY",
+        "start": "2027-03-24",
+        "end": "2027-03-25",
+        "evidence": "Production is stopped from 2027-03-24 through 2027-03-25 inclusive"
+      }
+    ],
+    "E-09": [
+      {
+        "kind": "supplier_delay",
+        "supplier": "Orbit",
+        "part": "surround-view cameras",
+        "plant": "Huntsville",
+        "original_eta": "Monday Mar 29",
+        "new_eta": "Thursday Apr 1"
+      }
+    ],
+    "E-10": [
+      {
+        "kind": "supplier_delay",
+        "supplier": "Lumen",
+        "part": "60 kWh battery packs",
+        "plant": "Huntsville",
+        "original_eta": "Monday Mar 29",
+        "new_eta": "Thursday Apr 1"
+      }
+    ],
+    "E-11": [
+      {
+        "kind": "plant_outage",
+        "plant": "Jackson",
+        "start": "Friday Mar 26",
+        "end": "Tuesday Mar 30"
+      }
+    ],
+    "E-12": [
+      {
+        "kind": "supplier_delay",
+        "shipment_id": "SH-0182",
+        "supplier": "Orbit",
+        "part": "CAM-360",
+        "plant": "P_IN",
+        "original_eta": "2027-03-15",
+        "new_eta": "2027-03-18"
+      }
+    ],
+    "E-13": [
+      {
+        "kind": "unconfirmed",
+        "reason": "'possible shortage of something electronic sometime soon'; no part, plant, supplier or dates; 'Not confirmed by anyone'."
+      }
+    ],
+    "E-14": [
+      {
+        "kind": "quality_hold",
+        "supplier": "Atlas",
+        "part": "heavy-duty wiring harness",
+        "plant": "the Texas plant",
+        "window_start": "Monday Feb 22",
+        "window_end": "Wednesday Feb 24"
+      }
+    ],
+    "E-15": [
+      {
+        "kind": "quality_hold",
+        "lot_id": "LOT-0191",
+        "supplier": "SUP-12",
+        "part": "CHIP-IVI",
+        "plant": "P_IN",
+        "window_start": "2027-03-02",
+        "window_end": "2027-03-03"
+      }
+    ]
+  }
+}

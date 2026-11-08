@@ -1,0 +1,23 @@
+{
+  "San Antonio, TX": [-98.49, 29.42], "Lexington, KY": [-84.50, 38.04], "Jackson, MS": [-90.18, 32.30],
+  "Princeton, IN": [-87.57, 38.36], "Huntsville, AL": [-86.59, 34.73], "Greensboro, NC": [-79.79, 36.07],
+  "Akron, OH": [-81.52, 41.08], "Louisville, KY": [-85.76, 38.25], "Dayton, OH": [-84.19, 39.76],
+  "Detroit, MI": [-83.05, 42.33], "Monterrey, MX": [-100.32, 25.69], "Austin, TX": [-97.74, 30.27],
+  "Nashville, TN": [-86.78, 36.16], "Columbus, OH": [-83.00, 39.96], "Reno, NV": [-119.81, 39.53],
+  "Toledo, OH": [-83.54, 41.65], "San Jose, CA": [-121.89, 37.34], "Phoenix, AZ": [-112.07, 33.45],
+  "Tulsa, OK": [-95.99, 36.15], "Birmingham, AL": [-86.80, 33.52], "Charleston, SC": [-79.93, 32.78],
+  "Greenville, SC": [-82.40, 34.85], "Indianapolis, IN": [-86.16, 39.77], "Fremont, CA": [-121.99, 37.55],
+  "Amarillo, TX": [-101.83, 35.22], "Asheville, NC": [-82.55, 35.60], "Atlanta, GA": [-84.39, 33.75],
+  "Baton Rouge, LA": [-91.15, 30.45], "Bowling Green, KY": [-86.44, 36.99], "Charlotte, NC": [-80.84, 35.23],
+  "Chattanooga, TN": [-85.31, 35.05], "Cincinnati, OH": [-84.51, 39.10], "Columbia, SC": [-81.03, 34.00],
+  "Corpus Christi, TX": [-97.40, 27.80], "El Paso, TX": [-106.49, 31.76], "Evansville, IN": [-87.57, 37.97],
+  "Fayetteville, AR": [-94.16, 36.06], "Fort Wayne, IN": [-85.14, 41.08], "Houston, TX": [-95.37, 29.76],
+  "Jacksonville, FL": [-81.66, 30.33], "Jonesboro, AR": [-90.70, 35.84], "Kerrville, TX": [-99.14, 30.05],
+  "Knoxville, TN": [-83.92, 35.96], "Lafayette, LA": [-92.02, 30.22], "Little Rock, AR": [-92.29, 34.75],
+  "Lubbock, TX": [-101.86, 33.58], "Macon, GA": [-83.63, 32.84], "McAllen, TX": [-98.23, 26.20],
+  "Memphis, TN": [-90.05, 35.15], "Mobile, AL": [-88.04, 30.69], "Montgomery, AL": [-86.30, 32.37],
+  "New Orleans, LA": [-90.07, 29.95], "Oklahoma City, OK": [-97.52, 35.47], "Pensacola, FL": [-87.22, 30.42],
+  "Raleigh, NC": [-78.64, 35.78], "Roanoke, VA": [-79.94, 37.27], "Shreveport, LA": [-93.75, 32.52],
+  "Springfield, MO": [-93.29, 37.21], "St. Louis, MO": [-90.20, 38.63], "Tupelo, MS": [-88.70, 34.26],
+  "Tyler, TX": [-95.30, 32.35]
+}

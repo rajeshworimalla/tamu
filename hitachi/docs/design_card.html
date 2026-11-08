@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ripple Radar design card</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0.3in 0.44in; }
+  :root { --ink: #14231B; --muted: #4A5A51; --green: #1F5C3A; --leaf: #2E7A4F; --mint: #EAF2EC; --line: #CBDDD1; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { font: 10pt/1.4 Georgia, "Times New Roman", serif; color: var(--ink); }
+  p { margin: 0 0 6px; }
+
+  .head { display: flex; align-items: center; gap: 16px; padding-left: 14px; border-left: 5px solid var(--green); margin-bottom: 10px; }
+  .logo { flex: none; }
+  .brand { font: 400 42pt/0.95 "Instrument Serif", Georgia, serif; letter-spacing: -0.01em; }
+  .brand i { color: var(--leaf); }
+  .event { font-size: 12.5pt; margin-top: 4px; }
+  .tag { font-style: italic; color: var(--muted); font-size: 11pt; }
+
+  .lead { background: var(--mint); border-radius: 9px; padding: 10px 16px; font-style: italic; font-size: 10.8pt; margin-bottom: 8px; }
+  .lead b { font-weight: 700; }
+  .thesis { text-align: center; font-size: 11pt; margin: 4px 0 12px; }
+  .thesis b { color: var(--green); }
+
+  .cols { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 0 20px; }
+  .right { border-left: 1px solid var(--line); padding-left: 20px; }
+  h2 { display: flex; align-items: center; gap: 8px; font: 700 13.2pt/1.15 Georgia, serif; color: var(--green); margin: 0 0 5px; }
+  h2::after { content: ""; flex: 1; border-top: 1.5px solid var(--green); opacity: 0.55; margin-left: 4px; }
+  h2 svg { flex: none; width: 17px; height: 17px; }
+  section { margin-bottom: 9px; }
+
+  table.agents { width: 100%; border-collapse: separate; border-spacing: 0 3px; margin: 2px 0 6px; font-size: 9.9pt; }
+  table.agents td { background: var(--mint); padding: 4px 10px; }
+  table.agents td:first-child { font-weight: 700; width: 38%; border-radius: 6px 0 0 6px; }
+  table.agents td:last-child { border-radius: 0 6px 6px 0; }
+
+  .flow { display: flex; align-items: center; gap: 3px; margin: 4px 0 4px; }
+  .flow div { flex: 1; text-align: center; background: var(--mint); border-radius: 7px; padding: 5px 2px; font-size: 9.3pt; font-weight: 700; line-height: 1.2; }
+  .flow div small { display: block; font-weight: 400; color: var(--muted); font-size: 8.4pt; }
+  .flow div.end { background: var(--green); color: #fff; }
+  .flow div.end small { color: #D5E8DB; }
+  .flow span { color: var(--green); font-size: 10pt; }
+  .note { font-size: 9pt; color: var(--muted); }
+  .note b { color: #9A5A12; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--mint); border-radius: 9px; padding: 8px 0; margin: 4px 0 7px; }
+  .stats div { padding: 0 12px; border-left: 1.5px solid var(--line); }
+  .stats div:first-child { border-left: 0; }
+  .stats b { display: block; font-size: 20pt; line-height: 1.05; }
+  .stats span { font-size: 9pt; color: var(--muted); line-height: 1.25; display: block; }
+
+  .path { list-style: none; margin: 4px 0 4px; padding: 0; font-size: 9.4pt; }
+  .path li { display: grid; grid-template-columns: 100px 1fr auto; align-items: baseline; padding: 2px 9px; background: var(--mint); border-radius: 6px; margin-bottom: 2px; }
+  .path li span { color: var(--muted); font-size: 8.6pt; letter-spacing: 0.04em; }
+  .path li em { font-style: normal; color: var(--green); font-weight: 700; font-size: 8.8pt; }
+  .path li.late { background: #FBEEDC; }
+  .path li.hdr { background: none; padding: 0 9px; margin-bottom: 1px; line-height: 1.1; }
+  .path li.hdr span { font-size: 7.6pt; letter-spacing: 0.06em; }
+  .path li.hdr span:last-child { text-align: right; }
+  .path li.late span, .path li.late em { color: #9A5A12; }
+  .foot { border-top: 1.5px solid var(--green); margin-top: 6px; padding: 7px 12px; background: #F4F8F5; border-radius: 0 0 8px 8px; font-size: 8.2pt; padding: 9px 12px; }
+  .foot code { font: 8pt Consolas, "Courier New", monospace; color: var(--green); }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <svg class="logo" width="64" height="64" viewBox="0 0 40 40" aria-hidden="true">
+    <circle cx="20" cy="20" r="17" fill="none" stroke="#2E7A4F" stroke-width="2.6"/>
+    <circle cx="20" cy="20" r="9.5" fill="none" stroke="#2E7A4F" stroke-width="2.6"/>
+    <circle cx="20" cy="20" r="3.6" fill="#2E7A4F"/>
+  </svg>
+  <div>
+    <div class="brand">Ripple <i>Radar</i></div>
+    <div class="event">Hitachi Hack the Highway &nbsp;|&nbsp; TAMU Datathon 2026</div>
+    <div class="tag">An event-driven operations control tower for Wacky Wheels Co.</div>
+  </div>
+</header>
+
+<div class="lead"><b>Orbit's</b> email was two lines long: the Huntsville cameras would arrive Thursday, not Monday. Behind it sat six builds with no parts, 54 customer orders running late, 26 dealers to warn and ten loaner cars to hand out fairly.</div>
+<p class="thesis"><b>Ripple Radar</b> finds all of that, and it is careful about who gets to decide what happens next.</p>
+
+<div class="cols">
+<div class="left">
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg>How we built it</h2>
+  <p>We made one decision early on: AI reads the message. Code does everything else. Qwen2.5 3B, running locally, pulls out the details someone is reporting. It doesn't decide which production orders move, which customers hear about it, or which vehicles stop selling. Python does, using the company's records and the handbook.</p>
+  <p>A Coordinator routes each incident to three specialists:</p>
+  <table class="agents">
+    <tr><td>Supply Chain</td><td>Production scheduling and transfers</td></tr>
+    <tr><td>Dealer &amp; Customer Care</td><td>Dealer notices and loaners</td></tr>
+    <tr><td>Quality</td><td>Defective lots and affected vehicles</td></tr>
+  </table>
+  <p>They trace each disruption through a knowledge graph of 14 node types and 17,772 nodes, showing how suppliers, parts, builds, dealers and customers connect. Our traces record the evidence path behind every action.</p>
+</section>
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>How it works</h2>
+  <div class="flow">
+    <div>Read<small>AI</small></div><span>&rsaquo;</span>
+    <div>Verify<small>Code</small></div><span>&rsaquo;</span>
+    <div>Trace<small>Graph</small></div><span>&rsaquo;</span>
+    <div>Plan<small>Agents</small></div><span>&rsaquo;</span>
+    <div>Check<small>RuleBook</small></div><span>&rsaquo;</span>
+    <div class="end">Execute<small>Enterprise</small></div>
+  </div>
+  <p class="note"><b>Unverified information or an invalid plan goes to review.</b> Only approved actions reach the enterprise server.</p>
+</section>
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>How it performed</h2>
+  <div class="stats">
+    <div><b>15/15</b><span>Event readings matched</span></div>
+    <div><b>768/768</b><span>Enterprise calls accepted</span></div>
+    <div><b>0</b><span>Differences from a validator written separately from the planner</span></div>
+  </div>
+  <p>We also tested how 240 generated messages were read: 221 matched the expected reading and 19 went to review, with no wrong actionable reading. These are results from the supplied simulator and our own testing, not the hidden grader.</p>
+</section>
+
+</div>
+<div class="right">
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>Why AI doesn't decide</h2>
+  <p>During E-09, Qwen mistook "Carrier", the trucking company, for a supplier. No supplier has that name, so our code took the real one from the shipment record. The model can misunderstand a sentence, and the rest of the system still has to work with real records.</p>
+</section>
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Guardrails</h2>
+  <p>Values the model returns must appear in the message and match real records. If one fails, the model gets one retry, then a person takes over. Before any call is sent, Python verifies the relationships in the graph, checks all ten handbook policies and rehearses the calls on a separate enterprise copy. Unconfirmed reports go to review, and noise produces no calls at all. If a write might have succeeded but the server doesn't respond, we stop rather than send it again.</p>
+</section>
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>What we'd still improve</h2>
+  <p>The handbook's transfer rule can be read more than one way. Under another reasonable reading, 5 of our 768 calls get different dates, and we'd want that clarified. We'd also try two small models cross-checking each reading, and what-if planning for future disruptions.</p>
+</section>
+
+<section>
+  <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="9" cy="18" r="2.5"/><path d="M8.2 7.2l7.4 1.2M7 8.3l1.6 7.3M16.6 10.1l-5.8 6"/></svg>E-09 impact in the graph</h2>
+  <ul class="path">
+    <li class="hdr"><span>STEP</span><span>EXAMPLE</span><span>REACHED</span></li>
+    <li class="late"><span>SHIPMENT</span><b>SH-0256, Orbit Optics</b><em>1</em></li>
+    <li><span>PART</span><b>CAM-360, camera kit</b><em>1</em></li>
+    <li><span>MODEL</span><b>SUMMIT</b><em>2</em></li>
+    <li><span>BUILD</span><b>PO-0436, Huntsville</b><em>6</em></li>
+    <li><span>ORDER</span><b>CO-02567</b><em>54</em></li>
+    <li><span>DEALER</span><b>D25, Tupelo, MS</b><em>26</em></li>
+  </ul>
+</section>
+
+</div>
+</div>
+
+<div class="foot"><b>Model:</b> Qwen2.5-3B-Instruct (Qwen Team, 2024; arXiv:2412.15115), run locally in Ollama (<code>qwen2.5:3b</code>, <code>Q4_K_M</code>), Qwen Research License. No hosted model or API key.</div>
+
+</body>
+</html>

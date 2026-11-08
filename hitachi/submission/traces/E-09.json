@@ -1,0 +1,2151 @@
+{
+ "event_id": "E-09",
+ "source": "supplier email",
+ "received_at": "2027-03-08T09:33:00",
+ "text": "Quick heads up from Orbit: the surround-view cameras run for Huntsville can't make it Monday Mar 29. Carrier says Thursday Apr 1 now (a customs inspection).",
+ "classification": "Supplier Delay",
+ "decision": "Surround-view camera kit for Huntsville, AL arrives Apr 1 instead of Mar 29, 6 builds moved.",
+ "interpretation": {
+  "handled_by": "ollama",
+  "model": "qwen2.5:3b",
+  "attempts": [
+   {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "ms": 2566,
+    "retry": false,
+    "errors": [],
+    "notes": []
+   }
+  ]
+ },
+ "incidents": [
+  {
+   "kind": "supplier_delay",
+   "extracted": {
+    "kind": "supplier_delay",
+    "supplier": "Carrier",
+    "part": "surround-view cameras",
+    "plant": "Huntsville",
+    "original_eta": "Monday Mar 29",
+    "new_eta": "Thursday Apr 1",
+    "evidence": "Carrier says Thursday Apr 1 now (a customs inspection)."
+   },
+   "resolution": {
+    "plant": {
+     "mention": "Huntsville",
+     "id": "P_AL",
+     "via": "alias"
+    },
+    "part": {
+     "mention": "surround-view cameras",
+     "id": "CAM-360",
+     "via": "alias"
+    },
+    "original_eta": {
+     "mention": "Monday Mar 29",
+     "date": "2027-03-29",
+     "rule": "absolute"
+    },
+    "new_eta": {
+     "mention": "Thursday Apr 1",
+     "date": "2027-04-01",
+     "rule": "absolute"
+    },
+    "shipment": {
+     "shipment_id": "SH-0256",
+     "supplier_id": "SUP-11",
+     "part_id": "CAM-360",
+     "plant_id": "P_AL",
+     "eta_date": "2027-03-29",
+     "covers_days": "5"
+    }
+   },
+   "disruption": {
+    "plant": "P_AL",
+    "models": [
+     "SUMMIT",
+     "VOYAGER"
+    ],
+    "part": "CAM-360",
+    "from_idx": 15,
+    "to_idx_excl": 18,
+    "earliest_same_plant_idx": 18,
+    "summary": "CAM-360 missing at P_AL 2027-03-29 to 2027-03-31, models ['SUMMIT', 'VOYAGER']"
+   },
+   "affected_production_orders": [
+    "PO-0436",
+    "PO-0438",
+    "PO-0439",
+    "PO-0441",
+    "PO-0442",
+    "PO-0444"
+   ],
+   "warnings": [
+    "supplier ignored: cannot resolve supplier 'Carrier' (candidates [])"
+   ],
+   "graph_evidence": {
+    "required_path": "Shipment > Part > Model (BOM) > ProductionOrder > CustomerOrder > Dealer / Customer",
+    "example": [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02567",
+     "Dealer:D25",
+     "Customer:C1467"
+    ],
+    "counts": {
+     "Shipment": 1,
+     "Part": 1,
+     "Model": 2,
+     "ProductionOrder": 6,
+     "CustomerOrder": 54,
+     "Dealer": 26,
+     "Customer": 54
+    },
+    "fact_check": [
+     {
+      "claim": "the shipment carries the named part",
+      "edge": [
+       "Shipment:SH-0256",
+       "carries",
+       "Part:CAM-360"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the shipment goes to the named plant",
+      "edge": [
+       "Shipment:SH-0256",
+       "delivers_to",
+       "Plant:P_AL"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the supplier ships this shipment",
+      "edge": [
+       "Supplier:SUP-11",
+       "ships",
+       "Shipment:SH-0256"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the plant builds Summit",
+      "edge": [
+       "Plant:P_AL",
+       "builds",
+       "Model:SUMMIT"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "Summit contains the part",
+      "edge": [
+       "Model:SUMMIT",
+       "contains",
+       "Part:CAM-360"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "the plant builds Voyager",
+      "edge": [
+       "Plant:P_AL",
+       "builds",
+       "Model:VOYAGER"
+      ],
+      "ok": true
+     },
+     {
+      "claim": "Voyager contains the part",
+      "edge": [
+       "Model:VOYAGER",
+       "contains",
+       "Part:CAM-360"
+      ],
+      "ok": true
+     }
+    ]
+   }
+  }
+ ],
+ "affected_records": {
+  "production_orders": [
+   "PO-0436",
+   "PO-0438",
+   "PO-0439",
+   "PO-0441",
+   "PO-0442",
+   "PO-0444"
+  ],
+  "customer_orders": [
+   "CO-02567",
+   "CO-02568",
+   "CO-02569",
+   "CO-02570",
+   "CO-02571",
+   "CO-02572",
+   "CO-02573",
+   "CO-02574",
+   "CO-02584",
+   "CO-02585",
+   "CO-02586",
+   "CO-02587",
+   "CO-02588",
+   "CO-02589",
+   "CO-02590",
+   "CO-02591",
+   "CO-02592",
+   "CO-02593",
+   "CO-02594",
+   "CO-02595",
+   "CO-02596",
+   "CO-02597",
+   "CO-02598",
+   "CO-02599",
+   "CO-02600",
+   "CO-02601",
+   "CO-02602",
+   "CO-02613",
+   "CO-02614",
+   "CO-02615",
+   "CO-02616",
+   "CO-02617",
+   "CO-02618",
+   "CO-02619",
+   "CO-02620",
+   "CO-02621",
+   "CO-02622",
+   "CO-02623",
+   "CO-02624",
+   "CO-02625",
+   "CO-02626",
+   "CO-02627",
+   "CO-02628",
+   "CO-02629",
+   "CO-02640",
+   "CO-02641",
+   "CO-02642",
+   "CO-02643",
+   "CO-02644",
+   "CO-02645",
+   "CO-02646",
+   "CO-02647",
+   "CO-02648",
+   "CO-02649"
+  ],
+  "lots": [],
+  "unsold_vehicles": [],
+  "owners": []
+ },
+ "policy_checks": [
+  {
+   "rule": 1,
+   "title": "Delay: every build needing the part in the gap is moved",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 3,
+   "title": "Rescheduling: after the disruption, transfer only when the plant is full",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 4,
+   "title": "Dealers: one notice each, listing exactly their affected orders",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 5,
+   "title": "Loaners: Platinum, then Gold, then promised date, within each pool",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 9,
+   "title": "Completeness: at least three kinds of action, unless no loaner is owed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "rule": 10,
+   "title": "Nothing unaffected is touched, every call succeeds in rehearsal",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "actions": [
+  {
+   "n": 0,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0436",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-29 at P_AL moves to P_AL 2027-04-01: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0436",
+    "plant_id": "P_AL",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 1,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0438",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-29 at P_AL moves to P_AL 2027-04-01: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0438",
+    "plant_id": "P_AL",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 2,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0439",
+    "new_date": "2027-04-02"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-30 at P_AL moves to P_AL 2027-04-02: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 2",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0439",
+    "plant_id": "P_AL",
+    "date": "2027-04-02"
+   }
+  },
+  {
+   "n": 3,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.reschedule",
+   "args": {
+    "production_order_id": "PO-0441",
+    "new_date": "2027-04-02"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-30 at P_AL moves to P_AL 2027-04-02: earliest free P_AL slot on or after 2027-04-01",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0441",
+    "Plant:P_AL"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "Plant:P_AL"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Huntsville Apr 1",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Another plant",
+     "verdict": "not considered, rule 3 allows a transfer only when this plant has no free slot"
+    },
+    {
+     "option": "Huntsville Apr 2",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0441",
+    "plant_id": "P_AL",
+    "date": "2027-04-02"
+   }
+  },
+  {
+   "n": 4,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.transfer",
+   "args": {
+    "production_order_id": "PO-0442",
+    "to_plant_id": "P_TX",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "SUMMIT order built 2027-03-31 at P_AL moves to P_TX 2027-04-01: P_AL has no free slot 2027-04-01 to 2027-04-02; earliest free slot at another plant building SUMMIT",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "Plant:P_TX"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "Plant:P_TX"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Huntsville Apr 1 to Apr 2",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "Lexington",
+     "verdict": "also free Apr 1, San Antonio comes first in the plant list"
+    },
+    {
+     "option": "Jackson",
+     "verdict": "does not build the Summit"
+    },
+    {
+     "option": "Princeton",
+     "verdict": "does not build the Summit"
+    },
+    {
+     "option": "Greensboro",
+     "verdict": "does not build the Summit"
+    },
+    {
+     "option": "San Antonio Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0442",
+    "plant_id": "P_TX",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 5,
+   "agent": "Supply Chain Planner",
+   "tool": "mes.transfer",
+   "args": {
+    "production_order_id": "PO-0444",
+    "to_plant_id": "P_KY",
+    "new_date": "2027-04-01"
+   },
+   "rule": "3",
+   "reason": "VOYAGER order built 2027-03-31 at P_AL moves to P_KY 2027-04-01: P_AL has no free slot 2027-04-01 to 2027-04-02; earliest free slot at another plant building VOYAGER",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0444",
+    "Plant:P_KY"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "Plant:P_KY"
+    ]
+   ],
+   "options_considered": [
+    {
+     "option": "Huntsville before Apr 1",
+     "verdict": "not allowed, the disruption is still on (rule 3)"
+    },
+    {
+     "option": "Huntsville Apr 1 to Apr 2",
+     "verdict": "full, 5 of 5 slots taken"
+    },
+    {
+     "option": "San Antonio",
+     "verdict": "does not build the Voyager"
+    },
+    {
+     "option": "Jackson",
+     "verdict": "does not build the Voyager"
+    },
+    {
+     "option": "Princeton",
+     "verdict": "also free Apr 1, Lexington comes first in the plant list"
+    },
+    {
+     "option": "Greensboro",
+     "verdict": "does not build the Voyager"
+    },
+    {
+     "option": "Lexington Apr 1",
+     "verdict": "chosen, earliest feasible slot",
+     "chosen": true
+    }
+   ],
+   "result": {
+    "ok": true,
+    "production_order_id": "PO-0444",
+    "plant_id": "P_KY",
+    "date": "2027-04-01"
+   }
+  },
+  {
+   "n": 6,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D02",
+    "customer_order_ids": [
+     "CO-02572"
+    ],
+    "message": "Production delay for your customer orders: CO-02572 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02572",
+    "Dealer:D02"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02572",
+     "Dealer:D02"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 7,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D03",
+    "customer_order_ids": [
+     "CO-02596"
+    ],
+    "message": "Production delay for your customer orders: CO-02596 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02596",
+    "Dealer:D03"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02596",
+     "Dealer:D03"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 8,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D04",
+    "customer_order_ids": [
+     "CO-02628",
+     "CO-02643"
+    ],
+    "message": "Production delay for your customer orders: CO-02628 now builds 2027-04-01; CO-02643 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "CustomerOrder:CO-02628",
+    "Dealer:D04"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02628",
+     "Dealer:D04"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02643",
+     "Dealer:D04"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 9,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D06",
+    "customer_order_ids": [
+     "CO-02620",
+     "CO-02622"
+    ],
+    "message": "Production delay for your customer orders: CO-02620 now builds 2027-04-02; CO-02622 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0441",
+    "CustomerOrder:CO-02620",
+    "Dealer:D06"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02620",
+     "Dealer:D06"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02622",
+     "Dealer:D06"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 10,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D08",
+    "customer_order_ids": [
+     "CO-02589",
+     "CO-02590",
+     "CO-02597",
+     "CO-02623",
+     "CO-02625",
+     "CO-02649"
+    ],
+    "message": "Production delay for your customer orders: CO-02589 now builds 2027-04-01; CO-02590 now builds 2027-04-01; CO-02597 now builds 2027-04-02; CO-02623 now builds 2027-04-01; CO-02625 now builds 2027-04-01; CO-02649 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "6 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02589",
+    "Dealer:D08"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02589",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02590",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02597",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02623",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02625",
+     "Dealer:D08"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02649",
+     "Dealer:D08"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 11,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D12",
+    "customer_order_ids": [
+     "CO-02629",
+     "CO-02646"
+    ],
+    "message": "Production delay for your customer orders: CO-02629 now builds 2027-04-01; CO-02646 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "CustomerOrder:CO-02629",
+    "Dealer:D12"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02629",
+     "Dealer:D12"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02646",
+     "Dealer:D12"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 12,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D15",
+    "customer_order_ids": [
+     "CO-02624"
+    ],
+    "message": "Production delay for your customer orders: CO-02624 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "CustomerOrder:CO-02624",
+    "Dealer:D15"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02624",
+     "Dealer:D15"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 13,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D16",
+    "customer_order_ids": [
+     "CO-02602",
+     "CO-02640"
+    ],
+    "message": "Production delay for your customer orders: CO-02602 now builds 2027-04-02; CO-02640 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02602",
+    "Dealer:D16"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02602",
+     "Dealer:D16"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02640",
+     "Dealer:D16"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 14,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D20",
+    "customer_order_ids": [
+     "CO-02601",
+     "CO-02619"
+    ],
+    "message": "Production delay for your customer orders: CO-02601 now builds 2027-04-02; CO-02619 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02601",
+    "Dealer:D20"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02601",
+     "Dealer:D20"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02619",
+     "Dealer:D20"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 15,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D21",
+    "customer_order_ids": [
+     "CO-02584"
+    ],
+    "message": "Production delay for your customer orders: CO-02584 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02584",
+    "Dealer:D21"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02584",
+     "Dealer:D21"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 16,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D23",
+    "customer_order_ids": [
+     "CO-02594",
+     "CO-02642"
+    ],
+    "message": "Production delay for your customer orders: CO-02594 now builds 2027-04-02; CO-02642 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02594",
+    "Dealer:D23"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02594",
+     "Dealer:D23"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02642",
+     "Dealer:D23"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 17,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D24",
+    "customer_order_ids": [
+     "CO-02592"
+    ],
+    "message": "Production delay for your customer orders: CO-02592 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02592",
+    "Dealer:D24"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02592",
+     "Dealer:D24"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 18,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D25",
+    "customer_order_ids": [
+     "CO-02567",
+     "CO-02568",
+     "CO-02570",
+     "CO-02591",
+     "CO-02600",
+     "CO-02618",
+     "CO-02644"
+    ],
+    "message": "Production delay for your customer orders: CO-02567 now builds 2027-04-01; CO-02568 now builds 2027-04-01; CO-02570 now builds 2027-04-01; CO-02591 now builds 2027-04-01; CO-02600 now builds 2027-04-02; CO-02618 now builds 2027-04-02; CO-02644 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "7 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02567",
+    "Dealer:D25"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02567",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02568",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02570",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02591",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02600",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02618",
+     "Dealer:D25"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02644",
+     "Dealer:D25"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 19,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D26",
+    "customer_order_ids": [
+     "CO-02593",
+     "CO-02614"
+    ],
+    "message": "Production delay for your customer orders: CO-02593 now builds 2027-04-02; CO-02614 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02593",
+    "Dealer:D26"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02593",
+     "Dealer:D26"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02614",
+     "Dealer:D26"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 20,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D27",
+    "customer_order_ids": [
+     "CO-02615"
+    ],
+    "message": "Production delay for your customer orders: CO-02615 now builds 2027-04-02."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0441",
+    "CustomerOrder:CO-02615",
+    "Dealer:D27"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02615",
+     "Dealer:D27"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 21,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D30",
+    "customer_order_ids": [
+     "CO-02647"
+    ],
+    "message": "Production delay for your customer orders: CO-02647 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0444",
+    "CustomerOrder:CO-02647",
+    "Dealer:D30"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02647",
+     "Dealer:D30"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 22,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D31",
+    "customer_order_ids": [
+     "CO-02587"
+    ],
+    "message": "Production delay for your customer orders: CO-02587 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02587",
+    "Dealer:D31"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02587",
+     "Dealer:D31"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 23,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D34",
+    "customer_order_ids": [
+     "CO-02617",
+     "CO-02641"
+    ],
+    "message": "Production delay for your customer orders: CO-02617 now builds 2027-04-02; CO-02641 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0441",
+    "CustomerOrder:CO-02617",
+    "Dealer:D34"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02617",
+     "Dealer:D34"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02641",
+     "Dealer:D34"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 24,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D35",
+    "customer_order_ids": [
+     "CO-02571",
+     "CO-02586"
+    ],
+    "message": "Production delay for your customer orders: CO-02571 now builds 2027-04-01; CO-02586 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02571",
+    "Dealer:D35"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02571",
+     "Dealer:D35"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02586",
+     "Dealer:D35"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 25,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D36",
+    "customer_order_ids": [
+     "CO-02588"
+    ],
+    "message": "Production delay for your customer orders: CO-02588 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02588",
+    "Dealer:D36"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02588",
+     "Dealer:D36"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 26,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D38",
+    "customer_order_ids": [
+     "CO-02585"
+    ],
+    "message": "Production delay for your customer orders: CO-02585 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02585",
+    "Dealer:D38"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02585",
+     "Dealer:D38"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 27,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D44",
+    "customer_order_ids": [
+     "CO-02595",
+     "CO-02598",
+     "CO-02616",
+     "CO-02645"
+    ],
+    "message": "Production delay for your customer orders: CO-02595 now builds 2027-04-02; CO-02598 now builds 2027-04-02; CO-02616 now builds 2027-04-02; CO-02645 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "4 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02595",
+    "Dealer:D44"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02595",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02598",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02616",
+     "Dealer:D44"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02645",
+     "Dealer:D44"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 28,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D45",
+    "customer_order_ids": [
+     "CO-02569"
+    ],
+    "message": "Production delay for your customer orders: CO-02569 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "1 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02569",
+    "Dealer:D45"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02569",
+     "Dealer:D45"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 29,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D46",
+    "customer_order_ids": [
+     "CO-02573",
+     "CO-02613",
+     "CO-02626"
+    ],
+    "message": "Production delay for your customer orders: CO-02573 now builds 2027-04-01; CO-02613 now builds 2027-04-02; CO-02626 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02573",
+    "Dealer:D46"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02573",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02613",
+     "Dealer:D46"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02626",
+     "Dealer:D46"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 30,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D47",
+    "customer_order_ids": [
+     "CO-02574",
+     "CO-02599",
+     "CO-02627"
+    ],
+    "message": "Production delay for your customer orders: CO-02574 now builds 2027-04-01; CO-02599 now builds 2027-04-02; CO-02627 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "3 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02574",
+    "Dealer:D47"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02574",
+     "Dealer:D47"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02599",
+     "Dealer:D47"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02627",
+     "Dealer:D47"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 31,
+   "agent": "Dealer and Customer Care",
+   "tool": "dealer.notify",
+   "args": {
+    "dealer_id": "D50",
+    "customer_order_ids": [
+     "CO-02621",
+     "CO-02648"
+    ],
+    "message": "Production delay for your customer orders: CO-02621 now builds 2027-04-01; CO-02648 now builds 2027-04-01."
+   },
+   "rule": "4",
+   "reason": "2 of this dealer's customer orders are delayed",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "CustomerOrder:CO-02621",
+    "Dealer:D50"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02621",
+     "Dealer:D50"
+    ],
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02648",
+     "Dealer:D50"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true
+   }
+  },
+  {
+   "n": 32,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02628"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-03, priority 1 of 1 for 1 loaners at D04",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0442",
+    "CustomerOrder:CO-02628",
+    "Customer:C6557"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0442",
+     "CustomerOrder:CO-02628",
+     "Customer:C6557"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D04"
+   }
+  },
+  {
+   "n": 33,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02590"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-01, priority 1 of 1 for 3 loaners at D08",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02590",
+    "Customer:C1928"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02590",
+     "Customer:C1928"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D08"
+   }
+  },
+  {
+   "n": 34,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02640"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-04-04, priority 1 of 1 for 3 loaners at D16",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0444",
+    "CustomerOrder:CO-02640",
+    "Customer:C3035"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02640",
+     "Customer:C3035"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D16"
+   }
+  },
+  {
+   "n": 35,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02570"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-04-01, priority 1 of 3 for 1 loaners at D25",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0436",
+    "CustomerOrder:CO-02570",
+    "Customer:C5790"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0436",
+     "CustomerOrder:CO-02570",
+     "Customer:C5790"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D25"
+   }
+  },
+  {
+   "n": 36,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02593"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-04-02, priority 1 of 1 for 2 loaners at D26",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02593",
+    "Customer:C3575"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02593",
+     "Customer:C3575"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D26"
+   }
+  },
+  {
+   "n": 37,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02615"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-04, priority 1 of 1 for 1 loaners at D27",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0441",
+    "CustomerOrder:CO-02615",
+    "Customer:C1676"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0441",
+     "CustomerOrder:CO-02615",
+     "Customer:C1676"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D27"
+   }
+  },
+  {
+   "n": 38,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02587"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-02, priority 1 of 1 for 2 loaners at D31",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0438",
+    "CustomerOrder:CO-02587",
+    "Customer:C6144"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0438",
+     "CustomerOrder:CO-02587",
+     "Customer:C6144"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D31"
+   }
+  },
+  {
+   "n": 39,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02641"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-04, priority 1 of 1 for 1 loaners at D34",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0444",
+    "CustomerOrder:CO-02641",
+    "Customer:C5173"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02641",
+     "Customer:C5173"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D34"
+   }
+  },
+  {
+   "n": 40,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02645"
+   },
+   "rule": "5",
+   "reason": "Platinum customer, promised 2027-04-05, priority 1 of 2 for 2 loaners at D44",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:VOYAGER",
+    "ProductionOrder:PO-0444",
+    "CustomerOrder:CO-02645",
+    "Customer:C5310"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:VOYAGER",
+     "ProductionOrder:PO-0444",
+     "CustomerOrder:CO-02645",
+     "Customer:C5310"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D44"
+   }
+  },
+  {
+   "n": 41,
+   "agent": "Dealer and Customer Care",
+   "tool": "crm.assign_loaner",
+   "args": {
+    "customer_order_id": "CO-02598"
+   },
+   "rule": "5",
+   "reason": "Gold customer, promised 2027-04-04, priority 2 of 2 for 2 loaners at D44",
+   "graph_path": [
+    "Shipment:SH-0256",
+    "Part:CAM-360",
+    "Model:SUMMIT",
+    "ProductionOrder:PO-0439",
+    "CustomerOrder:CO-02598",
+    "Customer:C4530"
+   ],
+   "graph_paths": [
+    [
+     "Shipment:SH-0256",
+     "Part:CAM-360",
+     "Model:SUMMIT",
+     "ProductionOrder:PO-0439",
+     "CustomerOrder:CO-02598",
+     "Customer:C4530"
+    ]
+   ],
+   "options_considered": null,
+   "result": {
+    "ok": true,
+    "dealer_id": "D44"
+   }
+  }
+ ],
+ "loaners_not_available": [
+  {
+   "customer_order_id": "CO-02568",
+   "dealer_id": "D25",
+   "priority": "2 of 3",
+   "pool": 1
+  },
+  {
+   "customer_order_id": "CO-02644",
+   "dealer_id": "D25",
+   "priority": "3 of 3",
+   "pool": 1
+  }
+ ],
+ "execution": {
+  "sent": 42,
+  "accepted": 42,
+  "failed": 0
+ }
+}

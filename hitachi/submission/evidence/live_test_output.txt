@@ -1,0 +1,16 @@
+PASS  new message is read by the model and held as a checked preview
+PASS  send executes every action and the status turns Resolved
+PASS  the demo server received exactly the planned calls, in order, with the same arguments, all accepted
+PASS  a plan cannot be sent twice
+PASS  the official events cannot be sent from the app
+PASS  two simultaneous sends of one plan: exactly one is executed, the other is refused
+PASS  empty and oversized messages are rejected before reaching the model
+PASS  security headers are set: script sources limited to this server, no framing, no sniffing
+PASS  second message is read and planned with build moves
+PASS  a call the server rejects is reported: status Partial, one fewer accepted, the server's reason shown
+PASS  the server log shows the rejected call and nothing else lost
+PASS  the app refuses to send to a server running the official event feed
+PASS  nothing was written to that server
+PASS  the official submission log is unchanged
+
+14/14 passed

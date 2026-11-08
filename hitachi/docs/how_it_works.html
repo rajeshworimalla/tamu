@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How it works</title>
+<style>
+  html, body { margin: 0; background: #FFFFFF; }
+  svg { display: block; font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+</head>
+<body>
+<svg id="g" width="2000" height="470" viewBox="0 0 2000 470" xmlns="http://www.w3.org/2000/svg"></svg>
+<script>
+const W = 250, H = 120, Y = 170, X0 = 165, STEP = 334;
+const STEPS = [
+  ["Qwen reads", "message to fields,", "local 3B model"],
+  ["Python verifies", "values in the message,", "names on real records"],
+  ["Graph traces", "affected builds,", "orders, dealers"],
+  ["Agents plan", "moves, notices,", "loaners, lot holds"],
+  ["RuleBook checks", "10 handbook rules", "plus a rehearsal"],
+  ["API executes", "enterprise server,", "each call once"],
+];
+const svg = document.getElementById("g");
+const el = (tag, attrs, text) => {
+  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (text !== undefined) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+};
+el("defs", {}).innerHTML =
+  `<marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1F6B45"/></marker>
+   <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#B36A12"/></marker>`;
+
+el("text", { x: 40, y: 58, fill: "#10231B", "font-size": 30, "font-weight": 700 }, "How it works");
+
+const cx = (i) => X0 + i * STEP;
+const REVIEW = { x: (cx(1) + cx(4)) / 2, y: 400, w: 300, h: 64 };
+
+const dashed = (i, label) => {
+  const sx = cx(i), sy = Y + H / 2;
+  const tx = i < 3 ? REVIEW.x - REVIEW.w / 2 : REVIEW.x + REVIEW.w / 2;
+  const d = `M${sx} ${sy}V${REVIEW.y}H${i < 3 ? tx - 4 : tx + 4}`;
+  el("path", { d, fill: "none", stroke: "#B36A12", "stroke-width": 2.5, "stroke-dasharray": "8 7", "marker-end": "url(#r)" });
+  el("text", { x: sx + (i < 3 ? 12 : -12), y: sy + 52, "text-anchor": i < 3 ? "start" : "end", fill: "#B36A12", "font-size": 15, "font-weight": 600 }, label);
+};
+dashed(1, "check fails");
+dashed(4, "rule fails");
+
+STEPS.forEach(([title, a, b], i) => {
+  const x = cx(i) - W / 2, y = Y - H / 2, last = i === STEPS.length - 1;
+  if (i < STEPS.length - 1) {
+    el("path", { d: `M${cx(i) + W / 2} ${Y}H${cx(i + 1) - W / 2 - 4}`, stroke: "#1F6B45", "stroke-width": 3, "marker-end": "url(#a)" });
+  }
+  el("rect", { x, y, width: W, height: H, rx: 16, fill: last ? "#1F6B45" : "#F2F8F4", stroke: "#1F6B45", "stroke-width": 2 });
+  el("circle", { cx: x + 30, cy: y + 30, r: 15, fill: last ? "#FFFFFF" : "#1F6B45" });
+  el("text", { x: x + 30, y: y + 35.5, "text-anchor": "middle", fill: last ? "#1F6B45" : "#FFFFFF", "font-size": 15, "font-weight": 700 }, String(i + 1));
+  el("text", { x: x + 54, y: y + 37, fill: last ? "#FFFFFF" : "#10231B", "font-size": 21, "font-weight": 700 }, title);
+  el("text", { x: x + 20, y: y + 76, fill: last ? "#D7EEDF" : "#4A5F55", "font-size": 15.5 }, a);
+  el("text", { x: x + 20, y: y + 98, fill: last ? "#D7EEDF" : "#4A5F55", "font-size": 15.5 }, b);
+});
+
+el("rect", { x: REVIEW.x - REVIEW.w / 2, y: REVIEW.y - REVIEW.h / 2, width: REVIEW.w, height: REVIEW.h, rx: 16, fill: "#FFF6EA", stroke: "#B36A12", "stroke-width": 2 });
+el("text", { x: REVIEW.x, y: REVIEW.y + 7, "text-anchor": "middle", fill: "#8A4F0B", "font-size": 21, "font-weight": 700 }, "Review by a person");
+</script>
+</body>
+</html>
